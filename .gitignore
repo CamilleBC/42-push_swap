@@ -1,0 +1,5 @@
+.clang-format
+.vscode
+*.code-workspace
+obj/*
+test*
