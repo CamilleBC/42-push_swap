@@ -1,26 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   common.h                                           :+:      :+:    :+:   */
+/*   instruction_set_rotate.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/18 17:36:43 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/19 16:58:55 by cbaillat         ###   ########.fr       */
+/*   Created: 2018/01/19 23:04:26 by cbaillat          #+#    #+#             */
+/*   Updated: 2018/01/19 23:04:29 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMON_H
-# define COMMON_H
-
-# include "libft.h"
-# include "stdint.h"
-// DEBUG
-#include <stdio.h>
-
-# define MALLOC_FAIL	(int32_t) -2
-# define LIST_A			(int8_t)1
-# define LIST_B			(int8_t)2
-# define LIST_AB		(int8_t)3
-
-#endif
+#include "instructions.h"

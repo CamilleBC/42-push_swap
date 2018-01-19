@@ -1,5 +1,5 @@
 .clang-format
 .vscode
 *.code-workspace
-obj/*
-test*
+checker/obj/*
+push_swap/obj/*
