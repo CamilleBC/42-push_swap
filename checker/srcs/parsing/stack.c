@@ -6,22 +6,13 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:44:36 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/19 22:10:54 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/20 17:50:40 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-int32_t			init_stack(t_stack **stack)
-{
-	if ((*stack = (t_stack*)malloc(sizeof(t_stack))) == NULL)
-		return (MALLOC_FAIL);
-	(*stack)->top = NULL;
-	(*stack)->bottom = NULL;
-	return (SUCCESS);
-}
-
-int32_t			pop_bottom(t_stack *stack)
+int32_t			pop_bottom(struct s_stack *stack)
 {
 	t_lst	*tmp;
 	int32_t	ret;
@@ -34,7 +25,20 @@ int32_t			pop_bottom(t_stack *stack)
 	return (ret);
 }
 
-int32_t			push_bottom(int32_t value, t_stack *stack)
+int32_t			pop_top(struct s_stack *stack)
+{
+	t_lst	*tmp;
+	int32_t	ret;
+
+	tmp = stack->top->next;
+	ret = stack->top->element;
+	free(stack->top);
+	stack->top = tmp;
+	stack->top->prev = NULL;
+	return (ret);
+}
+
+int32_t			push_bottom(int32_t value, struct s_stack *stack)
 {
 	t_lst	*tmp;
 
@@ -55,20 +59,7 @@ int32_t			push_bottom(int32_t value, t_stack *stack)
 	return (SUCCESS);
 }
 
-int32_t			pop_top(t_stack *stack)
-{
-	t_lst	*tmp;
-	int32_t	ret;
-
-	tmp = stack->top->next;
-	ret = stack->top->element;
-	free(stack->top);
-	stack->top = tmp;
-	stack->top->prev = NULL;
-	return (ret);
-}
-
-int32_t			push_top(int32_t value, t_stack *stack)
+int32_t			push_top(int32_t value, struct s_stack *stack)
 {
 	t_lst	*last;
 
@@ -80,31 +71,6 @@ int32_t			push_top(int32_t value, t_stack *stack)
 	if (last != NULL)
 		last->prev = stack->top;
 	if (stack->bottom == NULL)
-		stack->bottom = last;
-	return (SUCCESS);
-}
-
-/*
-** We need to check:
-** - if the parameter is really a number
-** - if we don't over/underflow
-** - if we don't double numbers
-*/
-int32_t			return_stack(int ac, char **av, t_stack **stack_a)
-{
-	int64_t	tmp;
-
-	if (init_stack(stack_a) != SUCCESS)
-		return (ERROR);
-	while (--ac >= 0)
-	{
-		if (!ft_strisnumber(av[ac]))
-			return (ERROR);
-		if ((tmp = ft_atoi(av[ac])) > MAX_32 || tmp < MIN_32)
-			return (ERROR);
-		if (check_double(tmp, **stack_a) == ERROR)
-			return (ERROR);
-		push_top(tmp, *stack_a);
-	}
+		stack->bottom = stack->top;
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/01/19 23:59:02 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/01/20 17:14:20 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,12 +19,15 @@ CFLAGS	= -Wall -Wextra -Og -ggdb
 # checker sources
 # we use the VPATH variable which causes MAKE to look for sources in all those
 # directories
-VPATH	+= ./srcs:./srcs/instructions:./srcs/parsing
-SRCS	=	checker.c \
-			stack.c
-SRCS	+=	get_instructions.c \
+VPATH	+= ./srcs:./srcs/instructions:./srcs/parsing:./srcs/sort
+SRCS	=	checker.c
+SRCS	+=	apply_instructions.c \
+			get_instructions.c \
 			instruction_set.c
-SRCS	+=	parsing.c
+SRCS	+=	parsing.c \
+			stack.c
+SRCS	+=	check.c \
+			sort.c
 
 # object files
 OBJ_DIR		:=	./obj

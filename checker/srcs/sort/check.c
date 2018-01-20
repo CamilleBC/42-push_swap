@@ -1,13 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instruction_set_swap.c                             :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/19 23:04:01 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/19 23:05:03 by cbaillat         ###   ########.fr       */
+/*   Created: 2018/01/20 16:27:32 by cbaillat          #+#    #+#             */
+/*   Updated: 2018/01/20 20:54:06 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "instructions.h"
+#include "sort.h"
+
+int32_t	check_elements(t_stack *stack_a, t_stack *stack_b)
+{
+	t_lst	*tmp;
+
+	if (stack_b->top)
+		return (FAILURE);
+	tmp = stack_a->top;
+	stack_a->top = stack_a->top->next;
+	while (stack_a->top)
+	{
+		if (tmp->element > stack_a->top->element)
+			return (FAILURE);
+		tmp = stack_a->top;
+		stack_a->top = stack_a->top->next;
+	}
+	return (SUCCESS);
+}

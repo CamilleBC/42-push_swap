@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:15:49 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/20 00:28:41 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/20 20:54:19 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@
 
 #include "checker.h"
 
-#define TOP		(int8_t)1
-#define BOTTOM	(int8_t)0
-static void print_stack(int8_t way, t_stack stack)
+void print_stack(int8_t way, t_stack stack)
 {
 	int32_t	i;
 
@@ -45,7 +43,7 @@ static void print_stack(int8_t way, t_stack stack)
 	}
 }
 
-static void print_instructions(int32_t instr[MAX_INSTR])
+void print_instructions(int32_t instr[MAX_INSTR])
 {
 	int32_t	i = 0;
 
@@ -59,29 +57,33 @@ static void print_instructions(int32_t instr[MAX_INSTR])
 int	main (int ac, char **av)
 {
 	int32_t	instructions[MAX_INSTR];
+	int32_t	status;
 	t_stack	*stack_a;
-	// t_stack	*stack_b;
+	t_stack	*stack_b;
 
 	if (ac < 2)
 		return (SUCCESS);
-	/* else if (ac == 2)
-		elements_string(av(1)) */
-	if (return_stack(ac - 1, &av[1], &stack_a) == ERROR)
+	else if (ac == 2)
+		stack_a = get_element_string(&av[1]);
+	else
+		stack_a = return_stack(ac - 1, &av[1]);
+	if (stack_a == NULL)
+	{
 		ft_putstr("Error\n");
-	print_stack(TOP, *stack_a);
-	printf("\nSwap:\n");
-	swap(stack_a);
-	print_stack(TOP, *stack_a);
-	printf("\nRotate:\n");
-	rotate(stack_a);
-	printf("\nRev rotate:\n");
-	print_stack(TOP, *stack_a);
-	rev_rotate(stack_a);
+		return (SUCCESS);
+	}
+	stack_b = init_stack();
 	print_stack(TOP, *stack_a);
 	if (return_instructions(&instructions) == ERROR)
 		ft_putstr("Error\n");
-	else
-		ft_putstr("Instructions OK\n");
+	print_instructions(instructions);
+	sort_elements(instructions, stack_a, stack_b);
+	printf("stack_a ptr: %p\n", (void *)stack_a);
+	printf("stack_b ptr: %p\n", (void *)stack_b);
+	if ((status = check_elements(stack_a, stack_b)) == FAILURE)
+		ft_putstr("KO\n");
+	else if (status == SUCCESS)
+		ft_putstr("OK\n");
 	print_instructions(instructions);
 	return (SUCCESS);
 }

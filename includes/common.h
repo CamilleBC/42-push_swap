@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:36:43 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/19 16:58:55 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/20 17:24:35 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include "libft.h"
 # include "stdint.h"
-// DEBUG
+# include "limits.h"
+//DEBUG
 #include <stdio.h>
 
 # define MALLOC_FAIL	(int32_t) -2

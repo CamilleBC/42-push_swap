@@ -6,12 +6,18 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 23:58:38 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/20 00:46:06 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/20 20:25:48 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "checker.h"
 
+void	double_instruction(void (*ptr_func)(t_stack*),
+			t_stack *stack_a, t_stack *stack_b)
+{
+	ptr_func(stack_a);
+	ptr_func(stack_b);
+}
 /*
 ** INIT	|	x--	top	-->	top->next --> end| tmp == NULL
 **
@@ -47,20 +53,13 @@ void	swap(t_stack *stack)
 
 	if (!(stack->top && stack->top->next))
 		return ;
-	// A
 	tmp = stack->top->next;
 	end = tmp->next;
-	// 1
 	stack->top->next = tmp->next;
-	// 2
 	end->prev = stack->top;
-	// 3
 	stack->top->prev = tmp;
-	// 4
 	tmp->next = stack->top;
-	// 5
 	tmp->prev = NULL;
-	// END
 	stack->top = tmp;
 }
 
@@ -70,16 +69,18 @@ void	push(t_stack *stack_from, t_stack *stack_to)
 
 	if (!stack_from->top)
 		return ;
-	if (stack_to->top)
-		stack_to->top->prev = stack_from->top;
 	tmp = stack_from->top->next;
 	stack_from->top->next = stack_to->top;
-	tmp->prev = NULL;
+	if (stack_to->top)
+		stack_to->top->prev = stack_from->top;
 	stack_to->top = stack_from->top;
+	if (!stack_to->bottom)
+		stack_to->bottom = stack_to->top;
 	stack_from->top = tmp;
-	// TODO
-	// penser a la creation du pointeur vers bottom
-	// avec 0, 1 ou plusieurs elements.
+	if (!tmp)
+		stack_from->bottom = tmp;
+	else
+		stack_from->top->prev = NULL;
 }
 
 void	rotate(t_stack *stack)

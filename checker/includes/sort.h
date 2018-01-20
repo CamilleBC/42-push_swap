@@ -1,13 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instruction_set_push.c                             :+:      :+:    :+:   */
+/*   sort.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/19 23:04:37 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/19 23:04:38 by cbaillat         ###   ########.fr       */
+/*   Created: 2018/01/20 16:27:55 by cbaillat          #+#    #+#             */
+/*   Updated: 2018/01/20 20:36:49 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "instructions.h"
+#ifndef SORT_H
+# define SORT_H
+
+# include "common.h"
+# include "instructions.h"
+
+//DEBUG
+#include "checker.h"
+
+int32_t	check_elements(t_stack *stack_a, t_stack *stack_b);
+void	sort_elements(int32_t instr[MAX_INSTR],
+						t_stack *stack_a, t_stack *stack_b);
+
+#endif
