@@ -2,4 +2,6 @@
 .vscode
 *.code-workspace
 checker/obj/*
+checker/checker
 push_swap/obj/*
+push_swap/push_swap
