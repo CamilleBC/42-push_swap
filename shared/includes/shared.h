@@ -6,16 +6,17 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 23:08:38 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/20 23:08:40 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/20 23:33:16 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHARED_H
 # define SHARED_H
 
+# include <stdint.h>
+# include <stdlib.h>
+# include <limits.h>
 # include "libft.h"
-# include "stdint.h"
-# include "limits.h"
 //DEBUG
 #include <stdio.h>
 

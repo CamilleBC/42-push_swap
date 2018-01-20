@@ -6,11 +6,11 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 23:58:38 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/20 20:25:48 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/20 23:37:36 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "checker.h"
+# include "instructions.h"
 
 void	double_instruction(void (*ptr_func)(t_stack*),
 			t_stack *stack_a, t_stack *stack_b)

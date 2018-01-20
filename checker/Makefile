@@ -6,7 +6,7 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/01/20 23:12:09 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/01/20 23:36:22 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ $(NAME): $(OBJECTS)
 $(OBJ_DIR)/%.o:%.c
 	@echo "[Building ${GREEN}checker${NC} object: $@]"
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(DEPS_FLAGS) $(IFLAGS)  -o $@ -c $<
+	@$(CC) $(CFLAGS) $(DEPS_FLAGS) $(IFLAGS) -o $@ -c $<
 
 clean:
 	@echo "[Cleaning ${GREEN}checker${NC} objects]"
@@ -80,6 +80,7 @@ clean:
 fclean: clean
 	@echo "[Cleaning ${GREEN}checker${NC} executable]"
 	@/bin/rm -f $(NAME)
+
 re: fclean all
 
 # include all dependicy files

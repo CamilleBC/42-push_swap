@@ -6,17 +6,15 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:23:01 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/20 23:17:08 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/20 23:33:29 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECKER_H
 # define CHECKER_H
 
-# include <stdlib.h>
 # include "shared.h"
 # include "instructions.h"
-# include "libft.h"
 # include "stack.h"
 
 //DEBUG
