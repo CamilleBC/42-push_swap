@@ -6,13 +6,13 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:37:55 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/18 17:38:20 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/20 23:26:44 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifdef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "common.h"
+# include "shared.h"
 
 #endif

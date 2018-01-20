@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   common.h                                           :+:      :+:    :+:   */
+/*   shared.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/18 17:36:43 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/20 17:24:35 by cbaillat         ###   ########.fr       */
+/*   Created: 2018/01/20 23:08:38 by cbaillat          #+#    #+#             */
+/*   Updated: 2018/01/20 23:08:40 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMON_H
-# define COMMON_H
+#ifndef SHARED_H
+# define SHARED_H
 
 # include "libft.h"
 # include "stdint.h"
@@ -19,9 +19,7 @@
 //DEBUG
 #include <stdio.h>
 
+# define MAX_INSTR 10000
 # define MALLOC_FAIL	(int32_t) -2
-# define LIST_A			(int8_t)1
-# define LIST_B			(int8_t)2
-# define LIST_AB		(int8_t)3
 
 #endif

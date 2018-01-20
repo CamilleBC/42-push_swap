@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.h                                             :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/20 16:27:55 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/20 21:09:08 by cbaillat         ###   ########.fr       */
+/*   Created: 2018/01/20 16:27:39 by cbaillat          #+#    #+#             */
+/*   Updated: 2018/01/20 23:17:59 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SORT_H
-# define SORT_H
-
-# include "common.h"
-# include "instructions.h"
-
-//DEBUG
 #include "checker.h"
 
-int32_t	check_elements(t_stack stack_a, t_stack stack_b);
 void	sort_elements(int32_t instr[MAX_INSTR],
-						t_stack *stack_a, t_stack *stack_b);
-
-#endif
+						t_stack *stack_a, t_stack *stack_b)
+{
+	while (*instr)
+		apply_instructions(*instr++, stack_a, stack_b);
+}

@@ -6,17 +6,15 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 17:37:48 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/20 17:14:12 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/20 23:16:22 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INSTRUCTIONS_H
 # define INSTRUCTIONS_H
 
-# include "common.h"
+# include "shared.h"
 # include "stack.h"
-
-# define MAX_INSTR 10000
 
 /*
 ** Intel PCs (including Macs) are little endians, so string bytes are in
@@ -39,7 +37,6 @@ void	apply_instructions(int32_t cmd, t_stack *stack_a, t_stack *stack_b);
 void	double_instruction(void (*ptr_func)(t_stack*),
 			t_stack *stack_a, t_stack *stack_b);
 void	push(t_stack *stack_from, t_stack *stack_to);
-int32_t	return_instructions(int32_t (*instr)[MAX_INSTR]);
 void	rev_rotate(t_stack *stack);
 void	rotate(t_stack *stack);
 void	swap(t_stack *stack);

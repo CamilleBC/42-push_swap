@@ -6,11 +6,11 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 17:37:30 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/20 21:23:11 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/20 23:15:00 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "instructions.h"
+#include "checker.h"
 
 static inline void	init_instructions(int32_t (*instr)[MAX_INSTR])
 {

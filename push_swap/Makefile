@@ -6,7 +6,7 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/01/19 22:08:57 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/01/20 23:22:29 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,12 @@ CFLAGS	= -Wall -Werror -Wextra
 # push_swap sources
 # we use the VPATH variable which causes MAKE to look for sources in all those
 # directories
-VPATH	+= ./srcs
+VPATH	+= ./srcs:../shared/srcs/instructions:../shared/srcs/stack
 SRCS	=	push_swap.c
+SRCS	+=	apply_instructions.c \
+			instruction_set.c
+SRCS	+=	stack.c \
+			stack_manipulation.c
 
 # object files
 OBJ_DIR		:=	./obj
@@ -30,7 +34,7 @@ DEPS_FLAGS	= -MMD -MP
 
 # includes
 INC_DIR	:=	./includes
-INC_DIR	+=	../includes
+INC_DIR	+=	../shared/includes
 INC_DIR	+=	../libft/includes
 IFLAGS	+= $(foreach d, $(INC_DIR), -I$d)
 

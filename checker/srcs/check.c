@@ -6,11 +6,11 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 16:27:32 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/20 21:08:58 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/20 23:17:52 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sort.h"
+#include "checker.h"
 
 int32_t	check_elements(t_stack stack_a, t_stack stack_b)
 {

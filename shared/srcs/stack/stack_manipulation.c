@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.c                                            :+:      :+:    :+:   */
+/*   stack_manipulation.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:44:36 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/20 21:16:16 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/20 23:10:10 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
-
-void	free_stack(t_stack **stack)
-{
-	t_lst	*tmp;
-	while ((*stack)->top)
-	{
-		tmp = (*stack)->top->next;
-		free((*stack)->top);
-		(*stack)->top = tmp;
-	}
-	free(*stack);
-}
 
 int32_t	pop_bottom(struct s_stack *stack)
 {

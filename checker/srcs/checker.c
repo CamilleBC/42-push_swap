@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:15:49 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/20 21:16:29 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/20 23:22:51 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,11 @@ int	main (int ac, char **av)
 		ft_putstr("KO\n");
 	else if (status == SUCCESS)
 		ft_putstr("OK\n");
-	free_stack(&stack_a);
-	free_stack(&stack_b);
 	printf("\nFinal Stack:");
 	print_stack(TOP, *stack_a);
 	printf("\nInstructions:\n");
 	print_instructions(instructions);
+	free_stack(&stack_a);
+	free_stack(&stack_b);
 	return (SUCCESS);
 }

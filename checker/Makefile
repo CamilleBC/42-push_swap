@@ -6,7 +6,7 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/01/20 17:14:20 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/01/20 23:12:09 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,15 +19,15 @@ CFLAGS	= -Wall -Wextra -Og -ggdb
 # checker sources
 # we use the VPATH variable which causes MAKE to look for sources in all those
 # directories
-VPATH	+= ./srcs:./srcs/instructions:./srcs/parsing:./srcs/sort
-SRCS	=	checker.c
-SRCS	+=	apply_instructions.c \
+VPATH	+= ./srcs:../shared/srcs/instructions:../shared/srcs/stack
+SRCS	=	checker.c \
+			check.c \
 			get_instructions.c \
-			instruction_set.c
-SRCS	+=	parsing.c \
-			stack.c
-SRCS	+=	check.c \
 			sort.c
+SRCS	+=	apply_instructions.c \
+			instruction_set.c
+SRCS	+=	stack.c \
+			stack_manipulation.c
 
 # object files
 OBJ_DIR		:=	./obj
@@ -38,7 +38,7 @@ DEPS_FLAGS	= -MMD -MP
 
 # includes
 INC_DIR	:=	./includes
-INC_DIR	+=	../includes
+INC_DIR	+=	../shared/includes
 INC_DIR	+=	../libft/includes
 IFLAGS	+= $(foreach d, $(INC_DIR), -I$d)
 

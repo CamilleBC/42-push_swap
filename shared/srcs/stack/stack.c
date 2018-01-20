@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 15:19:15 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/20 16:25:16 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/20 23:10:00 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,18 @@ int32_t	check_double(int32_t value, t_stack stack)
 		stack.top = stack.top->next;
 	}
 	return (SUCCESS);
+}
+
+void	free_stack(t_stack **stack)
+{
+	t_lst	*tmp;
+	while ((*stack)->top)
+	{
+		tmp = (*stack)->top->next;
+		free((*stack)->top);
+		(*stack)->top = tmp;
+	}
+	free(*stack);
 }
 
 t_stack	*get_element_string(char **av)
