@@ -6,13 +6,25 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:44:36 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/20 17:50:40 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/20 21:16:16 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-int32_t			pop_bottom(struct s_stack *stack)
+void	free_stack(t_stack **stack)
+{
+	t_lst	*tmp;
+	while ((*stack)->top)
+	{
+		tmp = (*stack)->top->next;
+		free((*stack)->top);
+		(*stack)->top = tmp;
+	}
+	free(*stack);
+}
+
+int32_t	pop_bottom(struct s_stack *stack)
 {
 	t_lst	*tmp;
 	int32_t	ret;
@@ -25,7 +37,7 @@ int32_t			pop_bottom(struct s_stack *stack)
 	return (ret);
 }
 
-int32_t			pop_top(struct s_stack *stack)
+int32_t	pop_top(struct s_stack *stack)
 {
 	t_lst	*tmp;
 	int32_t	ret;
@@ -38,7 +50,7 @@ int32_t			pop_top(struct s_stack *stack)
 	return (ret);
 }
 
-int32_t			push_bottom(int32_t value, struct s_stack *stack)
+int32_t	push_bottom(int32_t value, struct s_stack *stack)
 {
 	t_lst	*tmp;
 
@@ -59,7 +71,7 @@ int32_t			push_bottom(int32_t value, struct s_stack *stack)
 	return (SUCCESS);
 }
 
-int32_t			push_top(int32_t value, struct s_stack *stack)
+int32_t	push_top(int32_t value, struct s_stack *stack)
 {
 	t_lst	*last;
 

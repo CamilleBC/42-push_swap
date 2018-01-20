@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 17:37:30 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/19 22:58:53 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/20 21:23:11 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,14 @@ int32_t				return_instructions(int32_t (*instr)[MAX_INSTR])
 	while ((status = get_next_line(0, &line)) > FILE_READ)
 	{
 		if (ft_strlen(line) > 3)
+		{
+			free(line);
 			return (ERROR);
+		}
 		(*instr)[i++] = *(int32_t *)line;
+		free(line);
 	}
+	free(line);
 	if (status == ERROR)
 		return (ERROR);
 	if (check_instructions(instr) == ERROR)
