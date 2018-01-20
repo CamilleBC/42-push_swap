@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:15:49 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/20 20:54:19 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/20 21:10:50 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void print_stack(int8_t way, t_stack stack)
 	i = 0;
 	if (way == TOP)
 	{
-		ft_putstr("\nTop:\n");
+		printf("\nTop:\n");
 		while (stack.top != NULL)
 		{
 			printf("Stack #%d: %d\n", i++, stack.top->element);
@@ -34,7 +34,7 @@ void print_stack(int8_t way, t_stack stack)
 	}
 	else
 	{
-		ft_putstr("\nBottom:\n");
+		printf("\nBottom:\n");
 		while (stack.bottom != NULL)
 		{
 			printf("Stack #%d: %d\n", i++, stack.bottom->element);
@@ -73,17 +73,19 @@ int	main (int ac, char **av)
 		return (SUCCESS);
 	}
 	stack_b = init_stack();
+	printf("\nOriginal Stack:");
 	print_stack(TOP, *stack_a);
 	if (return_instructions(&instructions) == ERROR)
 		ft_putstr("Error\n");
-	print_instructions(instructions);
 	sort_elements(instructions, stack_a, stack_b);
-	printf("stack_a ptr: %p\n", (void *)stack_a);
-	printf("stack_b ptr: %p\n", (void *)stack_b);
-	if ((status = check_elements(stack_a, stack_b)) == FAILURE)
+	printf("\n|-------|\n|Result:|\n|-------|\n");
+	if ((status = check_elements(*stack_a, *stack_b)) == FAILURE)
 		ft_putstr("KO\n");
 	else if (status == SUCCESS)
 		ft_putstr("OK\n");
+	printf("\nFinal Stack:");
+	print_stack(TOP, *stack_a);
+	printf("\nInstructions:\n");
 	print_instructions(instructions);
 	return (SUCCESS);
 }
