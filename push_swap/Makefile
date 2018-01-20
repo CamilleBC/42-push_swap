@@ -6,14 +6,14 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/01/20 23:22:29 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/01/20 23:37:59 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= push_swap
 
 CC		= gcc
-CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Wextra
 
 # push_swap sources
 # we use the VPATH variable which causes MAKE to look for sources in all those
@@ -55,17 +55,19 @@ NC		= \033[0m
 
 .PHONY: all clean fclean re
 
-all: $(NAME)
+all:
+	@make -C $(LIB_DIR)/
+	@make $(NAME)
 
 $(NAME): $(OBJECTS)
 	@echo "[Building ${RED}push_swap${NC}]"
 	@$(CC) $(CFLAGS) $(OBJECTS) $(LIB_FLAGS) -o $(NAME)
-	@mv $(NAME) ../
+	#@mv $(NAME) ../
 
 $(OBJ_DIR)/%.o:%.c
-	@mkdir -p $(OBJ_DIR)
 	@echo "[Building ${RED}push_swap${NC} object: $@]"
-	@$(CC) $(CFLAGS) $(DEPS_FLAGS) $(IFLAGS)  -o $@ -c $<
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) $(DEPS_FLAGS) $(IFLAGS) -o $@ -c $<
 
 clean:
 	@echo "[Cleaning ${RED}push_swap${NC} objects]"
