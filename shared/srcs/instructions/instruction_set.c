@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 23:58:38 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/20 23:37:36 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/22 11:46:55 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,31 @@ void	double_instruction(void (*ptr_func)(t_stack*),
 	ptr_func(stack_b);
 }
 /*
-** INIT	|	x--	top	-->	top->next --> end| tmp == NULL
+** INIT	|	x--	head	-->	head->next --> end| tmp == NULL
 **
-** A = tmp = top->next
+** A = tmp = head->next
 **
-** A	|		x-- top <--> tmp <--> end
+** A	|		x-- head <--> tmp <--> end
 **
-** 1	|		x-- top <--x tmp <--> end
+** 1	|		x-- head <--x tmp <--> end
 **					    |___________î
 **
-** 2	|		x-- top <--x tmp x--> end
+** 2	|		x-- head <--x tmp x--> end
 **					    î___________î
 **
-** 3	|		<-- top <--x tmp x--> end
+** 3	|		<-- head <--x tmp x--> end
 **				|	    î__î________î
 **				|__________|
 **
-** State| <-- tmp <--x top <--> end
+** State| <-- tmp <--x head <--> end
 **		  |			 î
 **		  |__________|
 **
-** 4	| <-- tmp <--> top <--> end
+** 4	| <-- tmp <--> head <--> end
 **		  |			 î
 **		  |__________|
 **
-** 5	| x-- tmp <--> top <--> end
+** 5	| x-- tmp <--> head <--> end
 */
 
 void	swap(t_stack *stack)
@@ -51,64 +51,64 @@ void	swap(t_stack *stack)
 	t_lst	*tmp;
 	t_lst	*end;
 
-	if (!(stack->top && stack->top->next))
+	if (!(stack->head && stack->head->next))
 		return ;
-	tmp = stack->top->next;
+	tmp = stack->head->next;
 	end = tmp->next;
-	stack->top->next = tmp->next;
-	end->prev = stack->top;
-	stack->top->prev = tmp;
-	tmp->next = stack->top;
+	stack->head->next = tmp->next;
+	end->prev = stack->head;
+	stack->head->prev = tmp;
+	tmp->next = stack->head;
 	tmp->prev = NULL;
-	stack->top = tmp;
+	stack->head = tmp;
 }
 
 void	push(t_stack *stack_from, t_stack *stack_to)
 {
 	t_lst	*tmp;
 
-	if (!stack_from->top)
+	if (!stack_from->head)
 		return ;
-	tmp = stack_from->top->next;
-	stack_from->top->next = stack_to->top;
-	if (stack_to->top)
-		stack_to->top->prev = stack_from->top;
-	stack_to->top = stack_from->top;
-	if (!stack_to->bottom)
-		stack_to->bottom = stack_to->top;
-	stack_from->top = tmp;
+	tmp = stack_from->head->next;
+	stack_from->head->next = stack_to->head;
+	if (stack_to->head)
+		stack_to->head->prev = stack_from->head;
+	stack_to->head = stack_from->head;
+	if (!stack_to->tail)
+		stack_to->tail = stack_to->head;
+	stack_from->head = tmp;
 	if (!tmp)
-		stack_from->bottom = tmp;
+		stack_from->tail = tmp;
 	else
-		stack_from->top->prev = NULL;
+		stack_from->head->prev = NULL;
 }
 
 void	rotate(t_stack *stack)
 {
 	t_lst	*tmp;
 
-	if (!(stack->top && stack->top->next))
+	if (!(stack->head && stack->head->next))
 		return ;
-	tmp = stack->top->next;
-	stack->bottom->next = stack->top;
-	stack->top->prev = stack->bottom;
-	stack->top->next = NULL;
+	tmp = stack->head->next;
+	stack->tail->next = stack->head;
+	stack->head->prev = stack->tail;
+	stack->head->next = NULL;
 	tmp->prev = NULL;
-	stack->bottom =  stack->top;
-	stack->top = tmp;
+	stack->tail =  stack->head;
+	stack->head = tmp;
 }
 
 void	rev_rotate(t_stack *stack)
 {
 	t_lst	*tmp;
 
-	if (!(stack->bottom && stack->bottom->prev))
+	if (!(stack->tail && stack->tail->prev))
 		return ;
-	tmp = stack->bottom->prev;
-	stack->bottom->next = stack->top;
-	stack->top->prev = stack->bottom;
-	stack->bottom->prev = NULL;
+	tmp = stack->tail->prev;
+	stack->tail->next = stack->head;
+	stack->head->prev = stack->tail;
+	stack->tail->prev = NULL;
 	tmp->next = NULL;
-	stack->top = stack->bottom;
-	stack->bottom = tmp;
+	stack->head = stack->tail;
+	stack->tail = tmp;
 }

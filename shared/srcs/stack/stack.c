@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 15:19:15 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/20 23:37:48 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/22 16:09:19 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int32_t	check_double(int32_t value, t_stack stack)
 {
-	while (stack.top != NULL)
+	while (stack.head != NULL)
 	{
-		if (stack.top->element == value)
+		if (stack.head->element == value)
 			return (ERROR);
-		stack.top = stack.top->next;
+		stack.head = stack.head->next;
 	}
 	return (SUCCESS);
 }
@@ -26,11 +26,11 @@ int32_t	check_double(int32_t value, t_stack stack)
 void	free_stack(t_stack **stack)
 {
 	t_lst	*tmp;
-	while ((*stack)->top)
+	while ((*stack)->head)
 	{
-		tmp = (*stack)->top->next;
-		free((*stack)->top);
-		(*stack)->top = tmp;
+		tmp = (*stack)->head->next;
+		free((*stack)->head);
+		(*stack)->head = tmp;
 	}
 	free(*stack);
 }
@@ -52,14 +52,16 @@ t_stack	*get_element_string(char **av)
 	return (stack = return_stack(count, parameters));
 }
 
-t_stack	*init_stack(void)
+t_stack	*init_stack(int ac)
 {
 	t_stack	*stack;
 
 	if ((stack = (t_stack*)malloc(sizeof(t_stack))) == NULL)
 		return (NULL);
-	stack->top = NULL;
-	stack->bottom = NULL;
+	stack->head = NULL;
+	stack->tail = NULL;
+	stack->elements = ac;
+	stack->position = 0;
 	return (stack);
 }
 
@@ -75,7 +77,7 @@ t_stack	*return_stack(int ac, char **av)
 	int64_t	tmp;
 	t_stack	*stack;
 
-	if ((stack = init_stack()) == NULL)
+	if ((stack = init_stack(ac)) == NULL)
 		return (NULL);
 	while (--ac >= 0)
 	{
@@ -85,7 +87,7 @@ t_stack	*return_stack(int ac, char **av)
 			return (NULL);
 		if (check_double(tmp, *stack) == ERROR)
 			return (NULL);
-		push_top(tmp, stack);
+		push_head(tmp, stack);
 	}
 	return (stack);
 }

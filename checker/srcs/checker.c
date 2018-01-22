@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:15:49 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/20 23:22:51 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/22 20:51:46 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,45 +18,10 @@
 
 #include "checker.h"
 
-void print_stack(int8_t way, t_stack stack)
-{
-	int32_t	i;
-
-	i = 0;
-	if (way == TOP)
-	{
-		printf("\nTop:\n");
-		while (stack.top != NULL)
-		{
-			printf("Stack #%d: %d\n", i++, stack.top->element);
-			stack.top = stack.top->next;
-		}
-	}
-	else
-	{
-		printf("\nBottom:\n");
-		while (stack.bottom != NULL)
-		{
-			printf("Stack #%d: %d\n", i++, stack.bottom->element);
-			stack.bottom = stack.bottom->prev;
-		}
-	}
-}
-
-void print_instructions(int32_t instr[MAX_INSTR])
-{
-	int32_t	i = 0;
-
-	while (instr[i])
-	{
-		printf("Instruction #%d: %s\n", i, (char *)&instr[i]);
-		++i;
-	}
-}
-
 int	main (int ac, char **av)
 {
-	int32_t	instructions[MAX_INSTR];
+	int32_t	*instructions;
+	int32_t	**instructions_ptr;
 	int32_t	status;
 	t_stack	*stack_a;
 	t_stack	*stack_b;
@@ -72,21 +37,23 @@ int	main (int ac, char **av)
 		ft_putstr("Error\n");
 		return (SUCCESS);
 	}
-	stack_b = init_stack();
-	printf("\nOriginal Stack:");
-	print_stack(TOP, *stack_a);
-	if (return_instructions(&instructions) == ERROR)
+	stack_b = init_stack(0);
+	print_stack(*stack_a);
+	instructions = NULL;
+	instructions_ptr = &instructions;
+	if (return_instructions(instructions_ptr) == ERROR)
+	{
 		ft_putstr("Error\n");
+		return (SUCCESS);
+	}
 	sort_elements(instructions, stack_a, stack_b);
-	printf("\n|-------|\n|Result:|\n|-------|\n");
 	if ((status = check_elements(*stack_a, *stack_b)) == FAILURE)
 		ft_putstr("KO\n");
 	else if (status == SUCCESS)
 		ft_putstr("OK\n");
-	printf("\nFinal Stack:");
-	print_stack(TOP, *stack_a);
-	printf("\nInstructions:\n");
-	print_instructions(instructions);
+	print_stack(*stack_a);
+	print_nb_moves(instructions);
+	free(instructions);
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 	return (SUCCESS);

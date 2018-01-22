@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 17:37:48 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/20 23:16:22 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/22 16:54:12 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # define RRB	(int32_t)0x627272
 # define RRR	(int32_t)0x727272
 
+int32_t	*add_instructions(int32_t cmd, int32_t *cmd_array,
+			t_stack *stack_a, t_stack *stack_b);
 void	apply_instructions(int32_t cmd, t_stack *stack_a, t_stack *stack_b);
 void	double_instruction(void (*ptr_func)(t_stack*),
 			t_stack *stack_a, t_stack *stack_b);

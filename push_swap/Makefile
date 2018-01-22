@@ -6,7 +6,7 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/01/20 23:37:59 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/01/22 13:51:03 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,16 @@ CFLAGS	= -Wall -Wextra
 # push_swap sources
 # we use the VPATH variable which causes MAKE to look for sources in all those
 # directories
-VPATH	+= ./srcs:../shared/srcs/instructions:../shared/srcs/stack
+VPATH	+= ./srcs:./srcs/algorithms:./srcs/stack_manipulation
+VPATH	+= ../shared/srcs/instructions:../shared/srcs/stack:../shared/srcs/print
 SRCS	=	push_swap.c
+SRCS	+=	insertion_sort.c
+SRCS	+=	rotate_to.c
 SRCS	+=	apply_instructions.c \
 			instruction_set.c
 SRCS	+=	stack.c \
 			stack_manipulation.c
+SRCS	+=	print_functions.c
 
 # object files
 OBJ_DIR		:=	./obj
