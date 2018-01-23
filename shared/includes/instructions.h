@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 17:37:48 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/23 13:50:05 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/23 16:29:14 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct	s_cmd
 	int64_t	count;
 }				t_cmd;
 
-t_cmd	*add_instructions(int32_t cmd, t_cmd *cmds,
+int32_t	add_instructions(int32_t cmd, t_cmd *cmds,
 			t_stack *stack_a, t_stack *stack_b);
 void	apply_instructions(int32_t cmd, t_stack *stack_a, t_stack *stack_b);
 void	double_instruction(void (*ptr_func)(t_stack*),

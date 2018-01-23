@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 16:44:30 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/23 15:00:35 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/23 16:22:06 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,23 @@ void	apply_instructions(int32_t cmd, t_stack *stack_a, t_stack *stack_b)
 		double_instruction(swap, stack_a, stack_b);
 }
 
-t_cmd	*add_instructions(int32_t cmd, t_cmd *cmds,
+int32_t	add_instructions(int32_t cmd, t_cmd *cmds,
 			t_stack *stack_a, t_stack *stack_b)
 {
 	static int64_t	i = 0;
 
-	if (cmds->cmd_array == NULL || !(i % (MAX_CMD / sizeof(int32_t) - 1)))
-		cmds->cmd_array = ft_realloc(cmds->cmd_array, i * sizeof(int32_t),
-					i * sizeof(int32_t) + MAX_CMD);
+	if (cmds->cmd_array == NULL)
+	{
+		i = 0;
+		if ((cmds->cmd_array = (int32_t*)malloc(sizeof(int32_t) * MAX_CMD)) == NULL)
+			return (ERROR);
+	}
+	else if (!(i % (MAX_CMD / sizeof(int32_t) - 1)))
+		if ((cmds->cmd_array = ft_realloc(cmds->cmd_array, i * sizeof(int32_t),
+					i * sizeof(int32_t) + MAX_CMD)) == NULL)
+			return (ERROR);
 	cmds->cmd_array[i++] = cmd;
 	++(cmds->count);
 	apply_instructions(cmd, stack_a, stack_b);
-	return (cmds);
+	return (SUCCESS);
 }
