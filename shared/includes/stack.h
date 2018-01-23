@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 16:02:33 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/22 16:09:34 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/23 12:42:40 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct	s_stack
 }				t_stack;
 
 int32_t			check_double(int32_t value, t_stack stack);
-void			free_stack(t_stack **stack);
+void			free_stack(t_stack *stack);
 t_stack			*get_element_string(char **av);
 t_stack			*init_stack(int ac);
 int32_t			pop_tail(struct s_stack *stack);

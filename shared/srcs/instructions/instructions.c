@@ -1,16 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   apply_instructions.c                               :+:      :+:    :+:   */
+/*   instructions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 16:44:30 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/22 19:47:24 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/23 15:00:35 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "instructions.h"
+
+void	free_instructions(t_cmd *cmds)
+{
+	free(cmds->cmd_array);
+	free(cmds);
+}
+
+t_cmd	*init_instructions(void)
+{
+	t_cmd	*cmds;
+
+	if ((cmds = (t_cmd*)malloc(sizeof(t_cmd))) == NULL)
+		return (NULL);
+	cmds->cmd_array = NULL;
+	cmds->count = 0;
+	return (cmds);
+}
 
 void	apply_instructions(int32_t cmd, t_stack *stack_a, t_stack *stack_b)
 {
@@ -38,16 +55,16 @@ void	apply_instructions(int32_t cmd, t_stack *stack_a, t_stack *stack_b)
 		double_instruction(swap, stack_a, stack_b);
 }
 
-#include "print.h"
-int32_t	*add_instructions(int32_t cmd, int32_t *cmd_array,
+t_cmd	*add_instructions(int32_t cmd, t_cmd *cmds,
 			t_stack *stack_a, t_stack *stack_b)
 {
 	static int64_t	i = 0;
 
-	if (cmd_array == NULL || !(i % (MAX_INSTR - 1)))
-		if ((cmd_array = ft_realloc(cmd_array, i, i + MAX_INSTR)) == NULL)
-			return (NULL);
-	cmd_array[i++] = cmd;
+	if (cmds->cmd_array == NULL || !(i % (MAX_CMD / sizeof(int32_t) - 1)))
+		cmds->cmd_array = ft_realloc(cmds->cmd_array, i * sizeof(int32_t),
+					i * sizeof(int32_t) + MAX_CMD);
+	cmds->cmd_array[i++] = cmd;
+	++(cmds->count);
 	apply_instructions(cmd, stack_a, stack_b);
-	return (cmd_array);
+	return (cmds);
 }

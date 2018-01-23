@@ -6,32 +6,26 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 12:06:16 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/22 20:51:03 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/23 12:21:19 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "print.h"
 
-void	print_instructions(int32_t *instr)
+void	print_instructions(int8_t display, t_cmd cmds)
 {
 	int32_t	i = 0;
 
-	while (instr[i])
+	if (display == COUNT || display == BOTH)
+		ft_print("Moves: #%d\n", cmds.count);
+	if (display == CMDS || display == BOTH)
 	{
-		ft_print("Instruction #%d: %s\n", i, (char *)&instr[i]);
-		++i;
+		while (cmds.cmd_array[i])
+		{
+			ft_print("Instruction #%d: %s\n", i, (char *)&(cmds.cmd_array[i]));
+			++i;
+		}
 	}
-}
-
-void	print_nb_moves(int32_t *instr)
-{
-	int32_t	i = 0;
-
-	while (instr[i])
-	{
-		++i;
-	}
-	ft_print("Moves: #%d\n", i);
 }
 
 void	print_stack(t_stack stack)

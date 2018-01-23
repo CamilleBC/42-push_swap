@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 23:08:38 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/22 20:27:49 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/23 13:50:17 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 //DEBUG
 #include <stdio.h>
 
-# define MAX_INSTR 16
 # define MALLOC_FAIL	(int32_t) -2
 
 #endif

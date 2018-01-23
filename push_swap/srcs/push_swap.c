@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:16:15 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/22 21:00:24 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/23 15:10:50 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	select_algorithm(int8_t choice, t_stack stack_a, t_stack stack_b)
 
 int	main (int ac, char **av)
 {
-	int32_t	*instructions;
+	t_cmd	*instructions;
 	int32_t	status;
 	t_stack	*stack_a;
 	t_stack	*stack_b;
@@ -72,6 +72,7 @@ int	main (int ac, char **av)
 		return (SUCCESS);
 	}
 	stack_b = init_stack(0);
+	instructions = init_instructions();
 	instructions = insertion_sort(*stack_a, *stack_b);
 	print_output(instructions);
 	free(instructions);

@@ -1,6 +1,7 @@
 .clang-format
 .vscode
 *.code-workspace
+checker/checker.dSYM
 checker/obj/*
 checker/checker
 push_swap/obj/*

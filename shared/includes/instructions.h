@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 17:37:48 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/22 16:54:12 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/23 13:50:05 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,21 @@
 # define RRA	(int32_t)0x617272
 # define RRB	(int32_t)0x627272
 # define RRR	(int32_t)0x727272
+# define MAX_CMD	4096
 
-int32_t	*add_instructions(int32_t cmd, int32_t *cmd_array,
+typedef struct	s_cmd
+{
+	int32_t	*cmd_array;
+	int64_t	count;
+}				t_cmd;
+
+t_cmd	*add_instructions(int32_t cmd, t_cmd *cmds,
 			t_stack *stack_a, t_stack *stack_b);
 void	apply_instructions(int32_t cmd, t_stack *stack_a, t_stack *stack_b);
 void	double_instruction(void (*ptr_func)(t_stack*),
 			t_stack *stack_a, t_stack *stack_b);
+void	free_instructions(t_cmd *cmds);
+t_cmd	*init_instructions(void);
 void	push(t_stack *stack_from, t_stack *stack_to);
 void	rev_rotate(t_stack *stack);
 void	rotate(t_stack *stack);

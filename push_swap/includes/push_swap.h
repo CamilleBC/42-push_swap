@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:37:55 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/22 21:18:51 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/23 15:14:22 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define SORTED		(int32_t)0
 # define BEST		(int8_t)0
 # define SORT_3		(int8_t)2
-# define INVERSION	(int8_t)3
+# define INSERTION	(int8_t)3
 
 int32_t *insertion_sort(t_stack stack_a, t_stack stack_b);
 int32_t	*rotate_a_to_position(t_stack *stack, int32_t *cmds);

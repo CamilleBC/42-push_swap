@@ -6,7 +6,7 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/01/22 17:44:43 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/01/23 12:52:23 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,9 @@ VPATH	+= ./srcs
 VPATH	+= ../shared/srcs/instructions:../shared/srcs/stack:../shared/srcs/print
 SRCS	=	checker.c \
 			check.c \
-			get_instructions.c \
+			return_instructions.c \
 			sort.c
-SRCS	+=	apply_instructions.c \
+SRCS	+=	instructions.c \
 			instruction_set.c
 SRCS	+=	stack.c \
 			stack_manipulation.c

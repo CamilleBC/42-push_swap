@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 15:19:15 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/22 16:09:19 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/23 12:42:32 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ int32_t	check_double(int32_t value, t_stack stack)
 	return (SUCCESS);
 }
 
-void	free_stack(t_stack **stack)
+void	free_stack(t_stack *stack)
 {
 	t_lst	*tmp;
-	while ((*stack)->head)
+	while (stack->head)
 	{
-		tmp = (*stack)->head->next;
-		free((*stack)->head);
-		(*stack)->head = tmp;
+		tmp = stack->head->next;
+		free(stack->head);
+		stack->head = tmp;
 	}
-	free(*stack);
+	free(stack);
 }
 
 t_stack	*get_element_string(char **av)

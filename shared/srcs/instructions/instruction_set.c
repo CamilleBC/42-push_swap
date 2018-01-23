@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 23:58:38 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/22 11:46:55 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/23 12:58:36 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void	swap(t_stack *stack)
 	tmp = stack->head->next;
 	end = tmp->next;
 	stack->head->next = tmp->next;
-	end->prev = stack->head;
+	if (end)
+		end->prev = stack->head;
 	stack->head->prev = tmp;
 	tmp->next = stack->head;
 	tmp->prev = NULL;
