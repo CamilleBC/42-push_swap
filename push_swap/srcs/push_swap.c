@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:16:15 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/23 15:10:50 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/23 17:50:02 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@
 */
 
 #include "push_swap.h"
+
+static void	free_all(t_cmd *cmds, t_stack *stack_a, t_stack *stack_b)
+{
+	free_instructions(cmds);
+	free_stack(stack_a);
+	free_stack(stack_b);
+}
 
 static void	print_output(int32_t *cmd)
 {
@@ -48,15 +55,9 @@ static void	print_output(int32_t *cmd)
 	}
 }
 
-void	select_algorithm(int8_t choice, t_stack stack_a, t_stack stack_b)
-{
-
-}
-
 int	main (int ac, char **av)
 {
 	t_cmd	*instructions;
-	int32_t	status;
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
@@ -72,11 +73,9 @@ int	main (int ac, char **av)
 		return (SUCCESS);
 	}
 	stack_b = init_stack(0);
-	instructions = init_instructions();
-	instructions = insertion_sort(*stack_a, *stack_b);
-	print_output(instructions);
-	free(instructions);
-	free_stack(&stack_a);
-	free_stack(&stack_b);
+	instructions = run_algorithm(BEST, *stack_a, *stack_b);
+	if (instructions->cmd_array != NULL)
+		print_output(instructions->cmd_array);
+	free_all(instructions, stack_a, stack_b);
 	return (SUCCESS);
 }

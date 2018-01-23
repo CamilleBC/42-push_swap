@@ -6,22 +6,18 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 10:04:30 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/22 21:20:00 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/23 17:52:53 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int32_t *find_element(int32_t *status, int32_t *cmds, t_stack *stack_a,
-							 t_stack *stack_b)
+static int32_t	find_element(t_cmd *cmds, t_stack *stack_a, t_stack *stack_b)
 {
 	t_lst * seek;
 
 	if (stack_a->head->next == NULL)
-	{
-		*status = SORTED;
-		return (NULL);
-	}
+		return (SORTED);
 	seek = stack_a->head->next;
 	stack_a->position = 1;
 	while (seek != NULL)
@@ -29,58 +25,59 @@ static int32_t *find_element(int32_t *status, int32_t *cmds, t_stack *stack_a,
 		++(stack_a->position);
 		if (seek->element < seek->prev->element)
 		{
-			*status = FOUND;
-			cmds = rotate_a_to_position(stack_a, cmds);
-			cmds = add_instructions(PB, cmds, stack_a, stack_b);
-			return (cmds);
+			if (rotate_a_to_position(cmds, stack_a) == ERROR)
+				return (ERROR);
+			if (add_instructions(PB, cmds, stack_a, stack_b) == ERROR)
+				return (ERROR);
+			return (FOUND);
 		}
 		seek = seek->next;
 	}
-	*status = SORTED;
-	return (cmds);
+	return (SORTED);
 }
 
-static int32_t *insert_element(int32_t *cmds, t_stack *stack_a,
-								t_stack *stack_b)
+static int32_t	insert_element(t_cmd *cmds, t_stack *stack_a, t_stack *stack_b)
 {
 	t_lst *seek;
 
 	if (stack_a->tail == NULL)
-		return (NULL);
+		return (ERROR);
 	seek = stack_a->tail;
 	while (seek != NULL)
 	{
 		if (stack_b->head != NULL
-		&& (seek->element < stack_b->head->element || stack_a->position == 1))
-			cmds = add_instructions(PA, cmds, stack_a, stack_b);
+				&& (seek->element < stack_b->head->element
+				|| stack_a->position == 1))
+			if (add_instructions(PA, cmds, stack_a, stack_b) == ERROR)
+				return (ERROR);
 		if (stack_a->position > 1)
 		{
 			--(stack_a->position);
-			cmds = add_instructions(RRA, cmds, stack_a, NULL);
+			if (add_instructions(RRA, cmds, stack_a, NULL) == ERROR)
+				return (ERROR);
 		}
 		else
-			return (cmds);
+			return (SUCCESS);
 		seek = stack_a->tail;
 	}
-	return (cmds);
+	return (SUCCESS);
 }
 
-int32_t *insertion_sort(t_stack stack_a, t_stack stack_b)
+t_cmd *insertion_sort(t_stack stack_a, t_stack stack_b)
 {
-	int32_t *instr;
-	int32_t  status;
+	t_cmd	*instr;
+	int32_t	status;
 
-	instr = NULL;
-	if (stack_a.head->next == NULL)
+	if (stack_a.head->next == NULL || (instr = init_instructions()) == NULL)
 		return (NULL);
 	status = FOUND;
 	while (status != SORTED)
 	{
-		instr = find_element(&status, instr, &stack_a, &stack_b);
-		if (status == FOUND)
-		{
-			instr = insert_element(instr, &stack_a, &stack_b);
-		}
+		if ((status = find_element(instr, &stack_a, &stack_b)) == ERROR)
+			return (NULL);
+		else if (status == FOUND)
+			if (insert_element(instr, &stack_a, &stack_b) == ERROR)
+				return (NULL);
 	}
 	return (instr);
 }

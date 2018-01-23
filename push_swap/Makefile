@@ -6,7 +6,7 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/01/23 12:27:41 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/01/23 17:42:26 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ CFLAGS	= -Wall -Wextra
 VPATH	+= ./srcs:./srcs/algorithms:./srcs/stack_manipulation
 VPATH	+= ../shared/srcs/instructions:../shared/srcs/stack:../shared/srcs/print
 SRCS	=	push_swap.c
-SRCS	+=	insertion_sort.c
+SRCS	+=	algorithms.c \
+			insertion_sort.c
 SRCS	+=	rotate_to.c
 SRCS	+=	instructions.c \
 			instruction_set.c
