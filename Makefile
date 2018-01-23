@@ -6,7 +6,7 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/01/23 16:44:27 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/01/23 16:53:27 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,5 +38,7 @@ clean:
 
 fclean: clean
 	@make fclean -C $(LIB_DIR)
+	@/bin/rm -f checker
+	@/bin/rm -f push_swap
 
 re: fclean al
