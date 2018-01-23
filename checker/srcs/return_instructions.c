@@ -51,6 +51,7 @@ int32_t			return_instructions(t_cmd *cmds)
 			cmds->cmd_array = ft_realloc(cmds->cmd_array, i * sizeof(int32_t),
 						i * sizeof(int32_t) + MAX_CMD);
 		cmds->cmd_array[i++] = (*(int32_t *)line & 0x00FFFFFF);
+		++(cmds->count);
 		free(line);
 	}
 	free(line);
@@ -60,35 +61,3 @@ int32_t			return_instructions(t_cmd *cmds)
 		return (ERROR);
 	return (SUCCESS);
 }
-/*
-int32_t			return_instructions(t_cmd *cmds)
-{
-	char	*line;
-	int32_t	status;
-	int32_t	i;
-	int32_t	*instr;
-
-	i = 0;
-	instr = cmds->cmd_array;
-	while ((status = get_next_line(0, &line)) > FILE_READ)
-	{
-		if (ft_strlen(line) > 3)
-		{
-			free(line);
-			return (ERROR);
-		}
-		else if (instr == NULL || !(i % (MAX_INSTR / sizeof(instr) - 1)))
-			instr = ft_realloc(instr, i * sizeof(*instr),
-						i * sizeof(instr) + MAX_INSTR);
-		instr[i++] = (*(int32_t *)line & 0x00FFFFFF);
-		free(line);
-	}
-	free(line);
-	cmds->cmd_array = instr;
-	if (status == ERROR)
-		return (ERROR);
-	if (check_instructions(instr) == ERROR)
-		return (ERROR);
-	return (SUCCESS);
-}
-*/
