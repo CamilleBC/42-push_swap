@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 12:06:16 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/23 12:21:19 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/25 15:23:08 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,17 @@ void	print_instructions(int8_t display, t_cmd cmds)
 			++i;
 		}
 	}
+}
+
+void	print_list(t_lst *list)
+{
+	ft_putstr("List Head ");
+	while (list != NULL)
+	{
+		ft_print("| %d | ", (int64_t)list->element);
+		list = list->next;
+	}
+	ft_putstr("Tail\n");
 }
 
 void	print_stack(t_stack stack)

@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 12:07:26 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/23 12:21:31 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/25 15:23:20 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define	BOTH (int8_t)2
 
 void	print_instructions(int8_t display, t_cmd cmds);
+void	print_list(t_lst *list);
 void	print_stack(t_stack stack);
 
 #endif
