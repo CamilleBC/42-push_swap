@@ -6,7 +6,7 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/01/25 15:56:53 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/01/25 17:23:57 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ VPATH	+= ./srcs:./srcs/algorithms:./srcs/stack_manipulation
 VPATH	+= ../shared/srcs/instructions:../shared/srcs/stack:../shared/srcs/print
 SRCS	=	push_swap.c
 SRCS	+=	algorithms.c \
-			insertion_sort.c
+			insertion_sort.c \
+			nearly_sorted.c
 SRCS	+=	list_manipulation.c \
 			rotate_to.c \
 			stack_conversion.c

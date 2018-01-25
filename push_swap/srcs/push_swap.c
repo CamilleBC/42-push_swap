@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:16:15 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/25 15:56:27 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/25 17:55:00 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ int	main (int ac, char **av)
 	print_stack(*stack_a);
 	stack_b = init_stack(0);
 	instructions = run_algorithm(BEST, *stack_a, *stack_b);
-	if (instructions->cmd_array != NULL)
-		print_output(instructions->cmd_array);
-	free_all(instructions, stack_a, stack_b);
+	// if (instructions->cmd_array != NULL)
+		// print_output(instructions->cmd_array);
+	// free_all(instructions, stack_a, stack_b);
 	return (SUCCESS);
 }

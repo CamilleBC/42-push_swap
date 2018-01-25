@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 17:37:21 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/23 17:39:05 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/25 17:56:58 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_cmd	*run_algorithm(int8_t choice, t_stack stack_a, t_stack stack_b)
 	i = 0;
 	if ((cmds_array = (t_cmd**)malloc(sizeof(t_cmd*) * NB_ALGOS)) == NULL)
 		return (NULL);
+	if (choice == NEARLY_SORTED || choice == BEST)
+		cmds_array[i++] = nearly_sorted(stack_a, stack_b);
 	if (choice == INSERTION || choice == BEST)
 		cmds_array[i++] = insertion_sort(stack_a, stack_b);
 	ret = select_algorithm(cmds_array, i);
@@ -34,9 +36,13 @@ t_cmd	*select_algorithm(t_cmd **cmds_array, int32_t size_cmds_array)
 	int32_t	i;
 
 	i = 0;
-	ret = cmds_array[0];
+	ret = cmds_array[i];
 	while (++i < size_cmds_array)
+	{
+		if (ret == NULL || cmds_array[i] == NULL)
+			return (NULL);
 		if (cmds_array[i]->count < ret->count)
 			ret = cmds_array[i];
+	}
 	return (ret);
 }
