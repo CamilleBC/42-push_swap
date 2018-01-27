@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 17:37:48 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/23 16:29:14 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/26 12:32:55 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 ** reverse order.
 */
 
+# define NO_CMD	(int32_t)0x0
 # define SA		(int32_t)0x6173
 # define SB		(int32_t)0x6273
 # define SS		(int32_t)0x7373

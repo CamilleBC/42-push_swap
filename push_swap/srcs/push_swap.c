@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:16:15 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/25 17:55:00 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/26 11:50:34 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,12 @@
 
 static void	free_all(t_cmd *cmds, t_stack *stack_a, t_stack *stack_b)
 {
-	free_instructions(cmds);
-	free_stack(stack_a);
-	free_stack(stack_b);
+	if (cmds != NULL)
+		free_instructions(cmds);
+	if (stack_a != NULL)
+		free_stack(stack_a);
+	if (stack_b != NULL)
+		free_stack(stack_b);
 }
 
 static void	print_output(int32_t *cmd)
@@ -76,8 +79,8 @@ int	main (int ac, char **av)
 	print_stack(*stack_a);
 	stack_b = init_stack(0);
 	instructions = run_algorithm(BEST, *stack_a, *stack_b);
-	// if (instructions->cmd_array != NULL)
-		// print_output(instructions->cmd_array);
-	// free_all(instructions, stack_a, stack_b);
+	if (instructions != NULL && instructions->cmd_array != NULL)
+		print_output(instructions->cmd_array);
+	free_all(instructions, stack_a, stack_b);
 	return (SUCCESS);
 }

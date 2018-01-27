@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:15:11 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/23 17:51:37 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/26 16:56:23 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int32_t	rotate_a_to_position(t_cmd *cmds, t_stack *stack_a)
 	int64_t	position;
 
 	position = stack_a->position;
+	ft_print("position = %d\n", position);
 	if (position > (stack_a->elements / 2))
 	{
 		while (position++ <= stack_a->elements)
@@ -25,6 +26,7 @@ int32_t	rotate_a_to_position(t_cmd *cmds, t_stack *stack_a)
 	}
 	else
 	{
+		ft_print("RA\n");
 		while (position-- > 1)
 			if (add_instructions(RA, cmds, stack_a, NULL) == ERROR)
 				return (ERROR);

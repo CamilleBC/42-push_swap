@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:37:55 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/25 17:24:34 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/26 12:51:25 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define SORTED			(int32_t)0
 # define NB_ALGOS		(int8_t)8
 # define BEST			(int8_t)0
-# define SORT_3			(int8_t)2
+# define SORT_THREE		(int8_t)2
 # define NEARLY_SORTED	(int8_t)2
 # define INSERTION		(int8_t)3
 
@@ -35,6 +35,10 @@ int32_t	rotate_a_to_position(t_cmd *cmds, t_stack *stack);
 t_cmd	*nearly_sorted(t_stack stack_a, t_stack stack_b);
 t_cmd	*run_algorithm(int8_t choice, t_stack stack_a, t_stack stack_b);
 t_cmd	*select_algorithm(t_cmd **cmds_array, int32_t size_cmds_array);
+t_cmd	*sort_three(t_stack stack_a, t_stack stack_b);
+
+//INSTRUCTIONS
+void		optimise_instructions(t_cmd *cmds);
 
 //LISTS
 t_lst	*bisect_list(t_lst *head);

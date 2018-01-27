@@ -6,11 +6,25 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 17:37:21 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/25 17:56:58 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/26 16:13:12 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int32_t	is_sorted(t_stack stack)
+{
+	t_lst	*scan;
+
+	scan = stack.head;
+	while (scan != NULL && scan->next != NULL)
+	{
+		if (scan->element > scan->next->element)
+			return (ERROR);
+		scan = scan->next;
+	}
+	return (SUCCESS);
+}
 
 t_cmd	*run_algorithm(int8_t choice, t_stack stack_a, t_stack stack_b)
 {
@@ -19,8 +33,15 @@ t_cmd	*run_algorithm(int8_t choice, t_stack stack_a, t_stack stack_b)
 	int32_t	i;
 
 	i = 0;
+	if (is_sorted(stack_a) == SUCCESS)
+	{
+		ft_print("----sorted----\n");
+		return (NULL);
+	}
 	if ((cmds_array = (t_cmd**)malloc(sizeof(t_cmd*) * NB_ALGOS)) == NULL)
 		return (NULL);
+	if (choice == SORT_THREE || stack_a.elements == 3)
+		return (sort_three(stack_a, stack_b));
 	if (choice == NEARLY_SORTED || choice == BEST)
 		cmds_array[i++] = nearly_sorted(stack_a, stack_b);
 	if (choice == INSERTION || choice == BEST)
@@ -36,13 +57,19 @@ t_cmd	*select_algorithm(t_cmd **cmds_array, int32_t size_cmds_array)
 	int32_t	i;
 
 	i = 0;
-	ret = cmds_array[i];
-	while (++i < size_cmds_array)
+	if ((ret = init_instructions()) == NULL)
+		return (NULL);
+	ret->count = INT64_MAX;
+	while (i < size_cmds_array)
 	{
-		if (ret == NULL || cmds_array[i] == NULL)
-			return (NULL);
+		if (cmds_array[i] == NULL)
+		{
+			++i;
+			continue ;
+		}
 		if (cmds_array[i]->count < ret->count)
 			ret = cmds_array[i];
+		++i;
 	}
 	return (ret);
 }

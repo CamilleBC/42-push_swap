@@ -6,32 +6,28 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 10:04:30 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/25 17:57:21 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/26 18:18:17 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int32_t	find_element(t_cmd *cmds, t_stack *stack_a, t_stack *stack_b)
+static int32_t	find_element(t_cmd *cmds, t_stack *stack_a)
 {
 	t_lst * seek;
 
-	if (stack_a->head->next == NULL)
-		return (SORTED);
-	seek = stack_a->head->next;
+	seek = stack_a->head;
 	stack_a->position = 1;
-	while (seek != NULL)
+	while (seek != NULL && seek->next != NULL)
 	{
-		++(stack_a->position);
-		if (seek->element < seek->prev->element)
+		if (seek->element > seek->next->element)
 		{
 			if (rotate_a_to_position(cmds, stack_a) == ERROR)
-				return (ERROR);
-			if (add_instructions(PB, cmds, stack_a, stack_b) == ERROR)
 				return (ERROR);
 			return (FOUND);
 		}
 		seek = seek->next;
+		++(stack_a->position);
 	}
 	return (SORTED);
 }
@@ -63,6 +59,22 @@ static int32_t	insert_element(t_cmd *cmds, t_stack *stack_a, t_stack *stack_b)
 	return (SUCCESS);
 }
 
+static int32_t	sort_element(t_cmd *cmds, t_stack *stack_a, t_stack *stack_b)
+{
+	t_lst	*scan;
+
+	scan = stack_a->head;
+	if (scan->next->element - scan->element == 1)
+		add_instructions(SA, cmds, stack_a, stack_b);
+	else
+	{
+		add_instructions(PB, cmds, stack_a, stack_b);
+		if (insert_element(cmds, stack_a, stack_b) == ERROR)
+			return (ERROR);
+	}
+	return (SUCCESS);
+}
+
 t_cmd *insertion_sort(t_stack stack_a, t_stack stack_b)
 {
 	t_cmd	*instr;
@@ -73,11 +85,22 @@ t_cmd *insertion_sort(t_stack stack_a, t_stack stack_b)
 	status = FOUND;
 	while (status != SORTED)
 	{
-		if ((status = find_element(instr, &stack_a, &stack_b)) == ERROR)
+		sleep(1);
+		ft_print("-----\n");
+		ft_print("original\n");
+		print_stack(stack_a);
+		if ((status = find_element(instr, &stack_a)) == ERROR)
 			return (NULL);
 		else if (status == FOUND)
-			if (insert_element(instr, &stack_a, &stack_b) == ERROR)
+		{
+			ft_print("-----\n");
+			ft_print("found\n");
+			print_stack(stack_a);
+			if (sort_element(instr, &stack_a, &stack_b) == ERROR)
 				return (NULL);
+			ft_print("-----\n");
+			print_stack(stack_a);
+		}
 	}
 	return (instr);
 }
