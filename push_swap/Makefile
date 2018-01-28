@@ -6,7 +6,7 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/01/26 12:50:52 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/01/28 19:38:41 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,13 +26,14 @@ SRCS	+=	algorithms.c \
 			nearly_sorted.c \
 			sort_three.c
 SRCS	+=	optimise_instructions.c
-SRCS	+=	list_manipulation.c \
-			rotate_to.c \
+SRCS	+=	rotate_to.c \
 			stack_conversion.c
 SRCS	+=	instructions.c \
 			instruction_set.c
 SRCS	+=	stack.c \
-			stack_manipulation.c
+			list_manipulation.c \
+			stack_manipulation.c \
+			stack_parsing.c
 SRCS	+=	print_functions.c
 
 # object files

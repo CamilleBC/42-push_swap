@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:37:55 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/26 12:51:25 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/28 19:47:41 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,5 @@ t_cmd	*sort_three(t_stack stack_a, t_stack stack_b);
 
 //INSTRUCTIONS
 void		optimise_instructions(t_cmd *cmds);
-
-//LISTS
-t_lst	*bisect_list(t_lst *head);
-t_lst	*copy_list(t_lst *original);
-void	free_list(t_lst *list);
-t_lst	*merge_lists(t_lst *half1, t_lst *half2);
-t_lst	*mergesort_list(t_lst *list);
 
 #endif

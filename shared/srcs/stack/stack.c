@@ -6,21 +6,30 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 15:19:15 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/27 08:10:04 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/28 19:59:37 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-int32_t	check_double(int32_t value, t_stack stack)
+//debug
+#include "print.h"
+t_stack	*copy_stack(t_stack stack)
 {
-	while (stack.head != NULL)
-	{
-		if (stack.head->element == value)
-			return (ERROR);
-		stack.head = stack.head->next;
-	}
-	return (SUCCESS);
+	t_stack	*stack_copy;
+	t_lst	*list_copy;
+
+	if ((stack_copy = (t_stack*)malloc(sizeof(t_stack))) == NULL)
+		return (NULL);
+	if ((list_copy = copy_list(stack.head)) == NULL)
+		return (NULL);
+	stack_copy->head = list_copy;
+	while (list_copy->next != NULL)
+		list_copy = list_copy->next;
+	stack_copy->tail = list_copy;
+	stack_copy->elements = stack.elements;
+	stack_copy->position = 0;
+	return (stack_copy);
 }
 
 void	free_stack(t_stack *stack)

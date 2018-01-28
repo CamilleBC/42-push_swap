@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 15:35:14 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/25 16:05:15 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/28 19:36:05 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_lst *copy_list(t_lst *original)
 		tmp = (t_lst *)malloc(sizeof(t_lst));
 		tmp->element = original->element;
 		tmp->next = NULL;
-		tmp->prev = NULL;
+		tmp->prev = copy;
 		if (copy_head == NULL)
 			copy_head = tmp;
 		else

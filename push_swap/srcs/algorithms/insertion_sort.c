@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 10:04:30 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/26 18:18:17 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/28 21:23:12 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,15 @@ static int32_t	sort_element(t_cmd *cmds, t_stack *stack_a, t_stack *stack_b)
 	t_lst	*scan;
 
 	scan = stack_a->head;
-	if (scan->next->element - scan->element == 1)
+	if (scan->element - scan->next->element == 1)
+	{
+		ft_print("SA\n");
 		add_instructions(SA, cmds, stack_a, stack_b);
+		add_instructions(RRA, cmds, stack_a, stack_b);
+	}
 	else
 	{
+		ft_print("PB\n");
 		add_instructions(PB, cmds, stack_a, stack_b);
 		if (insert_element(cmds, stack_a, stack_b) == ERROR)
 			return (ERROR);
@@ -85,7 +90,6 @@ t_cmd *insertion_sort(t_stack stack_a, t_stack stack_b)
 	status = FOUND;
 	while (status != SORTED)
 	{
-		sleep(1);
 		ft_print("-----\n");
 		ft_print("original\n");
 		print_stack(stack_a);
@@ -98,9 +102,11 @@ t_cmd *insertion_sort(t_stack stack_a, t_stack stack_b)
 			print_stack(stack_a);
 			if (sort_element(instr, &stack_a, &stack_b) == ERROR)
 				return (NULL);
-			ft_print("-----\n");
 			print_stack(stack_a);
+			ft_print("-----\n");
 		}
+		ft_print("status is: %d (sorted = 0, found = 1)\n", status);
+		sleep(5);
 	}
 	return (instr);
 }

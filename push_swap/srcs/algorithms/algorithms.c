@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 17:37:21 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/26 16:13:12 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/28 20:03:35 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_cmd	*run_algorithm(int8_t choice, t_stack stack_a, t_stack stack_b)
 {
 	t_cmd	**cmds_array;
 	t_cmd	*ret;
+	t_stack	*stack_cpy;
 	int32_t	i;
 
 	i = 0;
@@ -40,12 +41,18 @@ t_cmd	*run_algorithm(int8_t choice, t_stack stack_a, t_stack stack_b)
 	}
 	if ((cmds_array = (t_cmd**)malloc(sizeof(t_cmd*) * NB_ALGOS)) == NULL)
 		return (NULL);
+	stack_cpy = copy_stack(stack_a);
 	if (choice == SORT_THREE || stack_a.elements == 3)
-		return (sort_three(stack_a, stack_b));
-	if (choice == NEARLY_SORTED || choice == BEST)
-		cmds_array[i++] = nearly_sorted(stack_a, stack_b);
+		return (sort_three(*stack_cpy, stack_b));
+	free_stack(stack_cpy);
+	stack_cpy = copy_stack(stack_a);
+	// if (choice == NEARLY_SORTED || choice == BEST)
+		// cmds_array[i++] = nearly_sorted(*stack_cpy, stack_b);
+	free_stack(stack_cpy);
+	stack_cpy = copy_stack(stack_a);
 	if (choice == INSERTION || choice == BEST)
-		cmds_array[i++] = insertion_sort(stack_a, stack_b);
+		cmds_array[i++] = insertion_sort(*stack_cpy, stack_b);
+	free_stack(stack_cpy);
 	ret = select_algorithm(cmds_array, i);
 	return (ret);
 
