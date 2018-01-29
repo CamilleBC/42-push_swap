@@ -6,25 +6,11 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 17:37:21 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/28 20:03:35 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/29 15:08:05 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int32_t	is_sorted(t_stack stack)
-{
-	t_lst	*scan;
-
-	scan = stack.head;
-	while (scan != NULL && scan->next != NULL)
-	{
-		if (scan->element > scan->next->element)
-			return (ERROR);
-		scan = scan->next;
-	}
-	return (SUCCESS);
-}
 
 t_cmd	*run_algorithm(int8_t choice, t_stack stack_a, t_stack stack_b)
 {

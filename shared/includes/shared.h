@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 23:08:38 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/23 13:50:17 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/29 14:48:38 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 //DEBUG
 #include <stdio.h>
 
-# define MALLOC_FAIL	(int32_t) -2
+# define MALLOC_FAIL	(int32_t)-2
+# define FOUND			(int32_t)-3
+# define SORTED			(int32_t)-4
 
 #endif

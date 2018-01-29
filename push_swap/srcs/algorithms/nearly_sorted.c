@@ -6,47 +6,11 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 16:29:49 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/26 18:20:58 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/29 15:43:32 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int32_t	find_closest_from_bottom(t_stack stack)
-{
-	int32_t	position;
-	t_lst	*scan;
-
-	position = 1;
-	scan = stack.tail;
-	while (scan != NULL && scan->prev != NULL)
-	{
-		if (scan->prev->element > scan->element
-				&& (scan->prev->element - scan->element == 1))
-			return (position + 1);
-		scan = scan->next;
-		++position;
-	}
-	return (FAILURE);
-}
-
-static int32_t	find_closest_from_top(t_stack stack)
-{
-	int32_t	position;
-	t_lst	*scan;
-
-	position = 1;
-	scan = stack.head;
-	while (scan != NULL && scan->next != NULL)
-	{
-		if (scan->element > scan->next->element
-				&&(scan->element - scan->next->element == 1))
-			return (position);
-		scan = scan->next;
-		++position;
-	}
-	return (FAILURE);
-}
 
 static int32_t	get_max_interval(t_stack stack_a)
 {
@@ -59,8 +23,6 @@ static int32_t	get_max_interval(t_stack stack_a)
 	{
 		if ((scan->element - scan->next->element) > 1)
 			return (scan->element - scan->next->element);
-		if ((scan->element - scan->next->element) == 1)
-
 		interval = ft_max(interval, (scan->element - scan->next->element));
 		scan = scan->next;
 	}
@@ -72,8 +34,8 @@ int32_t			swap_closest(t_stack *stack, t_cmd *cmds)
 	int32_t	closest_top;
 	int32_t	closest_bottom;
 
-	closest_top = find_closest_from_top(*stack);
-	closest_bottom = find_closest_from_bottom(*stack);
+	closest_top = find_closest_from_top(*stack, -42);
+	closest_bottom = find_closest_from_bottom(*stack, -42);
 	if (closest_top == FAILURE)
 		return (FAILURE);
 	if (closest_top > closest_bottom)

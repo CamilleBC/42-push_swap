@@ -6,11 +6,11 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 15:35:14 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/28 19:36:05 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/29 21:19:55 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "stack.h"
 
 /*
 ** Using the turtle and hare method, we return a pointer to a node near the

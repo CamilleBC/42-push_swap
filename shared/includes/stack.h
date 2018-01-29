@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 16:02:33 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/28 19:49:56 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/29 15:37:37 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct	s_stack
 	int64_t	elements;
 	int64_t	position;
 }				t_stack;
+
+struct	s_cmd;
 
 int32_t			check_double(int32_t value, t_stack stack);
 t_stack			*copy_stack(t_stack stack);

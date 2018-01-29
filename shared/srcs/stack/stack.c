@@ -6,14 +6,12 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 15:19:15 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/28 19:59:37 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/29 15:20:44 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-//debug
-#include "print.h"
 t_stack	*copy_stack(t_stack stack)
 {
 	t_stack	*stack_copy;

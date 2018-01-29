@@ -6,7 +6,7 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/01/23 12:52:23 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/01/29 21:19:38 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,9 @@ SRCS	=	checker.c \
 SRCS	+=	instructions.c \
 			instruction_set.c
 SRCS	+=	stack.c \
-			stack_manipulation.c
+			list_manipulation.c \
+			stack_manipulation.c \
+			stack_parsing.c
 SRCS	+=	print_functions.c
 
 # object files
