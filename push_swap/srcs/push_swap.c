@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:16:15 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/26 11:50:34 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/30 16:42:03 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,12 @@
 
 #include "push_swap.h"
 
-static void	free_all(t_cmd *cmds, t_stack *stack_a, t_stack *stack_b)
+static void	free_all(t_cmd *cmds, t_stack *stack)
 {
 	if (cmds != NULL)
 		free_instructions(cmds);
-	if (stack_a != NULL)
-		free_stack(stack_a);
-	if (stack_b != NULL)
-		free_stack(stack_b);
+	if (stack != NULL)
+		free_stack(stack);
 }
 
 static void	print_output(int32_t *cmd)
@@ -61,26 +59,24 @@ static void	print_output(int32_t *cmd)
 int	main (int ac, char **av)
 {
 	t_cmd	*instructions;
-	t_stack	*stack_a;
-	t_stack	*stack_b;
+	t_stack	*stack;
 
 	if (ac < 2)
 		return (SUCCESS);
 	else if (ac == 2)
-		stack_a = get_element_string(&av[1]);
+		stack = get_element_string(&av[1]);
 	else
-		stack_a = return_stack(ac - 1, &av[1]);
-	if (stack_a == NULL)
+		stack = return_stack(ac - 1, &av[1]);
+	if (!stack)
 	{
 		ft_putstr("Error\n");
 		return (SUCCESS);
 	}
-	convert_stack(stack_a);
-	print_stack(*stack_a);
-	stack_b = init_stack(0);
-	instructions = run_algorithm(BEST, *stack_a, *stack_b);
+	convert_stack(stack);
+	print_stack(*stack);
+	instructions = run_algorithm(BEST, *stack);
 	if (instructions != NULL && instructions->cmd_array != NULL)
 		print_output(instructions->cmd_array);
-	free_all(instructions, stack_a, stack_b);
+	free_all(instructions, stack);
 	return (SUCCESS);
 }

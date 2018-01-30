@@ -6,19 +6,19 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 16:29:49 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/30 09:23:14 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/30 16:36:48 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int32_t	get_max_interval(t_stack stack_a)
+static int32_t	get_max_interval(t_stack stack)
 {
 	t_lst	*scan;
 	int32_t	interval;
 
 	interval = 0;
-	scan = stack_a.head;
+	scan = stack.head_a;
 	while (scan != NULL && scan->next != NULL)
 	{
 		if ((scan->element - scan->next->element) > 1)
@@ -29,20 +29,18 @@ static int32_t	get_max_interval(t_stack stack_a)
 	return (interval);
 }
 
-int32_t			swap_closest(t_stack *stack, t_cmd *cmds)
+int32_t			swap_closest(t_stack stack, t_cmd *cmds)
 {
-	int32_t	closest_top;
-	int32_t	closest_bottom;
+	int32_t	closest;
 
-	closest_top = find_closest_from_top(*stack, -42);
-	closest_bottom = find_closest_from_bottom(*stack, -42);
+	closest = find_closest(stack, -42);
 	if (closest_top == FAILURE)
 		return (FAILURE);
 	if (closest_top > closest_bottom)
 	{
 		while (--closest_bottom)
-			add_instructions(RRA, cmds, stack, NULL);
-		add_instructions(SA, cmds, stack, NULL);
+			add_cmd_to_instructions(RRA, cmds);
+		add_cmd_to_instructions(SA, cmds);
 	}
 	else
 	{
@@ -63,28 +61,35 @@ int32_t			swap_closest(t_stack *stack, t_cmd *cmds)
 ** 25% bottom.
 */
 
-t_cmd	*nearly_sorted(t_stack stack_a, t_stack stack_b)
+t_cmd	*nearly_sorted(t_stack stack)
 {
 	t_cmd	*instr;
-	t_lst	*copy;
 	int32_t	value;
+	int32_t	position;
 
-	copy = copy_list(stack_a.head);
-	if (stack_a.head->next == NULL || (instr = init_instructions()) == NULL)
+	if (stack.head_a->next == NULL || (instr = init_instructions()) == NULL)
 		return (NULL);
-	if ((stack_a.position = is_sorted(stack_a)) != ERROR)
+	if ((position = is_sorted(stack)) != ERROR)
 	{
-		rotate_a_to_position(instr, &stack_a);
-		return (SORTED);
+		rotate_a_to_position(instr, &stack);
+		return (instr);
 	}
-	if (get_max_interval(stack_a) > 1)
+	if (get_max_interval(stack) > 1)
 		return (NULL);
-	while (swap_closest(&stack_a, instr) != FAILURE)
+	while (swap_closest(stack, instr) != FAILURE)
 		;
-	if ((stack_a.position = is_sorted(stack_a)) != ERROR)
+	if ((position = is_sorted(stack)) != ERROR)
 	{
-		rotate_a_to_position(instr, &stack_a);
-		return (SORTED);
+		rotate_a_to_position(instr, &stack);
+		return (instr);
 	}
 	return (NULL);
 }
+
+t_cmd	*nearly_sorted(t_stack stack)
+{
+	int32_t	position;
+	t_cmd	cmds;
+
+
+	if (stack_a)

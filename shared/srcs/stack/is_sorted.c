@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 14:37:53 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/30 14:38:48 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/30 16:15:36 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int32_t	is_sorted(t_stack stack)
 	int32_t	i;
 	t_lst	*scan;
 
-	if (stack.head_b != NULL)
+	if (stack.head_b || !stack.head_a)
 		return (ERROR);
 	scan = stack.head_a;
 	i = 1;

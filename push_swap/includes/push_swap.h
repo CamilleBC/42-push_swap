@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:37:55 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/30 08:14:56 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/30 15:59:09 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,17 @@ void	convert_stack(t_stack *stack);
 int32_t	find_closest(t_stack stack, int32_t b_element);
 int32_t	find_closest_from_bottom(t_stack stack, int32_t b_element);
 int32_t	find_closest_from_top(t_stack stack, int32_t b_element);
-t_cmd	*insertion_sort(t_stack stack_a, t_stack stack_b);
 int32_t	is_partially_sorted(t_stack stack);
-int32_t	is_sorted(t_stack stack);
-int32_t	go_to_closest(t_stack *stack_a, t_stack *stack_b, struct s_cmd *cmds);
+int32_t	go_to_closest(t_stack *stack, struct s_cmd *cmds);
 int32_t	rotate_a_to_position(t_cmd *cmds, t_stack *stack);
 int32_t	search_next_element(t_stack stack, int32_t element);
 
 //ALGORITHMS
-t_cmd	*nearly_sorted(t_stack stack_a, t_stack stack_b);
-t_cmd	*run_algorithm(int8_t choice, t_stack stack_a, t_stack stack_b);
+t_cmd	*insertion_sort(t_stack stack);
+t_cmd	*nearly_sorted(t_stack stack);
+t_cmd	*run_algorithm(int8_t choice, t_stack stack);
 t_cmd	*select_algorithm(t_cmd **cmds_array, int32_t size_cmds_array);
-t_cmd	*sort_three(t_stack stack_a, t_stack stack_b);
+t_cmd	*sort_three(t_stack stack);
 
 //INSTRUCTIONS
 void		optimise_instructions(t_cmd *cmds);

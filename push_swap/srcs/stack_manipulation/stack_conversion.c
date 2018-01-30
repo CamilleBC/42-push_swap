@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 18:02:11 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/25 16:19:43 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/30 15:25:04 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void convert_stack(t_stack *stack)
 	t_lst	*traverse;
 	t_lst	*copy;
 
-	traverse = stack->head;
-	copy = copy_list(stack->head);
+	traverse = stack->head_a;
+	copy = copy_list(stack->head_a);
 	copy = mergesort_list(copy);
 	while (traverse != NULL)
 	{
