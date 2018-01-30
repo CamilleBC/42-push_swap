@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:35:57 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/29 21:16:43 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/30 08:57:17 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int32_t	find_closest(t_stack stack, int32_t b_element)
 	ft_print("************\n");
 	ft_print("Closest TOP: %d\n", (int64_t)closest_top);
 	ft_print("Closest BOTTOM: %d\n", (int64_t)closest_bottom);
-	if ((uint32_t)closest_top > ft_abs32(closest_bottom))
+	if ((uint32_t)closest_top > ft_abs32(closest_bottom) || closest_top == 0)
 		return (closest_bottom);
 	else
 		return (closest_top);

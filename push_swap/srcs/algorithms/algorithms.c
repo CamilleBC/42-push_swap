@@ -6,13 +6,13 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 17:37:21 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/29 15:08:05 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/30 13:06:34 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_cmd	*run_algorithm(int8_t choice, t_stack stack_a, t_stack stack_b)
+t_cmd	*run_algorithm(int8_t choice, t_stack stack)
 {
 	t_cmd	**cmds_array;
 	t_cmd	*ret;
@@ -20,16 +20,16 @@ t_cmd	*run_algorithm(int8_t choice, t_stack stack_a, t_stack stack_b)
 	int32_t	i;
 
 	i = 0;
-	if (is_sorted(stack_a) == SUCCESS)
+	if (is_sorted(stack) == SUCCESS)
 	{
 		ft_print("----sorted----\n");
 		return (NULL);
 	}
 	if ((cmds_array = (t_cmd**)malloc(sizeof(t_cmd*) * NB_ALGOS)) == NULL)
 		return (NULL);
-	stack_cpy = copy_stack(stack_a);
+	stack_cpy = copy_stack(stack);
 	if (choice == SORT_THREE || stack_a.elements == 3)
-		return (sort_three(*stack_cpy, stack_b));
+		return (sort_three(*stack_cpy));
 	free_stack(stack_cpy);
 	stack_cpy = copy_stack(stack_a);
 	// if (choice == NEARLY_SORTED || choice == BEST)

@@ -6,39 +6,39 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:44:36 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/22 11:46:55 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/30 14:41:34 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-int32_t	pop_tail(struct s_stack *stack)
+int32_t	pop_tail_a(struct s_stack *stack)
 {
 	t_lst	*tmp;
 	int32_t	ret;
 
-	tmp = stack->tail->prev;
-	ret = stack->tail->element;
-	free(stack->tail);
-	stack->tail = tmp;
-	stack->tail->next = NULL;
+	tmp = stack->tail_a->prev;
+	ret = stack->tail_a->element;
+	free(stack->tail_a);
+	stack->tail_a = tmp;
+	stack->tail_a->next = NULL;
 	return (ret);
 }
 
-int32_t	pop_head(struct s_stack *stack)
+int32_t	pop_head_a(struct s_stack *stack)
 {
 	t_lst	*tmp;
 	int32_t	ret;
 
-	tmp = stack->head->next;
-	ret = stack->head->element;
-	free(stack->head);
-	stack->head = tmp;
-	stack->head->prev = NULL;
+	tmp = stack->head_a->next;
+	ret = stack->head_a->element;
+	free(stack->head_a);
+	stack->head_a = tmp;
+	stack->head_a->prev = NULL;
 	return (ret);
 }
 
-int32_t	push_tail(int32_t value, struct s_stack *stack)
+int32_t	push_tail_a(int32_t value, struct s_stack *stack)
 {
 	t_lst	*tmp;
 
@@ -47,30 +47,30 @@ int32_t	push_tail(int32_t value, struct s_stack *stack)
 	tmp->element = value;
 	tmp->prev = NULL;
 	tmp->next = NULL;
-	if (stack->head == NULL)
+	if (stack->head_a == NULL)
 	{
-		stack->head = tmp;
-		stack->tail = tmp;
+		stack->head_a = tmp;
+		stack->tail_a = tmp;
 		return (SUCCESS);
 	}
-	stack->tail->next = tmp;
-	tmp->prev = stack->tail;
-	stack->tail = tmp;
+	stack->tail_a->next = tmp;
+	tmp->prev = stack->tail_a;
+	stack->tail_a = tmp;
 	return (SUCCESS);
 }
 
-int32_t	push_head(int32_t value, struct s_stack *stack)
+int32_t	push_head_a(int32_t value, struct s_stack *stack)
 {
 	t_lst	*last;
 
-	last = stack->head;
-	if ((stack->head = (t_lst*)malloc(sizeof(t_lst))) == NULL)
+	last = stack->head_a;
+	if ((stack->head_a = (t_lst*)malloc(sizeof(t_lst))) == NULL)
 		return (MALLOC_FAIL);
-	stack->head->element = value;
-	stack->head->next = last;
+	stack->head_a->element = value;
+	stack->head_a->next = last;
 	if (last != NULL)
-		last->prev = stack->head;
-	if (stack->tail == NULL)
-		stack->tail = stack->head;
+		last->prev = stack->head_a;
+	if (stack->tail_a == NULL)
+		stack->tail_a = stack->head_a;
 	return (SUCCESS);
 }

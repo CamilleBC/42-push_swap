@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 15:19:15 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/29 15:20:44 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/30 15:09:03 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,24 @@ t_stack	*copy_stack(t_stack stack)
 	t_stack	*stack_copy;
 	t_lst	*list_copy;
 
-	if ((stack_copy = (t_stack*)malloc(sizeof(t_stack))) == NULL)
+	if ((stack_copy = init_stack(stack.elements_a)) == NULL)
 		return (NULL);
-	if ((list_copy = copy_list(stack.head)) == NULL)
+	if ((list_copy = copy_list(stack.head_a)) == NULL)
 		return (NULL);
-	stack_copy->head = list_copy;
+	stack_copy->head_a = list_copy;
 	while (list_copy->next != NULL)
 		list_copy = list_copy->next;
-	stack_copy->tail = list_copy;
-	stack_copy->elements = stack.elements;
+	stack_copy->tail_a = list_copy;
+	if (stack.head_b != NULL)
+	{
+		if ((list_copy = copy_list(stack.head_b)) == NULL)
+			return (NULL);
+		stack_copy->head_b = list_copy;
+		while (list_copy->next != NULL)
+			list_copy = list_copy->next;
+		stack_copy->tail_b = list_copy;
+		stack_copy->elements_b = stack.elements_b;
+	}
 	stack_copy->position = 0;
 	return (stack_copy);
 }
@@ -33,11 +42,17 @@ t_stack	*copy_stack(t_stack stack)
 void	free_stack(t_stack *stack)
 {
 	t_lst	*tmp;
-	while (stack->head)
+	while (stack->head_a)
 	{
-		tmp = stack->head->next;
-		free(stack->head);
-		stack->head = tmp;
+		tmp = stack->head_a->next;
+		free(stack->head_a);
+		stack->head_a = tmp;
+	}
+	while (stack->head_b)
+	{
+		tmp = stack->head_b->next;
+		free(stack->head_b);
+		stack->head_b = tmp;
 	}
 	free(stack);
 }
@@ -48,9 +63,12 @@ t_stack	*init_stack(int ac)
 
 	if ((stack = (t_stack*)malloc(sizeof(t_stack))) == NULL)
 		return (NULL);
-	stack->head = NULL;
-	stack->tail = NULL;
-	stack->elements = ac;
+	stack->head_a = NULL;
+	stack->tail_a = NULL;
+	stack->elements_a = ac;
+	stack->head_b = NULL;
+	stack->tail_b = NULL;
+	stack->elements_b = 0;
 	stack->position = 0;
 	return (stack);
 }
@@ -77,7 +95,7 @@ t_stack	*return_stack(int ac, char **av)
 			return (NULL);
 		if (check_double(tmp, *stack) == ERROR)
 			return (NULL);
-		push_head(tmp, stack);
+		push_head_a(tmp, stack);
 	}
 	return (stack);
 }

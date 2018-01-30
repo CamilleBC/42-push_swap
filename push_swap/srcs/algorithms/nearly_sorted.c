@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 16:29:49 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/29 15:43:32 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/30 09:23:14 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,19 @@ t_cmd	*nearly_sorted(t_stack stack_a, t_stack stack_b)
 	copy = copy_list(stack_a.head);
 	if (stack_a.head->next == NULL || (instr = init_instructions()) == NULL)
 		return (NULL);
+	if ((stack_a.position = is_sorted(stack_a)) != ERROR)
+	{
+		rotate_a_to_position(instr, &stack_a);
+		return (SORTED);
+	}
 	if (get_max_interval(stack_a) > 1)
 		return (NULL);
 	while (swap_closest(&stack_a, instr) != FAILURE)
 		;
-	if (stack_a.head->element > (stack_a.elements / 2))
-		while (stack_a.head->element != 1)
-			add_instructions(RRA, instr, &stack_a, &stack_b);
-	else
-		while (stack_a.head->element != 1)
-			add_instructions(RA, instr, &stack_a, &stack_b);
+	if ((stack_a.position = is_sorted(stack_a)) != ERROR)
+	{
+		rotate_a_to_position(instr, &stack_a);
+		return (SORTED);
+	}
 	return (NULL);
 }

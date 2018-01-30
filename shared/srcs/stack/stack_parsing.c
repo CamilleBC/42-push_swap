@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 18:22:27 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/28 18:51:13 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/30 14:44:37 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int32_t	check_double(int32_t value, t_stack stack)
 {
-	while (stack.head != NULL)
+	while (stack.head_a != NULL)
 	{
-		if (stack.head->element == value)
+		if (stack.head_a->element == value)
 			return (ERROR);
-		stack.head = stack.head->next;
+		stack.head_a = stack.head_a->next;
 	}
 	return (SUCCESS);
 }

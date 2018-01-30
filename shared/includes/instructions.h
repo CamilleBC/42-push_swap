@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 17:37:48 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/26 12:32:55 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/30 15:08:04 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,26 @@ typedef struct	s_cmd
 	int64_t	count;
 }				t_cmd;
 
-int32_t	add_instructions(int32_t cmd, t_cmd *cmds,
-			t_stack *stack_a, t_stack *stack_b);
-void	apply_instructions(int32_t cmd, t_stack *stack_a, t_stack *stack_b);
-void	double_instruction(void (*ptr_func)(t_stack*),
-			t_stack *stack_a, t_stack *stack_b);
+int32_t	add_cmd_to_instructions(int32_t cmd, t_cmd *cmds);
+void	exec_command(int32_t cmd, t_stack *stack);
+void	exec_instructions(t_cmd cmds, t_stack *stack);
 void	free_instructions(t_cmd *cmds);
 t_cmd	*init_instructions(void);
-void	push(t_stack *stack_from, t_stack *stack_to);
-void	rev_rotate(t_stack *stack);
-void	rotate(t_stack *stack);
-void	swap(t_stack *stack);
+
+/*
+** INSTRUCTION SET
+*/
+
+void	push_a(t_stack *stack);
+void	push_b(t_stack *stack);
+void	rev_rotate_a(t_stack *stack);
+void	rev_rotate_b(t_stack *stack);
+void	rev_rotate_ab(t_stack *stack);
+void	rotate_a(t_stack *stack);
+void	rotate_b(t_stack *stack);
+void	rotate_ab(t_stack *stack);
+void	swap_a(t_stack *stack);
+void	swap_b(t_stack *stack);
+void	swap_ab(t_stack *stack);
 
 #endif

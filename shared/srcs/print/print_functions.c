@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 12:06:16 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/25 15:23:08 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/30 15:08:31 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,24 @@ void	print_list(t_lst *list)
 
 void	print_stack(t_stack stack)
 {
-	ft_putstr("Stack Head ");
-	while (stack.head != NULL)
+	if (stack.head_a)
 	{
-		ft_print("| %d | ", (int64_t)stack.head->element);
-		stack.head = stack.head->next;
+		ft_putstr("Stack A Head ");
+		while (stack.head_a != NULL)
+		{
+			ft_print("| %d | ", (int64_t)stack.head_a->element);
+			stack.head_a = stack.head_a->next;
+		}
+		ft_putstr("Tail\n");
 	}
-	ft_putstr("Tail\n");
+	if (stack.head_b)
+	{
+		ft_putstr("Stack B Head ");
+		while (stack.head_b != NULL)
+		{
+			ft_print("| %d | ", (int64_t)stack.head_b->element);
+			stack.head_b = stack.head_b->next;
+		}
+		ft_putstr("Tail\n");
+	}
 }

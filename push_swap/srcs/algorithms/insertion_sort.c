@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 10:04:30 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/29 21:21:30 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/30 09:23:33 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int32_t	check_sorted(t_stack *stack_a, t_stack *stack_b, t_cmd *cmds)
 	ft_print("Is Sorted NEXT\n");
 		return (SORTED);
 	}
-	else if ((stack_a->position = is_partially_sorted(*stack_a) != ERROR)
+	if ((stack_a->position = is_partially_sorted(*stack_a) != ERROR)
 				&& stack_b->head == NULL)
 	{
 		// store everything in stack B
@@ -125,7 +125,13 @@ int32_t	check_sorted(t_stack *stack_a, t_stack *stack_b, t_cmd *cmds)
 		// put everything back in stack A where it should be
 		while (stack_b->head != NULL)
 		{
+	//debug
+	ft_print("=========================n");
+	ft_print("Sorting Partially Sorted NEXT\n");
+	ft_print("Stack B\n");
+	print_stack(*stack_b);
 			position = search_next_element(*stack_a, stack_b->head->element);
+
 			while (position++ < 0)
 				add_instructions(RRA, cmds, stack_a, NULL);
 			while (position-- > 0)
@@ -135,6 +141,7 @@ int32_t	check_sorted(t_stack *stack_a, t_stack *stack_b, t_cmd *cmds)
 	//debug
 	ft_print("************\n");
 	ft_print("Is Partially Sorted NEXT\n");
+	print_stack(*stack_a);
 		return (SORTED);
 	}
 	return (ERROR);

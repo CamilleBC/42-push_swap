@@ -6,7 +6,7 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/01/29 21:19:38 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/01/30 15:07:29 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,14 +23,17 @@ VPATH	+= ./srcs
 VPATH	+= ../shared/srcs/instructions:../shared/srcs/stack:../shared/srcs/print
 SRCS	=	checker.c \
 			check.c \
-			return_instructions.c \
-			sort.c
+			return_instructions.c
 SRCS	+=	instructions.c \
-			instruction_set.c
-SRCS	+=	stack.c \
+			push.c \
+			rev_rotate.c \
+			rotate.c \
+			swap.c
+SRCS	+=	is_sorted.c \
 			list_manipulation.c \
 			stack_manipulation.c \
-			stack_parsing.c
+			stack_parsing.c \
+			stack.c
 SRCS	+=	print_functions.c
 
 # object files
