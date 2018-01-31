@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 17:37:48 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/30 15:08:04 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/31 12:17:18 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 ** reverse order.
 */
 
+# define EXEC	(int8_t)1
+# define SIM	(int8_t)0
 # define NO_CMD	(int32_t)0x0
 # define SA		(int32_t)0x6173
 # define SB		(int32_t)0x6273
@@ -41,9 +43,15 @@ typedef struct	s_cmd
 	int64_t	count;
 }				t_cmd;
 
-int32_t	add_cmd_to_instructions(int32_t cmd, t_cmd *cmds);
+int32_t	add_and_exec_cmd(int32_t cmd, t_cmd *cmds, t_stack *stack);
+int32_t	add_cmd(int32_t cmd, t_cmd *cmds);
 void	exec_command(int32_t cmd, t_stack *stack);
 void	exec_instructions(t_cmd cmds, t_stack *stack);
+
+/*
+** INIT and FREE functions
+*/
+
 void	free_instructions(t_cmd *cmds);
 t_cmd	*init_instructions(void);
 

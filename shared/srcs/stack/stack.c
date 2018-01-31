@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 15:19:15 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/30 15:09:03 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/31 12:17:48 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,42 +35,7 @@ t_stack	*copy_stack(t_stack stack)
 		stack_copy->tail_b = list_copy;
 		stack_copy->elements_b = stack.elements_b;
 	}
-	stack_copy->position = 0;
 	return (stack_copy);
-}
-
-void	free_stack(t_stack *stack)
-{
-	t_lst	*tmp;
-	while (stack->head_a)
-	{
-		tmp = stack->head_a->next;
-		free(stack->head_a);
-		stack->head_a = tmp;
-	}
-	while (stack->head_b)
-	{
-		tmp = stack->head_b->next;
-		free(stack->head_b);
-		stack->head_b = tmp;
-	}
-	free(stack);
-}
-
-t_stack	*init_stack(int ac)
-{
-	t_stack	*stack;
-
-	if ((stack = (t_stack*)malloc(sizeof(t_stack))) == NULL)
-		return (NULL);
-	stack->head_a = NULL;
-	stack->tail_a = NULL;
-	stack->elements_a = ac;
-	stack->head_b = NULL;
-	stack->tail_b = NULL;
-	stack->elements_b = 0;
-	stack->position = 0;
-	return (stack);
 }
 
 /*

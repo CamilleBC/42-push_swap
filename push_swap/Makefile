@@ -6,7 +6,7 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/01/29 21:03:58 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/01/31 18:39:44 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,23 +20,31 @@ CFLAGS	= -Wall -Wextra
 # directories
 VPATH	+= ./srcs:./srcs/algorithms:./srcs/instructions:./srcs/stack_manipulation
 VPATH	+= ../shared/srcs/instructions:../shared/srcs/stack:../shared/srcs/print
+VPATH	+= ../shared/srcs/free_init
 SRCS	=	push_swap.c
 SRCS	+=	algorithms.c \
-			insertion_sort.c \
-			nearly_sorted.c \
+			sort_small.c \
+			sort_swap.c \
 			sort_three.c
+			# insertion_sort.c \
+			# nearly_sorted.c \
 SRCS	+=	optimise_instructions.c
-SRCS	+=	stack_checks.c \
-			stack_conversion.c \
+SRCS	+=	stack_conversion.c \
 			stack_move.c \
 			stack_search.c
+SRCS	+=	free.c \
+			init.c
 SRCS	+=	instructions.c \
-			instruction_set.c
-SRCS	+=	stack.c \
+			push.c \
+			rev_rotate.c \
+			rotate.c \
+			swap.c
+SRCS	+=	print_functions.c
+SRCS	+=	is_sorted.c \
 			list_manipulation.c \
 			stack_manipulation.c \
-			stack_parsing.c
-SRCS	+=	print_functions.c
+			stack_parsing.c \
+			stack.c
 
 # object files
 OBJ_DIR		:=	./obj

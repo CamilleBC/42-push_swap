@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 16:29:49 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/30 16:36:48 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/31 11:41:31 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int32_t			swap_closest(t_stack stack, t_cmd *cmds)
 	if (closest_top > closest_bottom)
 	{
 		while (--closest_bottom)
-			add_cmd_to_instructions(RRA, cmds);
-		add_cmd_to_instructions(SA, cmds);
+			add_cmd(RRA, cmds);
+		add_cmd(SA, cmds);
 	}
 	else
 	{
@@ -85,11 +85,3 @@ t_cmd	*nearly_sorted(t_stack stack)
 	}
 	return (NULL);
 }
-
-t_cmd	*nearly_sorted(t_stack stack)
-{
-	int32_t	position;
-	t_cmd	cmds;
-
-
-	if (stack_a)

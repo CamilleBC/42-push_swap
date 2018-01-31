@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 14:37:53 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/30 16:15:36 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/31 16:21:55 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int32_t	is_sorted(t_stack stack)
 	i = 1;
 	while (scan != NULL && scan->next != NULL && scan->next->element != 1)
 	{
-		if (scan->element > scan->next->element)
+		if (scan->next->element != scan->element + 1)
 			return (ERROR);
 		i++;
 		scan = scan->next;
@@ -32,7 +32,7 @@ int32_t	is_sorted(t_stack stack)
 		scan = scan->next;
 	while (scan != NULL && scan->next != NULL)
 	{
-		if (scan->element > scan->next->element)
+		if (scan->next->element != scan->element + 1)
 			return (ERROR);
 		scan = scan->next;
 	}

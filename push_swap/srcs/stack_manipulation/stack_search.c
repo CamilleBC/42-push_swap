@@ -6,56 +6,75 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:35:57 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/30 16:56:03 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/31 19:53:11 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int32_t	find_closest_swap_up(t_lst *tail)
+int32_t	find_closest_swap_down(t_stack stack, int8_t *swap)
 {
+	t_lst	*scan;
 	int32_t	position;
-	t_lst	*scan_up;
 
-	position = -1;
-	scan_up = tail;
-	while (scan_up != NULL && scan_up->prev != NULL)
-			// && scan->prev->element != 1)
+	position = 0;
+	*swap = NOSWAP;
+	scan = stack.head_a;
+	while ((scan != NULL && scan->next != NULL)
+			&& (scan->next->element > scan->element))
 	{
-		//debug
-		// ft_print("bottom element: %d\n", scan->element);
-		// ft_print("stack_b element: %d\n", (int64_t)b_element);
-		if (scan_up->prev->element > scan_up->element)
-			return (position - 1);
-		scan_up = scan_up->prev;
-		--position;
+		scan = scan->next;
+		++position;
 	}
-	//debug
-	// if (b_element != -42)
-		// sleep(5);
+	if (scan->next->element == 1)
+	{
+		++position;
+		scan = scan->next;
+	}
+	while (scan != NULL && scan->next != NULL)
+	{
+		if (scan->element > scan->next->element)
+		{
+			*swap = SWAP;
+			return (position);
+		}
+		scan = scan->next;
+		++position;
+	}
 	return (0);
 }
 
-int32_t	find_closest_swap_down(t_lst *head)
+int32_t	find_closest_swap_up(t_stack stack, int8_t *swap)
 {
+	t_lst	*scan;
 	int32_t	position;
-	t_lst	*scan_down;
 
-	position = 0;
-	scan_down = head;
-	while (scan_down != NULL && scan_down->next != NULL)
+	position = -1;
+	*swap = NOSWAP;
+	scan = stack.tail_a;
+	if (scan->element > stack.head_a->element)
+		return (position);
+	while ((scan != NULL && scan->prev != NULL)
+			&& (scan->prev->element < scan->element))
 	{
-		//debug
-		// ft_print("top element: %d\n", scan->element);
-		// ft_print("stack_b element: %d\n", (int64_t)b_element);
-		if (scan_down->element > scan_down->next->element)
-			return (position);
-		scan_down = scan_down->next;
-		++position;
+		scan = scan->prev;
+		--position;
 	}
-	//debug
-	// if (b_element != -42)
-		// sleep(5);
+	if (scan->prev->element && scan->prev->element == stack.elements_a)
+	{
+		--position;
+		scan = scan->prev;
+	}
+	while (scan != NULL && scan->prev != NULL)
+	{
+		if (scan->prev->element < scan->element)
+		{
+			*swap = SWAP;
+			return (position);
+		}
+		scan = scan->prev;
+		--position;
+	}
 	return (0);
 }
 
@@ -63,32 +82,40 @@ int32_t	find_closest_swap_a(t_stack stack)
 {
 	int32_t	closest_down;
 	int32_t	closest_up;
+	int8_t	swap_down;
+	int8_t	swap_up;
 
-	closest_down = find_closest_swap_down(stack.head_a);
-	closest_up = find_closest_swap_up(stack.tail_a);
-	//debug
-	ft_print("************\n");
-	ft_print("Closest DOWN: %d\n", (int64_t)closest_down);
-	ft_print("Closest UP: %d\n", (int64_t)closest_up);
-	if ((uint32_t)closest_down > ft_abs32(closest_up) || closest_down == 0)
+	closest_down = find_closest_swap_down(stack, &swap_down);
+	closest_up = find_closest_swap_up(stack, &swap_up);
+	if (swap_down == NOSWAP || (uint32_t)closest_down > ft_abs32(closest_up))
 		return (closest_up);
-	else
+	else if (swap_up == NOSWAP || (uint32_t)closest_down < ft_abs32(closest_up))
 		return (closest_down);
+	return (0);
 }
 
-int32_t	search_next_element(t_stack stack, int32_t element)
+int32_t	find_element_a(t_stack stack, int32_t element)
 {
 	t_lst	*scan;
-	int32_t	i;
+	int32_t	position;
+	int32_t	closest;
 
-	scan = stack.head;
-	i = 0;
-	while (scan != NULL && scan->element != element)
+	scan = stack.head_a;
+	closest = 0;
+	while (scan)
+	{
+		if (scan->element < element)
+			closest = ft_max((intmax_t)closest, (intmax_t)scan->element);
+		scan = scan->next;
+	}
+	scan = stack.head_a;
+	position = 1;
+	while (scan && scan->element != closest)
 	{
 		scan = scan->next;
-		++i;
+		++position;
 	}
-	if (i > stack.elements / 2)
-		i = stack.elements - i;
-	return (i);
+	if (!scan)
+		return (NOT_FOUND);
+	return (position);
 }

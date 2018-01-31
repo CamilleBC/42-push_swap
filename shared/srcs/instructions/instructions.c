@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 16:44:30 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/30 15:07:54 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/31 11:41:31 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	exec_instructions(t_cmd cmds, t_stack *stack)
 	}
 }
 
-int32_t	add_cmd_to_instructions(int32_t cmd, t_cmd *cmds)
+int32_t	add_cmd(int32_t cmd, t_cmd *cmds)
 {
 	static int64_t	i = 0;
 
@@ -89,19 +89,10 @@ int32_t	add_cmd_to_instructions(int32_t cmd, t_cmd *cmds)
 	return (SUCCESS);
 }
 
-void	free_instructions(t_cmd *cmds)
+int32_t	add_and_exec_cmd(int32_t cmd, t_cmd *cmds, t_stack *stack)
 {
-	free(cmds->cmd_array);
-	free(cmds);
-}
-
-t_cmd	*init_instructions(void)
-{
-	t_cmd	*cmds;
-
-	if ((cmds = (t_cmd*)malloc(sizeof(t_cmd))) == NULL)
-		return (NULL);
-	cmds->cmd_array = NULL;
-	cmds->count = 0;
-	return (cmds);
+	if (add_cmd(cmd, cmds) == ERROR)
+		return (ERROR);
+	exec_command(cmd, stack);
+	return (SUCCESS);
 }
