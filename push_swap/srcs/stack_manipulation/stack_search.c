@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:35:57 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/31 19:53:11 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/01/31 20:24:24 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,39 @@ int32_t	find_closest_swap_a(t_stack stack)
 	return (0);
 }
 
+int32_t	find_smallest_a(t_stack stack, int32_t element)
+{
+	// if the element we want to place is smaller than the smallest we return
+	// the position, else NOT FOUND
+	t_lst	*scan;
+	int32_t	position;
+	int32_t	smallest;
+
+	scan = stack.head_a;
+	smallest = scan->element;
+	while (scan)
+	{
+		smallest = ft_min((intmax_t)smallest, (intmax_t)scan->element);
+		scan = scan->next;
+	}
+	if (element > smallest)
+		return (NOT_FOUND);
+	scan = stack.head_a;
+	position = 1;
+	while (scan && scan->element != smallest)
+	{
+		scan = scan->next;
+		++position;
+	}
+	return (position);
+}
+
+int32_t	find_biggest_a(t_stack stack, int32_t element)
+{
+	// if the element we want to place is smaller than the smallest we return
+	// the position, else NOT FOUND
+}
+
 int32_t	find_element_a(t_stack stack, int32_t element)
 {
 	t_lst	*scan;
@@ -119,3 +152,7 @@ int32_t	find_element_a(t_stack stack, int32_t element)
 		return (NOT_FOUND);
 	return (position);
 }
+
+// we keep track of the smallest and biggest elements in the stack
+// if the element we want to place is smaller than the smallest or bigger than
+// the biggest, we return that position.
