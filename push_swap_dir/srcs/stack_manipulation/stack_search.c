@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:35:57 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/31 20:24:24 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/01 13:34:50 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int32_t	find_smallest_a(t_stack stack, int32_t element)
 	if (element > smallest)
 		return (NOT_FOUND);
 	scan = stack.head_a;
-	position = 1;
+	position = 0;
 	while (scan && scan->element != smallest)
 	{
 		scan = scan->next;
@@ -125,6 +125,27 @@ int32_t	find_biggest_a(t_stack stack, int32_t element)
 {
 	// if the element we want to place is smaller than the smallest we return
 	// the position, else NOT FOUND
+	t_lst	*scan;
+	int32_t	position;
+	int32_t	biggest;
+
+	scan = stack.head_a;
+	biggest = scan->element;
+	while (scan)
+	{
+		biggest = ft_max((intmax_t)biggest, (intmax_t)scan->element);
+		scan = scan->next;
+	}
+	if (element < biggest)
+		return (NOT_FOUND);
+	scan = stack.head_a;
+	position = 0;
+	while (scan && scan->element != biggest)
+	{
+		scan = scan->next;
+		++position;
+	}
+	return (position);
 }
 
 int32_t	find_element_a(t_stack stack, int32_t element)

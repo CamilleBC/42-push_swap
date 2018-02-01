@@ -6,7 +6,7 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/01/23 16:53:27 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/02/01 14:11:43 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@ CC		= gcc
 CFLAGS	= -Wall -Werror -Wextra
 
 LIB_DIR			:= ./libft
-CHECKER_DIR		:= ./checker
-PUSH_SWAP_DIR	:= ./push_swap
+CHECKER_DIR		:= ./checker_dir
+PUSH_SWAP_DIR	:= ./push_swap_dir
 
 # echo output colours
 CYAN	= \e[1;36m
@@ -30,6 +30,8 @@ all:
 	@make -C $(LIB_DIR)/
 	@make -C $(CHECKER_DIR)/
 	@make -C $(PUSH_SWAP_DIR)/
+	@mv $(CHECKER_DIR)/checker ./
+	@mv $(PUSH_SWAP_DIR)/push_swap ./
 
 clean:
 	@make clean -C $(LIB_DIR)

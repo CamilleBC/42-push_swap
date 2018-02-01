@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:16:15 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/30 16:42:03 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/01 13:54:18 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	main (int ac, char **av)
 		return (SUCCESS);
 	}
 	convert_stack(stack);
-	print_stack(*stack);
+	// print_stack(*stack);
 	instructions = run_algorithm(BEST, *stack);
 	if (instructions != NULL && instructions->cmd_array != NULL)
 		print_output(instructions->cmd_array);
