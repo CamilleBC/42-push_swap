@@ -6,7 +6,7 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/01/31 18:39:44 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/02/02 08:01:56 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ VPATH	+= ../shared/srcs/instructions:../shared/srcs/stack:../shared/srcs/print
 VPATH	+= ../shared/srcs/free_init
 SRCS	=	push_swap.c
 SRCS	+=	algorithms.c \
+			divide_and_conquer.c \
 			sort_small.c \
 			sort_swap.c \
 			sort_three.c

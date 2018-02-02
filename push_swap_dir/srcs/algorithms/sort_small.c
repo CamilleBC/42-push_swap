@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 09:24:06 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/01 13:53:58 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/02 08:30:23 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ static int32_t	find_element_and_push_back(t_cmd *cmds, t_stack *stack)
 {
 	int32_t	position;
 
-	position = find_element_a(*stack, stack->head_b->element);
+	position = find_lower_element(stack->head_a, stack->head_b->element);
 	//debug
 	// ft_print("position: %d\n", (int64_t)position);
 	if (position == NOT_FOUND)
 	{
-		if ((position = find_biggest_a(*stack, stack->head_b->element))
+		if ((position = find_biggest(stack->head_a, stack->head_b->element))
 				== NOT_FOUND)
-			position = find_smallest_a(*stack, stack->head_b->element);
+			position = find_smallest(stack->head_a, stack->head_b->element);
 	}
 	// ft_print("position small/big: %d\n", (int64_t)position);
 	if (position != NOT_FOUND)
