@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:15:49 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/30 14:52:55 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/02 10:24:49 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,15 @@ int			main (int ac, char **av)
 	if (return_instructions(instructions) != ERROR)
 	{
 		exec_instructions(*instructions, stack);
-		if (is_sorted(*stack) == SUCCESS)
+		if (is_sorted_checker(*stack) == SUCCESS)
 			ft_putstr("OK\n");
 		else
 			ft_putstr("KO\n");
 	}
 	else
 		ft_putstr("Error\n");
-	print_stack(*stack);
-	print_instructions(COUNT, *instructions);
+	// print_stack(*stack);
+	// print_instructions(COUNT, *instructions);
 	free_all(instructions, stack);
 	return (SUCCESS);
 }

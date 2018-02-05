@@ -6,7 +6,7 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/02/01 14:08:20 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/02/05 08:41:51 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,10 @@ SRCS	+=	instructions.c \
 SRCS	+=	print_functions.c
 SRCS	+=	is_sorted.c \
 			list_manipulation.c \
-			stack_manipulation.c \
+			stack_basics.c \
+			stack_move.c \
 			stack_parsing.c \
+			stack_search.c \
 			stack.c
 
 # object files

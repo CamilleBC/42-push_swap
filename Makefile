@@ -6,7 +6,7 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/02/01 14:11:43 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/02/05 08:28:49 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,4 +43,4 @@ fclean: clean
 	@/bin/rm -f checker
 	@/bin/rm -f push_swap
 
-re: fclean al
+re: fclean all
