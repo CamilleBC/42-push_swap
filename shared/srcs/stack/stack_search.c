@@ -6,94 +6,11 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:35:57 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/05 10:13:50 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/05 12:15:27 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack_manipulations.h"
-
-int32_t	find_closest_swap_down(t_stack stack, int8_t *swap)
-{
-	t_lst	*scan;
-	int32_t	position;
-
-	position = 1;
-	*swap = NOSWAP;
-	scan = stack.head_a;
-	while ((scan != NULL && scan->next != NULL)
-			&& (scan->next->element > scan->element))
-	{
-		scan = scan->next;
-		++position;
-	}
-	if (scan->next->element == 1)
-	{
-		++position;
-		scan = scan->next;
-	}
-	while (scan != NULL && scan->next != NULL)
-	{
-		if (scan->element > scan->next->element)
-		{
-			*swap = SWAP;
-			return (position);
-		}
-		scan = scan->next;
-		++position;
-	}
-	return (0);
-}
-
-int32_t	find_closest_swap_up(t_stack stack, int8_t *swap)
-{
-	t_lst	*scan;
-	int32_t	position;
-
-	position = stack.elements_a;
-	*swap = NOSWAP;
-	scan = stack.tail_a;
-	if (scan->element > stack.head_a->element)
-		return (position);
-	while ((scan != NULL && scan->prev != NULL)
-			&& (scan->prev->element < scan->element))
-	{
-		scan = scan->prev;
-		--position;
-	}
-	if (scan->prev->element && scan->prev->element == stack.elements_a)
-	{
-		--position;
-		scan = scan->prev;
-	}
-	while (scan != NULL && scan->prev != NULL)
-	{
-		if (scan->prev->element < scan->element)
-		{
-			*swap = SWAP;
-			return (position);
-		}
-		scan = scan->prev;
-		--position;
-	}
-	return (0);
-}
-
-int32_t	find_closest_swap_a(t_stack stack)
-{
-	int32_t	closest_down;
-	int32_t	closest_up;
-	int8_t	swap_down;
-	int8_t	swap_up;
-
-	closest_down = find_closest_swap_down(stack, &swap_down);
-	closest_up = find_closest_swap_up(stack, &swap_up);
-	// ft_print("closest down: %d\n closest up: %d\n", closest_down, closest_up);
-	if (swap_down == NOSWAP || closest_down > closest_up)
-		return (closest_up);
-	else if (swap_up == NOSWAP || closest_down <= closest_up)
-		return (closest_down);
-	return (0);
-}
 
 int32_t	find_smallest(t_lst *stack_lst, int32_t element)
 {
@@ -200,4 +117,36 @@ int32_t	find_element(t_lst *stack_lst, int32_t element)
 		++position;
 	}
 	return (NOT_FOUND);
+}
+
+int32_t	return_biggest_element(t_lst *stack_lst)
+{
+	t_lst	*scan;
+	int32_t	biggest;
+
+	biggest= 0;
+	scan = stack_lst;
+	while (scan)
+	{
+		if (scan->element > biggest)
+			biggest= ft_max(biggest, scan->element);
+		scan = scan->next;
+	}
+	return (biggest);
+}
+
+int32_t	return_smallest_element(t_lst *stack_lst)
+{
+	t_lst	*scan;
+	int32_t	smallest_element;
+
+	smallest_element = INT32_MAX;
+	scan = stack_lst;
+	while (scan)
+	{
+		if (scan->element < smallest_element)
+			smallest_element = ft_min(smallest_element, scan->element);
+		scan = scan->next;
+	}
+	return (smallest_element);
 }

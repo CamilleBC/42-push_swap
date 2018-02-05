@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:37:55 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/05 08:42:29 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/05 12:07:57 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define INSERTION		(int8_t)3
 
 
+t_stack	*create_copy(t_stack *cpy, t_stack to_cpy);
 void convert_stack(t_stack *stack);
 
 /*
@@ -39,6 +40,7 @@ t_cmd	*nearly_sorted(t_stack stack);
 t_cmd	*run_algorithm(int8_t choice, t_stack stack);
 t_cmd	*select_algorithm(t_cmd **cmds_array, int32_t size_cmds_array);
 t_cmd	*divide_and_conquer(t_stack stack);
+t_cmd	*reverse_sort_swap(t_stack stack, int8_t stack_choice);
 t_cmd	*sort_small(t_stack stack);
 t_cmd	*sort_three(t_stack stack);
 t_cmd	*sort_swap(t_stack stack);

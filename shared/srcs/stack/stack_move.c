@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:34:59 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/05 09:22:47 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/05 12:35:20 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,54 @@ int32_t	rotate_a_to_first(t_cmd *cmds, t_stack *stack, int32_t execute)
 	//debug
 	// ft_print("Stack before rotation:\n");
 	// print_stack(*stack);
-	if ((position = is_sorted(*stack)) != ERROR)
+	if ((position = is_sorted(*stack, STACK_A)) != ERROR)
 		rotate_a_to_position(cmds, stack, position, execute);
 	return (SUCCESS);
 }
+
+int32_t	rotate_to_last(t_cmd *cmds, t_stack *stack, int32_t execute,
+						int8_t choice)
+{
+	int32_t	position;
+
+	//debug
+	// ft_print("Stack before rotation:\n");
+	// print_stack(*stack);
+	if ((position = is_rev_sorted(*stack, choice)) != ERROR)
+		rotate_to_position(cmds, stack, position, execute);
+	return (SUCCESS);
+}
+
+int32_t	rotate_to_position(t_cmd *cmds, t_stack *stack, int32_t position,
+								int8_t choice)
+{
+	int32_t	elements;
+
+	elements = (choice == STACK_A) ? stack->elements_a : stack->elements_b;
+	if (position > (elements / 2))
+	{
+		while (position++ <= elements)
+		{
+			if (choice == STACK_A)
+				add_and_exec_cmd(RRA, cmds, stack);
+			else
+				add_and_exec_cmd(RRB, cmds, stack);
+		}
+	}
+	else
+	{
+		while (position-- > 1)
+		{
+			if (choice == STACK_A)
+				add_and_exec_cmd(RA, cmds, stack);
+			else
+				add_and_exec_cmd(RB, cmds, stack);
+		}
+	}
+	return (SUCCESS);
+}
+
+
 
 int32_t	rotate_a_to_position(t_cmd *cmds, t_stack *stack, int32_t position,
 								int32_t execute)

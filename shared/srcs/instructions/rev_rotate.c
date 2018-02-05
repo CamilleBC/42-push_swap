@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 14:16:12 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/30 14:17:32 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/05 12:35:02 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ void	rev_rotate_b(t_stack *stack)
 {
 	t_lst	*tmp;
 
-	if (!(stack->tail_a && stack->tail_a->prev))
+	if (!(stack->tail_b && stack->tail_b->prev))
 		return ;
-	tmp = stack->tail_a->prev;
-	stack->tail_a->next = stack->head_a;
-	stack->head_a->prev = stack->tail_a;
-	stack->tail_a->prev = NULL;
+	tmp = stack->tail_b->prev;
+	stack->tail_b->next = stack->head_b;
+	stack->head_b->prev = stack->tail_b;
+	stack->tail_b->prev = NULL;
 	tmp->next = NULL;
-	stack->head_a = stack->tail_a;
-	stack->tail_a = tmp;
+	stack->head_b = stack->tail_b;
+	stack->tail_b = tmp;
 }
 
 void	rev_rotate_ab(t_stack *stack)

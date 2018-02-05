@@ -6,7 +6,7 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/02/05 08:35:36 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/02/05 11:59:29 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,8 @@ SRCS	+=	print_functions.c
 SRCS	+=	is_sorted.c \
 			list_manipulation.c \
 			stack_basics.c \
+			stack_closest_rev_swap.c \
+			stack_closest_swap.c \
 			stack_move.c \
 			stack_parsing.c \
 			stack_search.c \
