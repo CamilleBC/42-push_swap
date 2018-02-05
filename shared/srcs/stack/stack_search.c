@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:35:57 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/05 09:22:16 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/05 10:13:50 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,15 +100,18 @@ int32_t	find_smallest(t_lst *stack_lst, int32_t element)
 	// if the element we want to place is smaller than the smallest we return
 	// the position, else NOT FOUND
 	t_lst	*scan;
+	int32_t	elements;
 	int32_t	position;
 	int32_t	smallest;
 
 	scan = stack_lst;
 	smallest = scan->element;
+	elements = 0;
 	while (scan)
 	{
 		smallest = ft_min((intmax_t)smallest, (intmax_t)scan->element);
 		scan = scan->next;
+		++elements;
 	}
 	if (element > smallest)
 		return (NOT_FOUND);
@@ -119,23 +122,28 @@ int32_t	find_smallest(t_lst *stack_lst, int32_t element)
 		scan = scan->next;
 		++position;
 	}
+	if (position >= elements)
+		return (NOT_FOUND);
 	return (position);
 }
 
 int32_t	find_biggest(t_lst *stack_lst, int32_t element)
 {
-	// if the element we want to place is smaller than the smallest we return
+	// if the element we want to place is bigger than the biggest we return
 	// the position, else NOT FOUND
 	t_lst	*scan;
-	int32_t	position;
 	int32_t	biggest;
+	int32_t	elements;
+	int32_t	position;
 
 	scan = stack_lst;
 	biggest = scan->element;
+	elements = 0;
 	while (scan)
 	{
 		biggest = ft_max((intmax_t)biggest, (intmax_t)scan->element);
 		scan = scan->next;
+		++elements;
 	}
 	if (element < biggest)
 		return (NOT_FOUND);
@@ -146,21 +154,23 @@ int32_t	find_biggest(t_lst *stack_lst, int32_t element)
 		scan = scan->next;
 		++position;
 	}
-	return (position);
+	if (position >= elements)
+		return (NOT_FOUND);
+	return (position + 1);
 }
 
-int32_t	find_lower_element(t_lst *stack_lst, int32_t element)
+int32_t	find_bigger_element(t_lst *stack_lst, int32_t element)
 {
 	t_lst	*scan;
 	int32_t	position;
 	int32_t	closest;
 
 	scan = stack_lst;
-	closest = 0;
+	closest = INT32_MAX;
 	while (scan)
 	{
-		if (scan->element < element)
-			closest = ft_max((intmax_t)closest, (intmax_t)scan->element);
+		if (scan->element > element)
+			closest = ft_min((intmax_t)closest, (intmax_t)scan->element);
 		scan = scan->next;
 	}
 	scan = stack_lst;

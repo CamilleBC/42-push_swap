@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 08:30:13 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/05 08:43:33 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/05 09:57:47 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int32_t	find_closest_swap_down(t_stack stack, int8_t *no_swap);
 int32_t	find_closest_swap_up(t_stack stack, int8_t *no_swap);
 int32_t	find_closest_swap_a(t_stack stack);
 int32_t	find_element(t_lst *stack_lst, int32_t element);
-int32_t	find_lower_element(t_lst *stack_lst, int32_t element);
+int32_t	find_bigger_element(t_lst *stack_lst, int32_t element);
 int32_t	find_smallest(t_lst *stack_lst, int32_t element);
 
 /*

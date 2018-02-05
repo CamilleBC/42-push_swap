@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 18:35:28 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/05 09:26:31 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/05 10:02:26 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,9 @@ t_cmd	*sort_swap(t_stack stack)
 		add_and_exec_cmd(SA, cmds, &stack);
 	}
 	rotate_a_to_first(cmds, &stack, EXEC);
+	//debug
+	// ft_print("SWAP SORT:\n");
+	// print_stack(stack);
+	// print_instructions(BOTH, *cmds);
 	return (cmds);
 }

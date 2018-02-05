@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 09:24:06 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/02 08:30:23 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/05 10:24:44 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@ static int32_t	find_element_and_push_back(t_cmd *cmds, t_stack *stack)
 {
 	int32_t	position;
 
-	position = find_lower_element(stack->head_a, stack->head_b->element);
+	position = find_bigger_element(stack->head_a, stack->head_b->element);
 	//debug
+	// ft_print("*******************\n");
+	// ft_print("STACK BEFORE INSERT\n");
+	// print_stack(*stack);
 	// ft_print("position: %d\n", (int64_t)position);
 	if (position == NOT_FOUND)
 	{
@@ -33,6 +36,7 @@ static int32_t	find_element_and_push_back(t_cmd *cmds, t_stack *stack)
 	//debug
 	// ft_print("STACK AFTER INSERT\n");
 	// print_stack(*stack);
+	// ft_print("*******************\n");
 	return (SUCCESS);
 }
 
