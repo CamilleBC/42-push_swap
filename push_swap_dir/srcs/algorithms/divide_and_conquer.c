@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/02 07:03:04 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/02 09:02:15 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/02 09:14:56 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,39 @@
 
 void	push_biggests_to_b(t_cmd *cmds, t_stack *stack)
 {
-	t_lst *scan;
-	int32_t	biggest;
+	t_lst *scan_down;
+	t_lst *scan_up;
+	int32_t	half;
 	int32_t	position;
 
-	scan = stack->head_a;
-	biggest = stack->elements_a;
-	while (scan)
+	scan_down = stack->head_a;
+	scan_up = stack->tail_a;
+	half = stack->elements_a / 2;
+	while (scan_up && scan_down)
 	{
-		if (scan->element > biggest / 2)
+		if (scan_down->element > half || scan_up->element > half)
 		{
-			position = find_element(stack->head_a, scan->element);
+			if (scan_down->element > half)
+			{
+				position = find_element(stack->head_a, scan_down->element);
+				ft_print("position of %d is %d\n", scan_down->element, position);
+			}
+			else
+			{
+				position = find_element(stack->head_a, scan_up->element);
+				ft_print("position of %d is %d\n", scan_up->element, position);
+			}
 			print_stack(*stack);
-			ft_print("position of %d is %d\n", scan->element, position);
 			rotate_a_to_position(cmds, stack, position, EXEC);
 			add_and_exec_cmd(PB, cmds, stack);
-			scan = stack->head_a;
+			scan_down = stack->head_a;
+			scan_up = stack->tail_a;
 		}
 		else
-			scan = scan->next;
+		{
+			scan_down = scan_down->next;
+			scan_up = scan_up->prev;
+		}
 	}
 }
 

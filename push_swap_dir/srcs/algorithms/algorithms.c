@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 17:37:21 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/02 08:03:56 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/05 09:24:20 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ t_cmd	*run_algorithm(int8_t choice, t_stack stack)
 	if (instructions && (!ret || ret->count > instructions->count))
 		ret = instructions;
 	stack_cpy = create_copy(stack_cpy, stack);
-	// instructions = sort_swap(*stack_cpy);
-	instructions = divide_and_conquer(*stack_cpy);
+	instructions = sort_swap(*stack_cpy);
+	// stack_cpy = create_copy(stack_cpy, stack);
+	// instructions = divide_and_conquer(*stack_cpy);
 	free_stack(stack_cpy);
 	if (instructions && (!ret || ret->count > instructions->count))
 		ret = instructions;
