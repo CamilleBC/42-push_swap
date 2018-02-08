@@ -6,7 +6,7 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/02/05 11:24:23 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/02/08 09:03:39 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME	= checker
 
 CC		= gcc
 # CFLAGS	= -Wall -Werror -Wextra
+#DEBUG!!
 CFLAGS	= -Wall -Wextra -Og -ggdb
 
 # checker sources

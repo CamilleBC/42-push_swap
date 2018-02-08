@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_manipulation.c                               :+:      :+:    :+:   */
+/*   stack_basics.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:44:36 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/30 14:41:34 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/08 08:34:02 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int32_t	push_tail_a(int32_t value, struct s_stack *stack)
 {
 	t_lst	*tmp;
 
-	if ((tmp = (t_lst*)malloc(sizeof(t_lst))) == NULL)
+	if (!stack || !(tmp = (t_lst*)malloc(sizeof(t_lst))))
 		return (MALLOC_FAIL);
 	tmp->element = value;
 	tmp->prev = NULL;

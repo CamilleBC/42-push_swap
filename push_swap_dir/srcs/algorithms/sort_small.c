@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 09:24:06 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/05 10:24:44 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/08 17:41:26 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ static int32_t	push_until_three_in_a(t_cmd *cmds, t_stack *stack)
 
 static int32_t	sort_3(t_cmd *cmds, t_stack *stack)
 {
-	if (is_sorted(*stack) == SUCCESS)
+	stack->smallest = return_smallest_element(stack->head_a);
+	if (is_sorted(*stack, STACK_A) == 1)
 		return (SUCCESS);
 	if ((stack->head_a->element > stack->head_a->next->element)
 		&& (stack->head_a->next->next->element > stack->head_a->element))

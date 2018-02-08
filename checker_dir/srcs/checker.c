@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:15:49 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/02 10:24:49 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/08 11:03:47 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static void	free_all(t_cmd *cmds, t_stack *stack)
 int			main (int ac, char **av)
 {
 	t_cmd	*instructions;
-	int32_t	status;
 	t_stack	*stack;
 
 	if (ac < 2)
@@ -52,8 +51,6 @@ int			main (int ac, char **av)
 	}
 	else
 		ft_putstr("Error\n");
-	// print_stack(*stack);
-	// print_instructions(COUNT, *instructions);
 	free_all(instructions, stack);
 	return (SUCCESS);
 }

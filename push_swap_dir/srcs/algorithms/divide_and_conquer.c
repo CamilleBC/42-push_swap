@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/02 07:03:04 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/05 12:43:18 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/08 10:41:06 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,15 @@ void	push_biggests_to_b(t_cmd *cmds, t_stack *stack)
 
 	scan_down = stack->head_a;
 	scan_up = stack->tail_a;
-	half = stack->elements_a / 2;
+	half = (stack->elements_a / 2) + 1;
 	while (scan_up && scan_down)
 	{
 		if (scan_down->element > half || scan_up->element > half)
 		{
 			if (scan_down->element > half)
-			{
 				position = find_element(stack->head_a, scan_down->element);
-				//debug
-				// ft_print("position of %d is %d\n", scan_down->element, position);
-			}
 			else
-			{
 				position = find_element(stack->head_a, scan_up->element);
-				//debug
-				// ft_print("position of %d is %d\n", scan_up->element, position);
-			}
 			rotate_a_to_position(cmds, stack, position, EXEC);
 			add_and_exec_cmd(PB, cmds, stack);
 			scan_down = stack->head_a;
@@ -53,39 +45,36 @@ void	push_biggests_to_b(t_cmd *cmds, t_stack *stack)
 
 t_cmd	*divide_and_conquer(t_stack stack)
 {
+	t_cmd	*cmds_ret;
 	t_cmd	*cmds_a;
 	t_cmd	*cmds_b;
-	t_stack	*stack_cpy;
+	t_stack	*stack_push_b;
 
-	if (!(cmds_a = init_instructions()) || !(cmds_b = init_instructions()))
+	if (!(cmds_ret = init_instructions()))
 		return (NULL);
-	push_biggests_to_b(cmds_b, &stack);
-	//debug
-	ft_print("Biggests to B:\n");
-	print_stack(stack);
-	stack_cpy = create_copy(NULL, stack);
-	cmds_a = sort_swap(*stack_cpy);
-	stack_cpy = create_copy(NULL, stack);
-	cmds_b = reverse_sort_swap(*stack_cpy, STACK_B);
+	stack_push_b = create_copy(NULL, stack);
+	push_biggests_to_b(cmds_ret, stack_push_b);
+	stack_push_b = create_copy(stack_push_b, *stack_push_b);
+	if (stack_push_b->elements_a == 3)
+		cmds_a = sort_three(*stack_push_b);
+	else
+		cmds_a = sort_swap(*stack_push_b);
+	//todo
+	// When sorting B we could send A instructions and optimize directly, as well
+	// as pushing back to A when the (A bottom) == (B head - 1)
+	// or (A head) == (B head + 1)
+	stack_push_b = create_copy(stack_push_b, *stack_push_b);
+	cmds_b = reverse_sort_swap(*stack_push_b, STACK_B);
 
-	exec_instructions(*cmds_a, &stack);
-	exec_instructions(*cmds_b, &stack);
-	//debug
-	ft_print("Sorted A B:\n");
-	print_stack(stack);
-	free_stack(stack_cpy);
+	free_stack(stack_push_b);
+
+	cmds_a = optimise_instructions(cmds_a, cmds_b);
+	if (cmds_a)
+		append_instructions(cmds_ret, cmds_a);
+
+	exec_instructions(*cmds_ret, &stack);
 	while (stack.head_b)
-		add_and_exec_cmd(PA, cmds_a, &stack);
-	rotate_a_to_first(cmds_a, &stack, EXEC);
-	//debug
-	ft_print("Sorted:\n");
-	print_stack(stack);
-	return (cmds_a);
-	// Put all the elements superior to the half to side B
-	// Sort A in ascending order and sort B in descending order simultaneously:
-	//	- we simulate A moves and B moves
-	//	- we optimize the moves
-	//	- we execute the commands
-	// Put back all elements of B in stack A
-	// Rotate stack A
+		add_and_exec_cmd(PA, cmds_ret, &stack);
+	rotate_a_to_first(cmds_ret, &stack, EXEC);
+	return (cmds_ret);
 }

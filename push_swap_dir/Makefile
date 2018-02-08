@@ -6,14 +6,16 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/02/05 11:59:29 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/02/08 10:43:23 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= push_swap
 
 CC		= gcc
-CFLAGS	= -Wall -Wextra
+#DEBUG!!!
+CFLAGS	= -Wall -Wextra -Og -ggdb
+#CFLAGS	= -Wall -Wextra
 
 # push_swap sources
 # we use the VPATH variable which causes MAKE to look for sources in all those
@@ -27,8 +29,6 @@ SRCS	+=	algorithms.c \
 			sort_small.c \
 			sort_swap.c \
 			sort_three.c
-			# insertion_sort.c \
-			# nearly_sorted.c \
 SRCS	+=	optimise_instructions.c
 SRCS	+=	stack_conversion.c
 SRCS	+=	free.c \

@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 16:02:33 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/05 08:43:50 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/08 16:41:55 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct	s_stack
 	t_lst	*head_b;
 	t_lst	*tail_b;
 	int64_t	elements_b;
+	int32_t	smallest;
+	int32_t	biggest;
 }				t_stack;
 
 struct	s_cmd;

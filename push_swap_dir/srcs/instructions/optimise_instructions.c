@@ -6,13 +6,13 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:22:10 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/26 12:52:52 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/08 10:58:44 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	replace_instruction(int32_t cmd, int32_t i, t_cmd *cmds)
+/* static void	replace_instruction(int32_t cmd, int32_t i, t_cmd *cmds)
 {
 	size_t	size;
 
@@ -31,32 +31,53 @@ static void	replace_instruction(int32_t cmd, int32_t i, t_cmd *cmds)
 		cmds->count -= 1;
 	}
 }
+ */
 
-void		optimise_instructions(t_cmd *cmds)
+static void	insert_cmd(int32_t cmd, int32_t i, t_cmd *cmds)
 {
-	int32_t	i;
+	size_t	size;
 
-	if (cmds == NULL || cmds->cmd_array == NULL)
-		return ;
-	i = 0;
-	while (i + 1 < cmds->count)
+	size = (size_t)((cmds->count - i) * sizeof(*(cmds->cmd_array)));
+	ft_memmove(&(cmds->cmd_array[i + 2]), &(cmds->cmd_array[i + 1]), size);
+	cmds->cmd_array[i + 1] = cmd;
+	cmds->count += 1;
+}
+
+
+t_cmd	*optimise_instructions(t_cmd *cmds_a, t_cmd *cmds_b)
+{
+	int32_t	i_cpy;
+	int32_t	i_ret;
+	t_cmd	*ret;
+	t_cmd	*cpy;
+
+	if (!cmds_a || !cmds_a->cmd_array)
+		return (cmds_b);
+	else if (!cmds_b || !cmds_b->cmd_array)
+		return (cmds_a);
+	ret = (cmds_a->count > cmds_b->count) ? cmds_a : cmds_b;
+	cpy = (cmds_a->count > cmds_b->count) ? cmds_b : cmds_a;
+	i_cpy = 0;
+	i_ret = 0;
+	while (i_cpy < cpy->count)
 	{
-		if ((cmds->cmd_array[i] == SA && cmds->cmd_array[i + 1] == SB)
-				|| (cmds->cmd_array[i] == SB && cmds->cmd_array[i + 1] == SA))
-			replace_instruction(SS, i, cmds);
-		else if ((cmds->cmd_array[i] == RA && cmds->cmd_array[i + 1] == RB)
-				|| (cmds->cmd_array[i] == RB && cmds->cmd_array[i + 1] == RA))
-			replace_instruction(RR, i, cmds);
-		else if ((cmds->cmd_array[i] == RRA && cmds->cmd_array[i + 1] == RRB)
-				|| (cmds->cmd_array[i] == RRB && cmds->cmd_array[i + 1] == RRA))
-			replace_instruction(RRR, i, cmds);
-		else if ((cmds->cmd_array[i] == RA && cmds->cmd_array[i + 1] == RRA)
-				|| (cmds->cmd_array[i] == RRA && cmds->cmd_array[i + 1] == RA)
-				|| (cmds->cmd_array[i] == RB && cmds->cmd_array[i + 1] == RRB)
-				|| (cmds->cmd_array[i] == RRB && cmds->cmd_array[i + 1] == RB)
-				|| (cmds->cmd_array[i] == PA && cmds->cmd_array[i + 1] == PB)
-				|| (cmds->cmd_array[i] == PB && cmds->cmd_array[i + 1] == PA))
-			replace_instruction(NO_CMD, i, cmds);
-		i++;
+		if ((ret->cmd_array[i_ret] == SA && cpy->cmd_array[i_cpy] == SB)
+			|| (ret->cmd_array[i_ret] == SB && cpy->cmd_array[i_cpy] == SA))
+			ret->cmd_array[i_ret] = SS;
+		else if ((ret->cmd_array[i_ret] == RA && cpy->cmd_array[i_cpy] == RB)
+			|| (ret->cmd_array[i_ret] == RB && cpy->cmd_array[i_cpy] == RA))
+			ret->cmd_array[i_ret] = RR;
+		else if ((ret->cmd_array[i_ret] == RRA && cpy->cmd_array[i_cpy] == RRB)
+			|| (ret->cmd_array[i_ret] == RRB && cpy->cmd_array[i_cpy] == RRA))
+			ret->cmd_array[i_ret] = RRR;
+		else
+		{
+			insert_cmd(cpy->cmd_array[i_cpy], i_ret, ret);
+			++i_ret;
+		}
+		++i_cpy;
+		++i_ret;
 	}
+	free_instructions(cpy);
+	return (ret);
 }

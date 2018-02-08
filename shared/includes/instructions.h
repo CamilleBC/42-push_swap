@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 17:37:48 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/31 12:17:18 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/08 12:11:37 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,17 @@
 # define RRA	(int32_t)0x617272
 # define RRB	(int32_t)0x627272
 # define RRR	(int32_t)0x727272
-# define MAX_CMD	4096
+# define MAX_CMD	50000
 
 typedef struct	s_cmd
 {
-	int32_t	*cmd_array;
+	int32_t	cmd_array[MAX_CMD];
 	int64_t	count;
 }				t_cmd;
 
 int32_t	add_and_exec_cmd(int32_t cmd, t_cmd *cmds, t_stack *stack);
 int32_t	add_cmd(int32_t cmd, t_cmd *cmds);
+void	append_instructions(t_cmd *original, t_cmd *to_append);
 void	exec_command(int32_t cmd, t_stack *stack);
 void	exec_instructions(t_cmd cmds, t_stack *stack);
 

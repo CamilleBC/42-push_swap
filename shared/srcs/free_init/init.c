@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 09:29:57 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/31 16:22:35 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/08 10:59:15 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_cmd	*init_instructions(void)
 
 	if ((cmds = (t_cmd*)malloc(sizeof(t_cmd))) == NULL)
 		return (NULL);
-	cmds->cmd_array = NULL;
+	ft_bzero(cmds->cmd_array, sizeof(int32_t) * MAX_CMD);
 	cmds->count = 0;
 	return (cmds);
 }

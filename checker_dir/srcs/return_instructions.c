@@ -47,9 +47,6 @@ int32_t			return_instructions(t_cmd *cmds)
 			free(line);
 			return (ERROR);
 		}
-		else if (cmds->cmd_array == NULL || !(i % (MAX_CMD / sizeof(int32_t) - 1)))
-			cmds->cmd_array = ft_realloc(cmds->cmd_array, i * sizeof(int32_t),
-						i * sizeof(int32_t) + MAX_CMD);
 		cmds->cmd_array[i++] = (*(int32_t *)line & 0x00FFFFFF);
 		++(cmds->count);
 		free(line);

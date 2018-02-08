@@ -6,31 +6,26 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 16:44:30 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/31 11:41:31 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/08 12:06:36 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "instructions.h"
 
-/* void	append_instructions(t_cmd *original, t_cmd *to_append)
+void	append_instructions(t_cmd *original, t_cmd *to_append)
 {
 	int32_t	i;
 
-	if (original == NULL
-			|| (original->count % MAX_CMD) + to_append->count > MAX_CMD)
-	{
-		if ((original->cmd_array = ft_realloc(original->cmd_array,
-				original->count * sizeof(int32_t),
-				original->count * sizeof(int32_t) + MAX_CMD)) == NULL)
-			return (ERROR);
-	}
-	i = original->count;
+	if (original == NULL)
+		return ;
+	i = 0;
 	while (i < to_append->count)
 	{
-		original->cmd_array[i] = to_append->cmd_array[i];
-		++(original->count);
+		original->cmd_array[i + original->count] = to_append->cmd_array[i];
+		++i;
 	}
-} */
+	original->count += to_append->count;
+}
 
 void	exec_command(int32_t cmd, t_stack *stack)
 {
@@ -72,20 +67,10 @@ void	exec_instructions(t_cmd cmds, t_stack *stack)
 
 int32_t	add_cmd(int32_t cmd, t_cmd *cmds)
 {
-	static int64_t	i = 0;
-
-	if (cmds->cmd_array == NULL)
-	{
-		i = 0;
-		if ((cmds->cmd_array = (int32_t*)malloc(sizeof(int32_t) * MAX_CMD)) == NULL)
-			return (ERROR);
-	}
-	else if (!(i % (MAX_CMD / sizeof(int32_t) - 1)))
-		if ((cmds->cmd_array = ft_realloc(cmds->cmd_array, i * sizeof(int32_t),
-					i * sizeof(int32_t) + MAX_CMD)) == NULL)
-			return (ERROR);
-	cmds->cmd_array[i++] = cmd;
-	++(cmds->count);
+	if (cmds->count > MAX_CMD)
+		return (ERROR);
+	cmds->cmd_array[cmds->count] = cmd;
+	cmds->count += 1;
 	return (SUCCESS);
 }
 

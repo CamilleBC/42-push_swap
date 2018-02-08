@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 15:35:14 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/29 21:19:55 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/08 18:22:21 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_lst *bisect_list(t_lst *head)
 
 	fast = head;
 	slow = head;
+	prev = NULL;
 	while (fast != NULL && fast->next != NULL)
 	{
 		fast = fast->next->next;
@@ -49,7 +50,11 @@ t_lst *copy_list(t_lst *original)
 	copy = NULL;
 	while (original != NULL)
 	{
-		tmp = (t_lst *)malloc(sizeof(t_lst));
+		if (!(tmp = (t_lst *)malloc(sizeof(t_lst))))
+		{
+			free_list(copy_head);
+			return (NULL);
+		}
 		tmp->element = original->element;
 		tmp->next = NULL;
 		tmp->prev = copy;
