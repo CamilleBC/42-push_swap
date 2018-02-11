@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 09:24:06 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/08 17:41:26 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/11 18:11:36 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,9 @@ t_cmd	*sort_small(t_stack stack)
 		return (NULL);
 	if (sort_3(cmds, &stack) == ERROR)
 		return (NULL);
-	//debug
-	// ft_print("sort 3:\n");
-	// print_stack(stack);
 	while (stack.elements_b > 0)
 		if (find_element_and_push_back(cmds, &stack) == ERROR)
 			return (NULL);
 	rotate_a_to_first(cmds, &stack, EXEC);
-	//debug
-	// ft_print("SMALL SORT:\n");
-	// print_stack(stack);
-	// print_instructions(BOTH, *cmds);
 	return (cmds);
 }

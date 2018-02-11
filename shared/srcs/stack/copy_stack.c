@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 11:36:23 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/11 17:11:44 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/11 17:49:05 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,39 +66,16 @@ t_stack	*copy_stack(t_stack stack)
 	if ((stack_copy = init_stack(stack.elements_a)) == NULL)
 		return (NULL);
 	if ((stack_copy = copy_stack_a(stack, stack_copy)) == NULL)
-		return (NULL);
+		return (free_and_return(&stack_copy, NULL));
 	if (stack.head_b)
 		if ((stack_copy = copy_stack_b(stack, stack_copy)) == NULL)
 			return (free_and_return(&stack_copy, NULL));
 	return (stack_copy);
 }
 
-t_stack	*create_copy(t_stack *cpy, t_stack to_cpy, int8_t stack_choice)
+t_stack	*create_copy(t_stack *cpy, t_stack to_cpy)
 {
-	t_stack	*tmp;
-
-	if (stack_choice == STACK_A)
-	{
-		if (!cpy)
-			return (copy_stack(to_cpy));
-		tmp = cpy;
-		cpy = copy_stack(to_cpy);
-	}
-	else if (stack_choice == STACK_B)
-	{
-		if (!cpy)
-			return (copy_stack(to_cpy));
-		tmp = cpy;
-		cpy = copy_stack(to_cpy);
-	}
-	else if (stack_choice == STACK_AB)
-	{
-		if (!cpy)
-			return (copy_stack(to_cpy));
-		tmp = cpy;
-		cpy = copy_stack(to_cpy);
-	}
-	if (tmp)
-		free_stack(&tmp);
+	free_stack(&cpy);
+	cpy = copy_stack(to_cpy);
 	return (cpy);
 }

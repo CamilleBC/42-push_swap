@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:34:59 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/11 17:28:44 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/11 18:11:29 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int32_t	rotate_a_to_first(t_cmd *cmds, t_stack *stack, int32_t execute)
 	//debug
 	// ft_print("Stack before rotation:\n");
 	// print_stack(*stack);
+	stack->smallest = return_smallest_element(stack->head_a);
 	if ((position = is_sorted(*stack, STACK_A)) != ERROR)
 	// {
 		//debug

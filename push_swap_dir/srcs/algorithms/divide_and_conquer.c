@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/02 07:03:04 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/11 17:29:01 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/11 18:12:38 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,8 @@ t_cmd	*divide_and_conquer(t_stack stack)
 
 	if (!(cmds_ret = init_instructions()))
 		return (NULL);
-	stack_copy = create_copy(NULL, stack, STACK_AB);
+	stack_copy = copy_stack(stack);
 	push_biggests_to_b(cmds_ret, stack_copy);
-	stack_copy = create_copy(stack_copy, *stack_copy, STACK_A);
 	if (stack_copy->elements_a == 3)
 		cmds_a = sort_three(*stack_copy);
 	else
@@ -67,7 +66,6 @@ t_cmd	*divide_and_conquer(t_stack stack)
 	// When sorting B we could send A instructions and optimize directly, as well
 	// as pushing back to A when the (A bottom) == (B head - 1)
 	// or (A head) == (B head + 1)
-	stack_copy = create_copy(stack_copy, *stack_copy, STACK_B);
 	cmds_b = reverse_sort_swap(*stack_copy, STACK_B);
 
 	free_stack(&stack_copy);
