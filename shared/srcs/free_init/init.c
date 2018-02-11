@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 09:29:57 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/08 10:59:15 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/11 17:27:27 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ t_stack	*init_stack(int elements)
 	stack->head_b = NULL;
 	stack->tail_b = NULL;
 	stack->elements_b = 0;
+	stack->smallest = 1;
+	stack->biggest = elements;
 	return (stack);
 }

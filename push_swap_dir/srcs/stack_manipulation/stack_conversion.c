@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 18:02:11 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/30 15:25:04 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/10 23:30:44 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ void convert_stack(t_stack *stack)
 		traverse = find_and_convert(traverse, copy);
 		traverse = traverse->next;
 	}
-	free_list(copy);
+	free_list(&copy);
 }

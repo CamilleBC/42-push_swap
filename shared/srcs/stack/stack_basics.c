@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:44:36 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/08 08:34:02 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/11 10:37:17 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,28 @@ int32_t	push_tail_a(int32_t value, struct s_stack *stack)
 int32_t	push_head_a(int32_t value, struct s_stack *stack)
 {
 	t_lst	*last;
+	t_lst	*head;
+
+	last = stack->head_a;
+	if (!(head = (t_lst*)malloc(sizeof(t_lst))))
+	{
+		free_list(&head);
+		return (MALLOC_FAIL);
+	}
+	head->element = value;
+	head->next = last;
+	head->prev = NULL;
+	if (!stack->tail_a)
+		stack->tail_a = head;
+	else if (last)
+		last->prev = head;
+	stack->head_a = head;
+	return (SUCCESS);
+}
+
+/* int32_t	push_head_a(int32_t value, struct s_stack *stack)
+{
+	t_lst	*last;
 
 	last = stack->head_a;
 	if ((stack->head_a = (t_lst*)malloc(sizeof(t_lst))) == NULL)
@@ -73,4 +95,4 @@ int32_t	push_head_a(int32_t value, struct s_stack *stack)
 	if (stack->tail_a == NULL)
 		stack->tail_a = stack->head_a;
 	return (SUCCESS);
-}
+} */

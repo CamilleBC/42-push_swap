@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 17:37:48 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/08 12:11:37 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/10 23:42:18 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	exec_instructions(t_cmd cmds, t_stack *stack);
 ** INIT and FREE functions
 */
 
-void	free_instructions(t_cmd *cmds);
+void	free_instructions(t_cmd **cmds);
 t_cmd	*init_instructions(void);
 
 /*

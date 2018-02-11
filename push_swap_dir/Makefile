@@ -6,7 +6,7 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/02/08 10:43:23 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/02/11 11:37:52 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,15 +39,16 @@ SRCS	+=	instructions.c \
 			rotate.c \
 			swap.c
 SRCS	+=	print_functions.c
-SRCS	+=	is_sorted.c \
+SRCS	+=	copy_stack.c \
+			is_sorted.c \
 			list_manipulation.c \
+			return_stack.c \
 			stack_basics.c \
 			stack_closest_rev_swap.c \
 			stack_closest_swap.c \
 			stack_move.c \
 			stack_parsing.c \
 			stack_search.c \
-			stack.c
 
 # object files
 OBJ_DIR		:=	./obj
@@ -86,7 +87,6 @@ all:
 $(NAME): $(OBJECTS)
 	@echo "[Building ${RED}push_swap${NC}]"
 	@$(CC) $(CFLAGS) $(OBJECTS) $(LIB_FLAGS) -o $(NAME)
-	#@mv $(NAME) ../
 
 $(OBJ_DIR)/%.o:%.c
 	@echo "[Building ${RED}push_swap${NC} object: $@]"

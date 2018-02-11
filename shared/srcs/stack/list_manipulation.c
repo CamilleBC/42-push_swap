@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 15:35:14 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/08 18:22:21 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/11 11:25:03 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,43 +42,30 @@ t_lst *bisect_list(t_lst *head)
 
 t_lst *copy_list(t_lst *original)
 {
-	t_lst	*copy_head;
-	t_lst	*copy;
+	t_lst	*head;
 	t_lst	*tmp;
+	t_lst	*tail;
 
-	copy_head = NULL;
-	copy = NULL;
-	while (original != NULL)
+	head = NULL;
+	tmp = NULL;
+	while (original)
 	{
-		if (!(tmp = (t_lst *)malloc(sizeof(t_lst))))
+		if (!(tail = (t_lst *)malloc(sizeof(t_lst))))
 		{
-			free_list(copy_head);
+			free_list(&head);
 			return (NULL);
 		}
-		tmp->element = original->element;
-		tmp->next = NULL;
-		tmp->prev = copy;
-		if (copy_head == NULL)
-			copy_head = tmp;
+		tail->element = original->element;
+		tail->next = NULL;
+		tail->prev = tmp;
+		if (head == NULL)
+			head = tail;
 		else
-			copy->next = tmp;
-		copy = tmp;
+			tmp->next = tail;
+		tmp = tail;
 		original = original->next;
 	}
-	return (copy_head);
-}
-
-void	free_list(t_lst *list)
-{
-	t_lst	*tmp;
-
-	tmp = list;
-	while (list != NULL)
-	{
-		tmp = list->next;
-		free(list);
-		list = tmp;
-	}
+	return (head);
 }
 
 /*

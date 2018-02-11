@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:16:15 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/08 10:47:44 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/11 17:12:46 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 static void	free_all(t_cmd *cmds, t_stack *stack)
 {
 	if (cmds)
-		free_instructions(cmds);
+		free_instructions(&cmds);
 	if (stack)
-		free_stack(stack);
+		free_stack(&stack);
 }
 
 static void	print_output(int32_t cmd[MAX_CMD])
@@ -77,6 +77,8 @@ int	main (int ac, char **av)
 	instructions = run_algorithm(BEST, *stack);
 	if (instructions && instructions->cmd_array)
 		print_output(instructions->cmd_array);
-	free_all(instructions, stack);
+	// free_all(instructions, stack);
+	free_instructions(&instructions);
+	free_stack(&stack);
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:34:59 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/08 18:02:43 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/11 17:28:44 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,11 @@ int32_t	rotate_a_to_first(t_cmd *cmds, t_stack *stack, int32_t execute)
 	// ft_print("Stack before rotation:\n");
 	// print_stack(*stack);
 	if ((position = is_sorted(*stack, STACK_A)) != ERROR)
+	// {
+		//debug
+		// ft_print("Position first is: %d\n", position);
 		rotate_a_to_position(cmds, stack, position, execute);
+	// }
 	return (SUCCESS);
 }
 
@@ -93,7 +97,6 @@ int32_t	rotate_to_position(t_cmd *cmds, t_stack *stack, int32_t position,
 	{
 		while (position++ <= elements)
 		{
-			ft_print("RRA\n");
 			if (choice == STACK_A)
 				add_and_exec_cmd(RRA, cmds, stack);
 			else
@@ -104,7 +107,6 @@ int32_t	rotate_to_position(t_cmd *cmds, t_stack *stack, int32_t position,
 	{
 		while (position-- > 1)
 		{
-			ft_print("RA\n");
 			if (choice == STACK_A)
 				add_and_exec_cmd(RA, cmds, stack);
 			else

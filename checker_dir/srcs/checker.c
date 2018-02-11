@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:15:49 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/08 11:03:47 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/10 23:41:07 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 
 static void	free_all(t_cmd *cmds, t_stack *stack)
 {
-	free_instructions(cmds);
-	free_stack(stack);
+	free_instructions(&cmds);
+	free_stack(&stack);
 }
 
 int			main (int ac, char **av)

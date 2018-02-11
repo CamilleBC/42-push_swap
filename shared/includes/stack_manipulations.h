@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 08:30:13 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/05 11:57:27 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/11 11:41:46 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # define NOT_FOUND		(int8_t)-1
 # define NOSWAP			(int8_t)0
 # define SWAP			(int8_t)1
-# define STACK_A		(int8_t)0
-# define STACK_B		(int8_t)1
 
 /*
 ** STACK CHECKS

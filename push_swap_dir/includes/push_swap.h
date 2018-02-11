@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:37:55 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/08 10:43:13 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/11 11:40:47 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@
 # define NEARLY_SORTED	(int8_t)2
 # define INSERTION		(int8_t)3
 
-
-t_stack	*create_copy(t_stack *cpy, t_stack to_cpy);
 void convert_stack(t_stack *stack);
 
 /*

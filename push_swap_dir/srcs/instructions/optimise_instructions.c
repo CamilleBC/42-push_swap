@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:22:10 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/08 10:58:44 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/11 12:06:28 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,6 @@ t_cmd	*optimise_instructions(t_cmd *cmds_a, t_cmd *cmds_b)
 		++i_cpy;
 		++i_ret;
 	}
-	free_instructions(cpy);
+	free_instructions(&cpy);
 	return (ret);
 }

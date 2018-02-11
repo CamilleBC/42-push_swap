@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 10:58:18 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/05 11:47:29 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/10 23:12:06 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,10 @@ int32_t	find_closest_swap_a(t_stack stack)
 
 	closest_down = find_closest_swap_down(stack, &swap_down);
 	closest_up = find_closest_swap_up(stack, &swap_up);
+	// ft_print("\n************************\n");
 	// ft_print("closest down: %d\n closest up: %d\n", closest_down, closest_up);
+	// print_stack(stack);
+	// ft_print("\n************************\n");
 	if (swap_down == NOSWAP || closest_down > closest_up)
 		return (closest_up);
 	else if (swap_up == NOSWAP || closest_down <= closest_up)

@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 16:02:33 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/08 16:41:55 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/11 11:44:18 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define STACK_H
 
 # include "shared.h"
+
+# define STACK_A		(int8_t)0
+# define STACK_B		(int8_t)1
+# define STACK_AB		(int8_t)2
 
 typedef struct	s_lst
 {
@@ -37,6 +41,7 @@ typedef struct	s_stack
 struct	s_cmd;
 
 int32_t			check_double(int32_t value, t_stack stack);
+t_stack			*create_copy(t_stack *cpy, t_stack to_cpy, int8_t stack_choice);
 t_stack			*copy_stack(t_stack stack);
 t_stack			*get_element_string(char **av);
 t_stack			*return_stack(int ac, char **av);
@@ -45,7 +50,7 @@ t_stack			*return_stack(int ac, char **av);
 ** INIT and FREE functions
 */
 
-void	free_stack(t_stack *stack);
+void	free_stack(t_stack **stack);
 t_stack	*init_stack(int elements);
 
 /*
@@ -63,7 +68,7 @@ int32_t			push_head_a(int32_t value, struct s_stack *stack);
 
 t_lst			*bisect_list(t_lst *head);
 t_lst			*copy_list(t_lst *original);
-void			free_list(t_lst *list);
+void			free_list(t_lst **list);
 t_lst			*merge_lists(t_lst *half1, t_lst *half2);
 t_lst			*mergesort_list(t_lst *list);
 
