@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 08:30:13 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/11 11:41:46 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/12 16:20:56 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int32_t	is_sorted_checker(t_stack stack);
 */
 
 int32_t	find_biggest(t_lst *stack_lst, int32_t element);
-int32_t	find_closest_rev_swap(t_stack stack, int8_t choice);
-int32_t	find_closest_swap_a(t_stack stack);
+int32_t	find_closest_rev_swap(t_stack stack, int8_t stack_choice);
+int32_t	find_closest_swap(t_stack stack, int8_t stack_choice);
 int32_t	find_element(t_lst *stack_lst, int32_t element);
 int32_t	find_bigger_element(t_lst *stack_lst, int32_t element);
 int32_t	find_smallest(t_lst *stack_lst, int32_t element);

@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/02 07:03:04 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/11 18:12:38 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/12 16:32:03 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_cmd	*divide_and_conquer(t_stack stack)
 	if (stack_copy->elements_a == 3)
 		cmds_a = sort_three(*stack_copy);
 	else
-		cmds_a = sort_swap(*stack_copy);
+		cmds_a = sort_swap(*stack_copy, STACK_A);
 
 	//debug
 	//exec_instructions(*cmds_a, stack_copy);

@@ -6,13 +6,13 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 11:34:06 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/08 16:46:32 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/12 16:22:49 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack_manipulations.h"
 
-int32_t	init_swap_up_values(t_lst **tail, t_lst **head, t_stack stack,
+int32_t	init_rev_swap_up_values(t_lst **tail, t_lst **head, t_stack stack,
 								int8_t choice)
 {
 	if (choice == STACK_A)
@@ -71,7 +71,7 @@ int32_t	find_closest_rev_swap_up(t_stack stack, int8_t *swap, int8_t choice)
 	int32_t	position;
 
 	*swap = NOSWAP;
-	position = init_swap_up_values(&scan, &head, stack, choice);
+	position = init_rev_swap_up_values(&scan, &head, stack, choice);
 	if (scan->element < head->element && scan->element != stack.smallest)
 		return (position);
 	while ((scan != NULL && scan->prev != NULL)

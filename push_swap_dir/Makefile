@@ -6,7 +6,7 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/02/11 11:37:52 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/02/12 18:34:21 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ VPATH	+= ../shared/srcs/free_init
 SRCS	=	push_swap.c
 SRCS	+=	algorithms.c \
 			divide_and_conquer.c \
+			merge_sort.c \
+			selection_sort.c \
 			sort_small.c \
 			sort_swap.c \
 			sort_three.c
@@ -43,7 +45,6 @@ SRCS	+=	copy_stack.c \
 			is_sorted.c \
 			list_manipulation.c \
 			return_stack.c \
-			stack_basics.c \
 			stack_closest_rev_swap.c \
 			stack_closest_swap.c \
 			stack_move.c \

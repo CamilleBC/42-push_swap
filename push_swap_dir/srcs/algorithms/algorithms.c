@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 17:37:21 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/11 18:18:49 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/12 18:40:26 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,23 @@ t_cmd	*run_algorithm(int8_t choice, t_stack stack)
 	ret = NULL;
 	if (stack.elements_a == 3)
 		return (sort_three(*stack_cpy));
+	if (stack.elements_a <= 100)
+	{
+		stack_cpy = create_copy(stack_cpy, stack);
+		instructions = sort_small(*stack_cpy);
+		ret = return_best_instructions(ret, instructions);
+		stack_cpy = create_copy(stack_cpy, stack);
+		instructions = sort_swap(*stack_cpy, STACK_A);
+		ret = return_best_instructions(ret, instructions);
+		stack_cpy = create_copy(stack_cpy, stack);
+		instructions = divide_and_conquer(*stack_cpy);
+		ret = return_best_instructions(ret, instructions);
+	}
 	stack_cpy = create_copy(stack_cpy, stack);
-	instructions = sort_small(*stack_cpy);
+	instructions = selection_sort(*stack_cpy);
 	ret = return_best_instructions(ret, instructions);
 	stack_cpy = create_copy(stack_cpy, stack);
-	instructions = sort_swap(*stack_cpy);
-	ret = return_best_instructions(ret, instructions);
-	stack_cpy = create_copy(stack_cpy, stack);
-	instructions = divide_and_conquer(*stack_cpy);
+	instructions = merge_sort(*stack_cpy);
 	ret = return_best_instructions(ret, instructions);
 	free_stack(&stack_cpy);
 	return (ret);

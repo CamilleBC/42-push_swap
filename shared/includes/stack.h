@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 16:02:33 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/11 17:44:45 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/12 17:36:56 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # define STACK_A		(int8_t)0
 # define STACK_B		(int8_t)1
 # define STACK_AB		(int8_t)2
+# define CURR_ELMT(X)	(int32_t)X->element
+# define NEXT_ELMT(X)	(int32_t)X->next->element
 
 typedef struct	s_lst
 {
