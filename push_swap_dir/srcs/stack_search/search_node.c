@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shortest_from_A_to_B.c                             :+:      :+:    :+:   */
+/*   search_node.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/30 09:27:49 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/30 12:55:30 by cbaillat         ###   ########.fr       */
+/*   Created: 2018/02/13 13:45:52 by cbaillat          #+#    #+#             */
+/*   Updated: 2018/02/13 14:52:30 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "stack_utilities.h"
 
-t_cmd	*shortest_from_A_to_B(t_stack *stack)
+t_lst	*return_stack_head(t_stack stack, int8_t stack_choice)
 {
-	t_cmd	*atob_cmds;
-	t_cmd	*shortest_cmds;
-	t_stack	*stack_cpy;
-	t_lst	*scan;
-
-
-	scan = stack->head_a;
-	while(scan != NULL)
-	{
-		stack_cpy = copy_stack(stack);
-		atob_cmds = calculate_instructions(stack_cpy, );
-
-
-	}
+	if (stack_choice == STACK_A && stack.head_a)
+		return (stack.head_a);
+	else if (stack_choice == STACK_B && stack.head_b)
+		return (stack.head_b);
+	else
+		return (NULL);
 }

@@ -6,24 +6,20 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 14:37:53 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/11 17:28:27 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/13 14:49:03 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack_manipulations.h"
+#include "stack_utilities.h"
 
-int32_t	is_rev_sorted(t_stack stack, int8_t stack_choice)
+int32_t			is_rev_sorted(t_stack stack, int8_t stack_choice)
 {
 	t_lst	*scan;
 	int32_t	last;
 
-	if (stack_choice == STACK_A && stack.head_a)
-		scan = stack.head_a;
-	else if (stack_choice == STACK_B && stack.head_b)
-		scan = stack.head_b;
-	else
+	if ((scan = return_stack_head(stack, stack_choice)) == NULL)
 		return (ERROR);
-	last = return_biggest_element(scan);
+	last = stack.biggest;
 	while (scan != NULL && scan->next != NULL && scan->next->element != last)
 	{
 		if (scan->next->element != scan->element - 1)
@@ -40,22 +36,16 @@ int32_t	is_rev_sorted(t_stack stack, int8_t stack_choice)
 			return (ERROR);
 		scan = scan->next;
 	}
-	if (stack_choice == STACK_A && stack.head_a)
-		scan = stack.head_a;
-	else if (stack_choice == STACK_B && stack.head_b)
-		scan = stack.head_b;
+	if ((scan = return_stack_head(stack, stack_choice)) == NULL)
+		return (ERROR);
 	return (find_element(scan, last));
 }
 
-int32_t	is_sorted(t_stack stack, int8_t stack_choice)
+int32_t			is_sorted(t_stack stack, int8_t stack_choice)
 {
 	t_lst	*scan;
 
-	if (stack_choice == STACK_A && stack.head_a)
-		scan = stack.head_a;
-	else if (stack_choice == STACK_B && stack.head_b)
-		scan = stack.head_b;
-	else
+	if ((scan = return_stack_head(stack, stack_choice)) == NULL)
 		return (ERROR);
 	while (scan && scan->next && scan->next->element != stack.smallest)
 	{
@@ -73,21 +63,7 @@ int32_t	is_sorted(t_stack stack, int8_t stack_choice)
 			return (ERROR);
 		scan = scan->next;
 	}
-	return (find_element(stack.head_a, stack.smallest));
-}
-
-int32_t	is_sorted_checker(t_stack stack)
-{
-	t_lst	*scan;
-
-	if (stack.head_b || !stack.head_a)
+	if ((scan = return_stack_head(stack, stack_choice)) == NULL)
 		return (ERROR);
-	scan = stack.head_a;
-	while (scan != NULL && scan->next != NULL)
-	{
-		if (scan->element > scan->next->element)
-			return (ERROR);
-		scan = scan->next;
-	}
-	return (SUCCESS);
+	return (find_element(scan, stack.smallest));
 }

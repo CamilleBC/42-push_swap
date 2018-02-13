@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 14:13:53 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/30 14:15:34 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/13 10:44:42 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	rotate_a(t_stack *stack)
 	stack->head_a->prev = stack->tail_a;
 	stack->head_a->next = NULL;
 	tmp->prev = NULL;
-	stack->tail_a =  stack->head_a;
+	stack->tail_a = stack->head_a;
 	stack->head_a = tmp;
 }
 
@@ -38,7 +38,7 @@ void	rotate_b(t_stack *stack)
 	stack->head_b->prev = stack->tail_b;
 	stack->head_b->next = NULL;
 	tmp->prev = NULL;
-	stack->tail_b =  stack->head_b;
+	stack->tail_b = stack->head_b;
 	stack->head_b = tmp;
 }
 

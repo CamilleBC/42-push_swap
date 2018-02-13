@@ -6,23 +6,18 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/02/12 18:34:21 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/02/13 14:48:06 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= push_swap
 
 CC		= gcc
-#DEBUG!!!
-CFLAGS	= -Wall -Wextra -Og -ggdb
-#CFLAGS	= -Wall -Wextra
+CFLAGS	= -Wall -Wextra -Werror
 
 # push_swap sources
-# we use the VPATH variable which causes MAKE to look for sources in all those
-# directories
-VPATH	+= ./srcs:./srcs/algorithms:./srcs/instructions:./srcs/stack_manipulation
-VPATH	+= ../shared/srcs/instructions:../shared/srcs/stack:../shared/srcs/print
-VPATH	+= ../shared/srcs/free_init
+VPATH	+= ./srcs:./srcs/algorithms:./srcs/instructions:./srcs/stack_checks
+VPATH	+= ./srcs:./srcs/stack_manipulation:./srcs/stack_search
 SRCS	=	push_swap.c
 SRCS	+=	algorithms.c \
 			divide_and_conquer.c \
@@ -32,7 +27,19 @@ SRCS	+=	algorithms.c \
 			sort_swap.c \
 			sort_three.c
 SRCS	+=	optimise_instructions.c
-SRCS	+=	stack_conversion.c
+SRCS	+=	is_sorted.c
+SRCS	+=	conversion.c \
+			copy_stack.c \
+			list_manipulation.c \
+			rotation.c
+SRCS	+=	search_closest_rev_swap.c \
+			search_closest_swap.c \
+			search_node.c \
+			search_position.c \
+			search_value.c
+# shared sources
+VPATH	+= ../shared/srcs/instructions:../shared/srcs/stack:../shared/srcs/print
+VPATH	+= ../shared/srcs/free_init
 SRCS	+=	free.c \
 			init.c
 SRCS	+=	instructions.c \
@@ -41,15 +48,8 @@ SRCS	+=	instructions.c \
 			rotate.c \
 			swap.c
 SRCS	+=	print_functions.c
-SRCS	+=	copy_stack.c \
-			is_sorted.c \
-			list_manipulation.c \
-			return_stack.c \
-			stack_closest_rev_swap.c \
-			stack_closest_swap.c \
-			stack_move.c \
-			stack_parsing.c \
-			stack_search.c \
+SRCS	+=	parsing.c \
+			return_stack.c
 
 # object files
 OBJ_DIR		:=	./obj

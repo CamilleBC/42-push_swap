@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 18:35:28 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/12 16:42:05 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/13 09:43:24 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,30 +32,10 @@ t_cmd	*sort_swap(t_stack stack, int8_t stack_choice)
 	while ((position = is_sorted(stack, stack_choice)) == ERROR)
 	{
 		position = find_closest_swap(stack, stack_choice);
-		//debug
-		// ft_print("\n***********************\n");
-		// ft_print("STACK BEFORE ROTATION:\n");
-		// print_stack(stack);
-		// ft_print("SWAP position is: %d", position);
-		// ft_print("\n***********************\n");
-		//debug
-		// rotate_a_to_position(cmds, &stack, position, EXEC);
 		rotate_to_position(cmds, &stack, position, stack_choice);
-		//debug
-		// ft_print("STACK BEFORE ROTATION:\n");
-		// print_stack(stack);
-		// ft_print("\n***********************\n");
-		// //debug
 		add_and_exec_cmd(SA, cmds, &stack);
-		//debug
-		// ft_print("STACK AFTER SWAP:\n");
-		// print_stack(stack);
-		// ft_print("\n***********************\n");
-		// ft_print("\n\n------------------------\n");
-		// sleep(1);
-		//debug
 	}
-	rotate_a_to_first(cmds, &stack, EXEC);
+	rotate_to_first(cmds, &stack, STACK_A);
 	return (cmds);
 }
 
@@ -82,6 +62,6 @@ t_cmd	*reverse_sort_swap(t_stack stack, int8_t stack_choice)
 		rotate_to_position(cmds, &stack, position, stack_choice);
 		add_and_exec_cmd(SB, cmds, &stack);
 	}
-	rotate_to_last(cmds, &stack, EXEC, stack_choice);
+	rotate_to_last(cmds, &stack, stack_choice);
 	return (cmds);
 }

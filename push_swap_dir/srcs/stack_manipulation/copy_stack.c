@@ -6,20 +6,21 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 11:36:23 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/11 17:49:05 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/13 14:51:41 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
+#include "stack_utilities.h"
+#include "list_utilities.h"
 
-static void	*free_and_return(t_stack **stack, t_lst **list)
+static void		*free_and_return(t_stack **stack, t_lst **list)
 {
 	free_list(list);
 	free_stack(stack);
 	return (NULL);
 }
 
-t_stack	*copy_stack_a(t_stack src, t_stack *dst)
+static t_stack	*copy_stack_a(t_stack src, t_stack *dst)
 {
 	t_lst	*list_copy;
 
@@ -36,10 +37,10 @@ t_stack	*copy_stack_a(t_stack src, t_stack *dst)
 		list_copy = list_copy->next;
 	dst->tail_a = list_copy;
 	dst->elements_a = src.elements_a;
-	return(dst);
+	return (dst);
 }
 
-t_stack	*copy_stack_b(t_stack src, t_stack *dst)
+static t_stack	*copy_stack_b(t_stack src, t_stack *dst)
 {
 	t_lst	*list_copy;
 
@@ -56,10 +57,10 @@ t_stack	*copy_stack_b(t_stack src, t_stack *dst)
 		list_copy = list_copy->next;
 	dst->tail_b = list_copy;
 	dst->elements_b = src.elements_b;
-	return(dst);
+	return (dst);
 }
 
-t_stack	*copy_stack(t_stack stack)
+t_stack			*copy_stack(t_stack stack)
 {
 	t_stack	*stack_copy;
 
@@ -73,7 +74,7 @@ t_stack	*copy_stack(t_stack stack)
 	return (stack_copy);
 }
 
-t_stack	*create_copy(t_stack *cpy, t_stack to_cpy)
+t_stack			*create_copy(t_stack *cpy, t_stack to_cpy)
 {
 	free_stack(&cpy);
 	cpy = copy_stack(to_cpy);

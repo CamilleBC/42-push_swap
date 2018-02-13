@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 11:35:56 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/11 17:11:22 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/13 10:50:25 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,24 @@ static void	*free_and_return(t_stack **stack, t_lst **list)
 	return (NULL);
 }
 
-t_stack	*return_stack(int ac, char **av)
+static void	init_node(t_lst *node, t_lst *previous_node, int32_t value)
+{
+	node->element = value;
+	node->next = NULL;
+	node->prev = previous_node;
+}
+
+t_stack		*return_stack(int ac, char **av)
 {
 	int64_t	tmp;
 	int64_t	i;
 	t_stack	*stack;
-	t_lst	*tmp_lst = NULL;
+	t_lst	*tmp_lst;
 
 	if (!(stack = init_stack(ac)))
 		return (NULL);
 	i = 0;
+	tmp_lst = NULL;
 	while (i < ac)
 	{
 		if ((!ft_strisnumber(av[i]))
@@ -36,9 +44,7 @@ t_stack	*return_stack(int ac, char **av)
 				|| (check_double(tmp, *stack) == ERROR)
 				|| (!(stack->tail_a = malloc(sizeof(t_list)))))
 			return (free_and_return(&stack, NULL));
-		stack->tail_a->element = tmp;
-		stack->tail_a->next = NULL;
-		stack->tail_a->prev = tmp_lst;
+		init_node(stack->tail_a, tmp_lst, tmp);
 		if (!stack->head_a)
 			stack->head_a = stack->tail_a;
 		else

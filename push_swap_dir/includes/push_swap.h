@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:37:55 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/12 18:33:21 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/13 15:06:42 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,19 @@
 # include "instructions.h"
 # include "print.h"
 # include "stack.h"
-# include "stack_manipulations.h"
+# include "stack_utilities.h"
+# include "list_utilities.h"
 
-# define NB_ALGOS		(int8_t)8
-# define BEST			(int8_t)0
-# define SORT_THREE		(int8_t)1
-# define NEARLY_SORTED	(int8_t)2
-# define INSERTION		(int8_t)3
-
-void convert_stack(t_stack *stack);
+void	convert_stack(t_stack *stack);
 
 /*
 ** ALGORITHMS
 */
 
-t_cmd	*run_algorithm(int8_t choice, t_stack stack);
-t_cmd	*select_algorithm(t_cmd **cmds_array, int32_t size_cmds_array);
 t_cmd	*divide_and_conquer(t_stack stack);
 t_cmd	*merge_sort(t_stack stack);
 t_cmd	*reverse_sort_swap(t_stack stack, int8_t stack_choice);
+t_cmd	*run_algorithm(t_stack stack);
 t_cmd	*selection_sort(t_stack stack);
 t_cmd	*sort_small(t_stack stack);
 t_cmd	*sort_three(t_stack stack);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   return_instructions.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/13 10:37:40 by cbaillat          #+#    #+#             */
+/*   Updated: 2018/02/13 10:38:23 by cbaillat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "checker.h"
 
 static int32_t	check_instructions(int32_t *instr)
@@ -10,17 +22,17 @@ static int32_t	check_instructions(int32_t *instr)
 	while (instr[i] != 0)
 	{
 		if (!(instr[i] == SA
-			|| instr[i] == SB
-			|| instr[i] == SS
-			|| instr[i] == PA
-			|| instr[i] == PB
-			|| instr[i] == RA
-			|| instr[i] == RB
-			|| instr[i] == RR
-			|| instr[i] == RRA
-			|| instr[i] == RRB
-			|| instr[i] == RRR))
-				return (ERROR);
+				|| instr[i] == SB
+				|| instr[i] == SS
+				|| instr[i] == PA
+				|| instr[i] == PB
+				|| instr[i] == RA
+				|| instr[i] == RB
+				|| instr[i] == RR
+				|| instr[i] == RRA
+				|| instr[i] == RRB
+				|| instr[i] == RRR))
+			return (ERROR);
 		++i;
 	}
 	return (SUCCESS);

@@ -6,57 +6,40 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:16:15 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/11 17:12:46 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/13 15:43:29 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** Un second nommé push_swap qui calcule et affiche sur la sortie standard le
-** plus petit programme dans le langage des instructions de Push_swap qui trie
-** les entiers passés en paramètre.
-*/
-
 #include "push_swap.h"
-
-static void	free_all(t_cmd *cmds, t_stack *stack)
-{
-	if (cmds)
-		free_instructions(&cmds);
-	if (stack)
-		free_stack(&stack);
-}
 
 static void	print_output(int32_t cmd[MAX_CMD])
 {
-	while (*cmd)
-	{
-		if (*cmd == SA)
+	while (*cmd++)
+		if (*(cmd - 1) == SA)
 			ft_putstr("sa\n");
-		else if (*cmd == SB)
+		else if (*(cmd - 1) == SB)
 			ft_putstr("sb\n");
-		else if (*cmd == SS)
+		else if (*(cmd - 1) == SS)
 			ft_putstr("ss\n");
-		else if (*cmd == PA)
+		else if (*(cmd - 1) == PA)
 			ft_putstr("pa\n");
-		else if (*cmd == PB)
+		else if (*(cmd - 1) == PB)
 			ft_putstr("pb\n");
-		else if (*cmd == RA)
+		else if (*(cmd - 1) == RA)
 			ft_putstr("ra\n");
-		else if (*cmd == RB)
+		else if (*(cmd - 1) == RB)
 			ft_putstr("rb\n");
-		else if (*cmd == RR)
+		else if (*(cmd - 1) == RR)
 			ft_putstr("rr\n");
-		else if (*cmd == RRA)
+		else if (*(cmd - 1) == RRA)
 			ft_putstr("rra\n");
-		else if (*cmd == RRB)
+		else if (*(cmd - 1) == RRB)
 			ft_putstr("rrb\n");
-		else if (*cmd == RRR)
+		else if (*(cmd - 1) == RRR)
 			ft_putstr("rrr\n");
-		++cmd;
-	}
 }
 
-int	main (int ac, char **av)
+int			main(int ac, char **av)
 {
 	t_cmd	*instructions;
 	t_stack	*stack;
@@ -74,10 +57,9 @@ int	main (int ac, char **av)
 	}
 	convert_stack(stack);
 	instructions = NULL;
-	instructions = run_algorithm(BEST, *stack);
-	if (instructions && instructions->cmd_array)
+	instructions = run_algorithm(*stack);
+	if (instructions)
 		print_output(instructions->cmd_array);
-	// free_all(instructions, stack);
 	free_instructions(&instructions);
 	free_stack(&stack);
 	return (SUCCESS);

@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_conversion.c                                 :+:      :+:    :+:   */
+/*   conversion.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 18:02:11 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/10 23:30:44 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/13 15:46:00 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "stack_utilities.h"
+#include "list_utilities.h"
 
-static t_lst *find_and_convert(t_lst *to_convert, t_lst *seek)
+static t_lst	*find_and_convert(t_lst *to_convert, t_lst *seek)
 {
 	int32_t	i;
 
@@ -28,7 +29,7 @@ static t_lst *find_and_convert(t_lst *to_convert, t_lst *seek)
 	return (to_convert);
 }
 
-void convert_stack(t_stack *stack)
+void			convert_stack(t_stack *stack)
 {
 	t_lst	*traverse;
 	t_lst	*copy;

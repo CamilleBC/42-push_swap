@@ -6,12 +6,11 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 17:37:27 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/12 18:17:33 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/13 15:38:10 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 static int		count_unsorted(t_lst *head)
 {
@@ -22,7 +21,7 @@ static int		count_unsorted(t_lst *head)
 	i = 0;
 	while (scan->next)
 	{
-		if (CURR_ELMT(scan) > NEXT_ELMT(scan))
+		if (scan->element > scan->next->element)
 			i++;
 		scan = scan->next;
 	}
@@ -40,7 +39,7 @@ static int		count_unsorted_reverse(t_lst *head)
 	i++;
 	while (scan->next)
 	{
-		if (CURR_ELMT(scan) < NEXT_ELMT(scan))
+		if (scan->element < scan->next->element)
 			i++;
 		scan = scan->next;
 	}
@@ -49,30 +48,30 @@ static int		count_unsorted_reverse(t_lst *head)
 
 static void		push_back_to_a(t_stack *stack, t_cmd *cmds)
 {
-	t_lst	*node_a;
-	t_lst	*node_a_last;
-	t_lst	*node_b;
+	t_lst	*scan_a;
+	t_lst	*scan_a_last;
+	t_lst	*scan_b;
 
-	node_a = stack->head_a;
-	node_a_last = stack->tail_a;
-	node_b = stack->head_b;
-	while (node_b)
+	scan_a = stack->head_a;
+	scan_a_last = stack->tail_a;
+	scan_b = stack->head_b;
+	while (scan_b)
 	{
-		if (CURR_ELMT(node_b) < CURR_ELMT(node_a) &&
-			CURR_ELMT(node_b) > CURR_ELMT(node_a_last))
+		if (scan_b->element < scan_a->element &&
+			scan_b->element > scan_a_last->element)
 			add_and_exec_cmd(PA, cmds, stack);
-		else if ((CURR_ELMT(node_b) < CURR_ELMT(node_a) &&
-			CURR_ELMT(node_a) < CURR_ELMT(node_a_last)) || !node_a->next)
+		else if ((scan_b->element < scan_a->element &&
+			scan_a->element < scan_a_last->element) || !scan_a->next)
 			add_and_exec_cmd(PA, cmds, stack);
-		else if (CURR_ELMT(node_b) > CURR_ELMT(node_a) &&
-			CURR_ELMT(node_a) < CURR_ELMT(node_a_last)
-			&& CURR_ELMT(node_b) > CURR_ELMT(node_a_last))
+		else if (scan_b->element > scan_a->element &&
+			scan_a->element < scan_a_last->element
+			&& scan_b->element > scan_a_last->element)
 			add_and_exec_cmd(PA, cmds, stack);
 		else
 			add_and_exec_cmd(RRA, cmds, stack);
-		node_a = stack->head_a;
-		node_a_last = stack->tail_a;
-		node_b = stack->head_b;
+		scan_a = stack->head_a;
+		scan_a_last = stack->tail_a;
+		scan_b = stack->head_b;
 	}
 }
 
@@ -80,27 +79,27 @@ t_cmd			*merge_sort(t_stack stack)
 {
 	t_cmd	*cmds;
 	int32_t	position;
-	int32_t	waves_a;
-	int32_t	waves_b;
+	int32_t	unsorted_a;
+	int32_t	unsorted_b;
 
 	if (!(cmds = init_instructions()))
 		return (NULL);
-	waves_b = 0;
+	unsorted_b = 0;
 	while (stack.head_b || (position = is_sorted(stack, STACK_A)) == ERROR)
 	{
-		waves_a = count_unsorted(stack.head_a);
-		while (waves_a + 1 > waves_b)
+		unsorted_a = count_unsorted(stack.head_a);
+		while (unsorted_a + 1 > unsorted_b)
 		{
 			add_and_exec_cmd(PB, cmds, &stack);
-			waves_a = count_unsorted(stack.head_a);
-			waves_b = count_unsorted_reverse(stack.head_b);
+			unsorted_a = count_unsorted(stack.head_a);
+			unsorted_b = count_unsorted_reverse(stack.head_b);
 		}
 		push_back_to_a(&stack, cmds);
-		while (CURR_ELMT(stack.head_a) > CURR_ELMT(stack.tail_a))
+		while (stack.head_a->element > stack.tail_a->element)
 			add_and_exec_cmd(RRA, cmds, &stack);
-		waves_a = count_unsorted(stack.head_a);
-		waves_b = count_unsorted_reverse(stack.head_b);
+		unsorted_a = count_unsorted(stack.head_a);
+		unsorted_b = count_unsorted_reverse(stack.head_b);
 	}
-	rotate_a_to_first(cmds, &stack, EXEC);
+	rotate_to_first(cmds, &stack, STACK_A);
 	return (cmds);
 }

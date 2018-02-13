@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 09:24:06 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/11 18:11:36 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/13 15:38:42 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,16 @@ static int32_t	find_element_and_push_back(t_cmd *cmds, t_stack *stack)
 	int32_t	position;
 
 	position = find_bigger_element(stack->head_a, stack->head_b->element);
-	//debug
-	// ft_print("*******************\n");
-	// ft_print("STACK BEFORE INSERT\n");
-	// print_stack(*stack);
-	// ft_print("position: %d\n", (int64_t)position);
 	if (position == NOT_FOUND)
 	{
 		if ((position = find_biggest(stack->head_a, stack->head_b->element))
 				== NOT_FOUND)
 			position = find_smallest(stack->head_a, stack->head_b->element);
 	}
-	// ft_print("position small/big: %d\n", (int64_t)position);
 	if (position != NOT_FOUND)
-		rotate_a_to_position(cmds, stack, position, EXEC);
+		rotate_to_position(cmds, stack, position, STACK_A);
 	if (add_and_exec_cmd(PA, cmds, stack) == ERROR)
 		return (ERROR);
-	//debug
-	// ft_print("STACK AFTER INSERT\n");
-	// print_stack(*stack);
-	// ft_print("*******************\n");
 	return (SUCCESS);
 }
 
@@ -69,7 +59,7 @@ static int32_t	sort_3(t_cmd *cmds, t_stack *stack)
 	return (SUCCESS);
 }
 
-t_cmd	*sort_small(t_stack stack)
+t_cmd			*sort_small(t_stack stack)
 {
 	t_cmd	*cmds;
 
@@ -82,6 +72,6 @@ t_cmd	*sort_small(t_stack stack)
 	while (stack.elements_b > 0)
 		if (find_element_and_push_back(cmds, &stack) == ERROR)
 			return (NULL);
-	rotate_a_to_first(cmds, &stack, EXEC);
+	rotate_to_first(cmds, &stack, STACK_A);
 	return (cmds);
 }

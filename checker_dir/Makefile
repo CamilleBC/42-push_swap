@@ -6,7 +6,7 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/02/11 11:38:24 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/02/13 15:00:47 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,14 +18,13 @@ CC		= gcc
 CFLAGS	= -Wall -Wextra -Og -ggdb
 
 # checker sources
-# we use the VPATH variable which causes MAKE to look for sources in all those
-# directories
 VPATH	+= ./srcs
-VPATH	+= ../shared/srcs/instructions:../shared/srcs/stack:../shared/srcs/print
-VPATH	+= ../shared/srcs/free_init
 SRCS	=	checker.c \
 			check.c \
 			return_instructions.c
+# shared sources
+VPATH	+= ../shared/srcs/instructions:../shared/srcs/stack:../shared/srcs/print
+VPATH	+= ../shared/srcs/free_init
 SRCS	+=	free.c \
 			init.c
 SRCS	+=	instructions.c \
@@ -34,13 +33,8 @@ SRCS	+=	instructions.c \
 			rotate.c \
 			swap.c
 SRCS	+=	print_functions.c
-SRCS	+=	copy_stack.c \
-			is_sorted.c \
-			list_manipulation.c \
-			return_stack.c \
-			stack_move.c \
-			stack_parsing.c \
-			stack_search.c
+SRCS	+=	parsing.c \
+			return_stack.c
 
 # object files
 OBJ_DIR		:=	./obj

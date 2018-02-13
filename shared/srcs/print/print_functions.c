@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 12:06:16 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/01/30 15:08:31 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/13 10:45:36 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	print_instructions(int8_t display, t_cmd cmds)
 {
-	int32_t	i = 0;
+	int32_t	i;
 
+	i = 0;
 	if (display == COUNT || display == BOTH)
 		ft_print("Moves: #%d\n", cmds.count);
 	if (display == CMDS || display == BOTH)

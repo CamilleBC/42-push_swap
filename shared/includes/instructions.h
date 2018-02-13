@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 17:37:48 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/10 23:42:18 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/13 10:39:37 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,33 +43,33 @@ typedef struct	s_cmd
 	int64_t	count;
 }				t_cmd;
 
-int32_t	add_and_exec_cmd(int32_t cmd, t_cmd *cmds, t_stack *stack);
-int32_t	add_cmd(int32_t cmd, t_cmd *cmds);
-void	append_instructions(t_cmd *original, t_cmd *to_append);
-void	exec_command(int32_t cmd, t_stack *stack);
-void	exec_instructions(t_cmd cmds, t_stack *stack);
+int32_t			add_and_exec_cmd(int32_t cmd, t_cmd *cmds, t_stack *stack);
+int32_t			add_cmd(int32_t cmd, t_cmd *cmds);
+void			append_instructions(t_cmd *original, t_cmd *to_append);
+void			exec_command(int32_t cmd, t_stack *stack);
+void			exec_instructions(t_cmd cmds, t_stack *stack);
 
 /*
 ** INIT and FREE functions
 */
 
-void	free_instructions(t_cmd **cmds);
-t_cmd	*init_instructions(void);
+void			free_instructions(t_cmd **cmds);
+t_cmd			*init_instructions(void);
 
 /*
 ** INSTRUCTION SET
 */
 
-void	push_a(t_stack *stack);
-void	push_b(t_stack *stack);
-void	rev_rotate_a(t_stack *stack);
-void	rev_rotate_b(t_stack *stack);
-void	rev_rotate_ab(t_stack *stack);
-void	rotate_a(t_stack *stack);
-void	rotate_b(t_stack *stack);
-void	rotate_ab(t_stack *stack);
-void	swap_a(t_stack *stack);
-void	swap_b(t_stack *stack);
-void	swap_ab(t_stack *stack);
+void			push_a(t_stack *stack);
+void			push_b(t_stack *stack);
+void			rev_rotate_a(t_stack *stack);
+void			rev_rotate_b(t_stack *stack);
+void			rev_rotate_ab(t_stack *stack);
+void			rotate_a(t_stack *stack);
+void			rotate_b(t_stack *stack);
+void			rotate_ab(t_stack *stack);
+void			swap_a(t_stack *stack);
+void			swap_b(t_stack *stack);
+void			swap_ab(t_stack *stack);
 
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   selection_sort.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/13 15:07:10 by cbaillat          #+#    #+#             */
+/*   Updated: 2018/02/13 15:07:11 by cbaillat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_cmd	*selection_sort(t_stack stack)
@@ -11,12 +23,6 @@ t_cmd	*selection_sort(t_stack stack)
 	{
 		stack.smallest = return_smallest_element(stack.head_a);
 		position = find_element(stack.head_a, stack.smallest);
-		//debug
-		// ft_print("\n*********************\n");
-		// print_stack(stack);
-		// ft_print("Smallest element: %d || position: %d\n", stack.smallest, position);
-		// ft_print("\n*********************\n");
-		//debug
 		rotate_to_position(cmds, &stack, position, STACK_A);
 		add_and_exec_cmd(PB, cmds, &stack);
 	}
