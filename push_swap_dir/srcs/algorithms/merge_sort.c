@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 17:37:27 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/13 15:38:10 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/13 20:05:37 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void		push_back_to_a(t_stack *stack, t_cmd *cmds)
 	}
 }
 
-t_cmd			*merge_sort(t_stack stack)
+t_cmd			*merge_sort(t_stack *stack)
 {
 	t_cmd	*cmds;
 	int32_t	position;
@@ -85,21 +85,21 @@ t_cmd			*merge_sort(t_stack stack)
 	if (!(cmds = init_instructions()))
 		return (NULL);
 	unsorted_b = 0;
-	while (stack.head_b || (position = is_sorted(stack, STACK_A)) == ERROR)
+	while (stack->head_b || (position = is_sorted(*stack, STACK_A)) == ERROR)
 	{
-		unsorted_a = count_unsorted(stack.head_a);
+		unsorted_a = count_unsorted(stack->head_a);
 		while (unsorted_a + 1 > unsorted_b)
 		{
-			add_and_exec_cmd(PB, cmds, &stack);
-			unsorted_a = count_unsorted(stack.head_a);
-			unsorted_b = count_unsorted_reverse(stack.head_b);
+			add_and_exec_cmd(PB, cmds, stack);
+			unsorted_a = count_unsorted(stack->head_a);
+			unsorted_b = count_unsorted_reverse(stack->head_b);
 		}
-		push_back_to_a(&stack, cmds);
-		while (stack.head_a->element > stack.tail_a->element)
-			add_and_exec_cmd(RRA, cmds, &stack);
-		unsorted_a = count_unsorted(stack.head_a);
-		unsorted_b = count_unsorted_reverse(stack.head_b);
+		push_back_to_a(stack, cmds);
+		while (stack->head_a->element > stack->tail_a->element)
+			add_and_exec_cmd(RRA, cmds, stack);
+		unsorted_a = count_unsorted(stack->head_a);
+		unsorted_b = count_unsorted_reverse(stack->head_b);
 	}
-	rotate_to_first(cmds, &stack, STACK_A);
+	rotate_to_first(cmds, stack, STACK_A);
 	return (cmds);
 }

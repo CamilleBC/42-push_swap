@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   selection_sort.c                                   :+:      :+:    :+:   */
+/*   bubble_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/13 15:07:10 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/13 20:04:45 by cbaillat         ###   ########.fr       */
+/*   Created: 2018/02/13 19:08:38 by cbaillat          #+#    #+#             */
+/*   Updated: 2018/02/13 20:03:07 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_cmd	*selection_sort(t_stack *stack)
+t_cmd	*bubble_sort(t_stack *stack, int8_t stack_choice)
 {
 	t_cmd	*cmds;
-	int		position;
+	t_lst	*scan;
+	int32_t	position;
 
 	if (!(cmds = init_instructions()))
 		return (NULL);
-	while (stack->head_a->next)
-	{
+	if (stack_choice == STACK_A)
 		stack->smallest = return_smallest_element(stack->head_a);
-		position = find_element(stack->head_a, stack->smallest);
-		rotate_to_position(cmds, stack, position, STACK_A);
-		add_and_exec_cmd(PB, cmds, stack);
+	else
+		stack->smallest = return_smallest_element(stack->head_b);
+	while ((position = is_sorted(*stack, stack_choice)) == ERROR)
+	{
+		if (stack_choice == STACK_A)
+			scan = stack->head_a;
+		else
+			scan = stack->head_b;
+		if (scan->next->element == stack->smallest
+				|| scan->element < scan->next->element)
+			add_and_exec_cmd(RA, cmds, stack);
+		else
+			add_and_exec_cmd(SA, cmds, stack);
 	}
-	while (stack->head_b)
-		add_and_exec_cmd(PA, cmds, stack);
+	rotate_to_first(cmds, stack, stack_choice);
 	return (cmds);
 }

@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:37:55 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/13 15:06:42 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/13 20:38:10 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,15 @@ void	convert_stack(t_stack *stack);
 ** ALGORITHMS
 */
 
-t_cmd	*divide_and_conquer(t_stack stack);
-t_cmd	*merge_sort(t_stack stack);
-t_cmd	*reverse_sort_swap(t_stack stack, int8_t stack_choice);
+t_cmd	*bubble_sort(t_stack *stack, int8_t stack_choice);
+t_cmd	*divide_and_conquer(t_stack *stack);
+t_cmd	*merge_sort(t_stack *stack);
+t_cmd	*reverse_sort_swap(t_stack *stack, int8_t stack_choice);
 t_cmd	*run_algorithm(t_stack stack);
-t_cmd	*selection_sort(t_stack stack);
-t_cmd	*sort_small(t_stack stack);
-t_cmd	*sort_three(t_stack stack);
-t_cmd	*sort_swap(t_stack stacki, int8_t stack_choice);
+t_cmd	*selection_sort(t_stack *stack);
+t_cmd	*sort_small(t_stack *stack);
+t_cmd	*sort_three(t_stack *stack);
+t_cmd	*sort_swap(t_stack *stack, int8_t stack_choice);
 
 /*
 ** INSTRUCTIONS

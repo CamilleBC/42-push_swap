@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:16:15 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/13 15:43:29 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/13 20:30:45 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int			main(int ac, char **av)
 		stack = get_element_string(&av[1]);
 	else
 		stack = return_stack(ac - 1, &av[1]);
-	if (!stack)
+	if (stack == NULL)
 	{
 		ft_putstr("Error\n");
 		return (SUCCESS);
@@ -61,6 +61,10 @@ int			main(int ac, char **av)
 	if (instructions)
 		print_output(instructions->cmd_array);
 	free_instructions(&instructions);
-	free_stack(&stack);
+	if (stack)
+		free_stack(&stack);
+	//debug
+	// while(1);
+	// debug
 	return (SUCCESS);
 }

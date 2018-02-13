@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 11:34:06 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/13 14:52:30 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/13 17:55:58 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,17 @@ static int32_t	find_closest_rev_swap_down(t_stack stack, int8_t choice)
 	position = 1;
 	if ((scan = return_stack_head(stack, choice)) == NULL)
 		return (0);
-	while ((scan != NULL && scan->next != NULL)
-			&& (scan->element > scan->next->element))
+	while ((scan && scan->next) && (scan->element > scan->next->element))
 	{
 		scan = scan->next;
 		++position;
 	}
-	if (scan->next->element == stack.biggest)
+	if (scan->next && scan->next->element == stack.biggest)
 	{
 		++position;
 		scan = scan->next;
 	}
-	while (scan != NULL && scan->next != NULL)
+	while (scan && scan->next)
 	{
 		if (scan->element < scan->next->element)
 			return (position);

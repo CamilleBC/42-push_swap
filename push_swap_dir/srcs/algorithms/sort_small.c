@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 09:24:06 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/13 15:38:42 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/13 20:02:16 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,19 @@ static int32_t	sort_3(t_cmd *cmds, t_stack *stack)
 	return (SUCCESS);
 }
 
-t_cmd			*sort_small(t_stack stack)
+t_cmd			*sort_small(t_stack *stack)
 {
 	t_cmd	*cmds;
 
 	if (!(cmds = init_instructions()))
 		return (NULL);
-	if (push_until_three_in_a(cmds, &stack) == ERROR)
+	if (push_until_three_in_a(cmds, stack) == ERROR)
 		return (NULL);
-	if (sort_3(cmds, &stack) == ERROR)
+	if (sort_3(cmds, stack) == ERROR)
 		return (NULL);
-	while (stack.elements_b > 0)
-		if (find_element_and_push_back(cmds, &stack) == ERROR)
+	while (stack->elements_b > 0)
+		if (find_element_and_push_back(cmds, stack) == ERROR)
 			return (NULL);
-	rotate_to_first(cmds, &stack, STACK_A);
+	rotate_to_first(cmds, stack, STACK_A);
 	return (cmds);
 }

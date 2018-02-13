@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/11 11:36:23 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/13 14:51:41 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/13 20:00:10 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,8 @@ t_stack			*copy_stack(t_stack stack)
 	return (stack_copy);
 }
 
-t_stack			*create_copy(t_stack *cpy, t_stack to_cpy)
+t_stack			*create_copy(t_stack **cpy, t_stack to_cpy)
 {
-	free_stack(&cpy);
-	cpy = copy_stack(to_cpy);
-	return (cpy);
+	free_stack(cpy);
+	return (copy_stack(to_cpy));
 }

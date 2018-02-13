@@ -6,13 +6,13 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 23:58:38 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/13 10:45:57 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/13 18:59:17 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "instructions.h"
 
-void	swap_a(t_stack *stack)
+/* void	swap_a(t_stack *stack)
 {
 	t_lst	*tmp;
 	t_lst	*end;
@@ -28,24 +28,29 @@ void	swap_a(t_stack *stack)
 	tmp->next = stack->head_a;
 	tmp->prev = NULL;
 	stack->head_a = tmp;
+} */
+
+void	swap_a(t_stack *stack)
+{
+	int32_t	tmp;
+
+	if (!(stack->head_a && stack->head_a->next))
+		return ;
+	tmp = stack->head_a->element;
+	stack->head_a->element = stack->head_a->next->element;
+	stack->head_a->next->element = tmp;
+
 }
 
 void	swap_b(t_stack *stack)
 {
-	t_lst	*tmp;
-	t_lst	*end;
+	int32_t	tmp;
 
 	if (!(stack->head_b && stack->head_b->next))
 		return ;
-	tmp = stack->head_b->next;
-	end = tmp->next;
-	stack->head_b->next = tmp->next;
-	if (end)
-		end->prev = stack->head_b;
-	stack->head_b->prev = tmp;
-	tmp->next = stack->head_b;
-	tmp->prev = NULL;
-	stack->head_b = tmp;
+	tmp = stack->head_a->element;
+	stack->head_a->element = stack->head_a->next->element;
+	stack->head_a->next->element = tmp;
 }
 
 void	swap_ab(t_stack *stack)

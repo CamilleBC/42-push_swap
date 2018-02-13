@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 09:30:25 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/13 14:58:30 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/13 17:27:46 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	free_list(t_lst **list)
 {
 	t_lst	*tmp;
 
+	if (!list)
+		return ;
 	while (*list)
 	{
 		tmp = *list;
@@ -35,10 +37,14 @@ void	free_list(t_lst **list)
 
 void	free_stack(t_stack **stack)
 {
+	if (!stack)
+		return ;
 	if (*stack)
 	{
-		free_list(&((*stack)->head_a));
-		free_list(&((*stack)->head_b));
+		if ((*stack)->head_a)
+			free_list(&((*stack)->head_a));
+		if ((*stack)->head_b)
+			free_list(&((*stack)->head_b));
 		(*stack)->head_a = NULL;
 		(*stack)->tail_a = NULL;
 		(*stack)->head_b = NULL;

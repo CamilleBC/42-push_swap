@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 14:22:01 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/13 15:06:59 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/13 20:00:58 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 t_stack	*copy_stack(t_stack stack);
 void	convert_stack(t_stack *stack);
-t_stack	*create_copy(t_stack *cpy, t_stack to_cpy);
+t_stack	*create_copy(t_stack **cpy, t_stack to_cpy);
 int32_t	is_rev_sorted(t_stack stack, int8_t stack_choice);
 int32_t	is_sorted(t_stack stack, int8_t stack_choice);
 
