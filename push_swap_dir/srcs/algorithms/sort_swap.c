@@ -6,13 +6,30 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 18:35:28 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/13 20:27:38 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/19 08:26:14 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_cmd	*sort_swap(t_stack *stack, int8_t stack_choice)
+static int32_t	init_sort_swap(int8_t stack_choice, int32_t *smallest,
+							int32_t *biggest, t_stack *stack)
+{
+	if (stack_choice == STACK_A)
+	{
+		*smallest = return_smallest_element(stack->head_a);
+		*biggest = return_biggest_element(stack->head_a);
+		return (SA);
+	}
+	else
+	{
+		stack->smallest = return_smallest_element(stack->head_b);
+		stack->biggest = return_biggest_element(stack->head_b);
+		return (SB);
+	}
+}
+
+t_cmd			*sort_swap(t_stack *stack, int8_t stack_choice)
 {
 	t_cmd	*cmds;
 	int32_t	position;
@@ -20,18 +37,8 @@ t_cmd	*sort_swap(t_stack *stack, int8_t stack_choice)
 
 	if (!(cmds = init_instructions()))
 		return (NULL);
-	if (stack_choice == STACK_A)
-	{
-		stack->smallest = return_smallest_element(stack->head_a);
-		stack->biggest = return_biggest_element(stack->head_a);
-		command = SA;
-	}
-	else
-	{
-		stack->smallest = return_smallest_element(stack->head_b);
-		stack->biggest = return_biggest_element(stack->head_b);
-		command = SB;
-	}
+	command = init_sort_swap(stack_choice, &(stack->smallest),
+					&(stack->biggest), stack);
 	while ((position = is_sorted(*stack, stack_choice)) == ERROR)
 	{
 		position = find_closest_swap(*stack, stack_choice);
@@ -42,7 +49,7 @@ t_cmd	*sort_swap(t_stack *stack, int8_t stack_choice)
 	return (cmds);
 }
 
-t_cmd	*reverse_sort_swap(t_stack *stack, int8_t stack_choice)
+t_cmd			*reverse_sort_swap(t_stack *stack, int8_t stack_choice)
 {
 	t_cmd	*cmds;
 	int32_t	position;
@@ -50,18 +57,8 @@ t_cmd	*reverse_sort_swap(t_stack *stack, int8_t stack_choice)
 
 	if (!(cmds = init_instructions()))
 		return (NULL);
-	if (stack_choice == STACK_A)
-	{
-		stack->smallest = return_smallest_element(stack->head_a);
-		stack->biggest = return_biggest_element(stack->head_a);
-		command = SA;
-	}
-	else
-	{
-		stack->smallest = return_smallest_element(stack->head_b);
-		stack->biggest = return_biggest_element(stack->head_b);
-		command = SB;
-	}
+	command = init_sort_swap(stack_choice, &(stack->smallest),
+					&(stack->biggest), stack);
 	while ((position = is_rev_sorted(*stack, stack_choice)) == ERROR)
 	{
 		position = find_closest_rev_swap(*stack, stack_choice);

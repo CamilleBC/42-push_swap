@@ -6,15 +6,14 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/02/13 20:09:01 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/02/19 08:33:25 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= push_swap
 
 CC		= gcc
-# CFLAGS	= -Wall -Wextra -Werror
-CFLAGS	= -Wall -Wextra -Og -g
+CFLAGS	= -Wall -Wextra -Werror
 
 # push_swap sources
 VPATH	+= ./srcs:./srcs/algorithms:./srcs/instructions:./srcs/stack_checks
@@ -22,7 +21,6 @@ VPATH	+= ./srcs:./srcs/stack_manipulation:./srcs/stack_search
 SRCS	=	push_swap.c
 SRCS	+=	algorithms.c \
 			bubble_sort.c \
-			divide_and_conquer.c \
 			merge_sort.c \
 			selection_sort.c \
 			sort_small.c \
@@ -106,5 +104,5 @@ fclean: clean
 
 re: fclean all
 
-# include all dependicy files
+# include all dependency files
 -include $(DEPS)

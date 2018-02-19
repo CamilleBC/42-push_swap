@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 17:37:21 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/13 20:46:30 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/19 08:12:05 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,12 @@ static t_cmd	*run_algo_under_a_hundred(t_stack stack)
 	stack_cpy = copy_stack(stack);
 	instructions = sort_small(stack_cpy);
 	ret = return_best_instructions(ret, instructions);
-	// free_stack(&stack_cpy);
-	// stack_cpy = copy_stack(stack);
 	stack_cpy = create_copy(&stack_cpy, stack);
 	instructions = bubble_sort(stack_cpy, STACK_A);
 	ret = return_best_instructions(ret, instructions);
 	stack_cpy = create_copy(&stack_cpy, stack);
 	instructions = sort_swap(stack_cpy, STACK_A);
 	ret = return_best_instructions(ret, instructions);
-	// stack_cpy = create_copy(&stack_cpy, stack);
-	// instructions = divide_and_conquer(stack_cpy);
-	// ret = return_best_instructions(ret, instructions);
 	free_stack(&stack_cpy);
 	return (ret);
 }

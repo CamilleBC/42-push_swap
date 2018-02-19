@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 19:55:55 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/13 20:46:11 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/19 08:25:42 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,5 @@ t_cmd	*sort_three(t_stack *stack)
 	}
 	else if (stack->head_a->element == 3)
 		add_and_exec_cmd(RA, instructions, stack);
-	//debug
-	// ft_print("Instructions in sort three\n");
-	// print_instructions(BOTH, *instructions);
 	return (instructions);
 }

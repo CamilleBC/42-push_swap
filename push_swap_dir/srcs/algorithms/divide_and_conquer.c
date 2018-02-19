@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/02 07:03:04 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/13 20:46:17 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/19 08:12:24 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,7 @@ t_cmd		*divide_and_conquer(t_stack *stack)
 	stack_copy = copy_stack(*stack);
 	push_biggests_to_b(cmds_ret, stack_copy);
 	if (stack_copy->elements_a == 3)
-	{
-		// ft_print("sort_three\n");
 		cmds_a = sort_three(stack_copy);
-		// print_instructions(BOTH, *cmds_a);
-	}
 	else
 		cmds_a = sort_swap(stack_copy, STACK_A);
 	cmds_b = reverse_sort_swap(stack_copy, STACK_B);

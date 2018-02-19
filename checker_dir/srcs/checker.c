@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:15:49 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/13 15:08:24 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/19 09:29:53 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static int32_t	is_sorted_checker(t_stack stack)
 static void		run_checker(t_stack *stack, t_cmd *cmds)
 {
 	if ((cmds = init_instructions()))
+	{
 		if (return_instructions(cmds) != ERROR)
 		{
 			exec_instructions(*cmds, stack);
@@ -47,6 +48,10 @@ static void		run_checker(t_stack *stack, t_cmd *cmds)
 			else
 				ft_putstr("KO\n");
 		}
+		else
+			ft_putstr("Error\n");
+		free_instructions(&cmds);
+	}
 }
 
 int				main(int ac, char **av)
@@ -58,8 +63,6 @@ int				main(int ac, char **av)
 	cmds = NULL;
 	if (ac < 2)
 		return (SUCCESS);
-	else if (ac == 2)
-		stack = get_element_string(&av[1]);
 	else
 		stack = return_stack(ac - 1, &av[1]);
 	if (stack)

@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 14:37:53 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/13 14:49:03 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/19 08:24:15 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int32_t			is_sorted(t_stack stack, int8_t stack_choice)
 		scan = scan->next;
 	}
 	if (!scan->next)
-		return (SUCCESS);
+		return (1);
 	if (scan && scan->next && scan->next->element == stack.smallest)
 		scan = scan->next;
 	while (scan && scan->next)

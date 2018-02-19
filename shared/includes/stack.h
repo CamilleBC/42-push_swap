@@ -6,7 +6,7 @@
 /*   By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 16:02:33 by cbaillat          #+#    #+#             */
-/*   Updated: 2018/02/13 14:58:57 by cbaillat         ###   ########.fr       */
+/*   Updated: 2018/02/19 08:11:21 by cbaillat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ t_stack			*return_stack(int ac, char **av);
 */
 
 int32_t			check_double(int32_t value, t_stack stack);
-t_stack			*get_element_string(char **av);
 
 /*
 ** INIT and FREE functions

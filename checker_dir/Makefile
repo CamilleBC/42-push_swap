@@ -6,16 +6,14 @@
 #    By: cbaillat <cbaillat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 18:12:06 by cbaillat          #+#    #+#              #
-#    Updated: 2018/02/13 15:00:47 by cbaillat         ###   ########.fr        #
+#    Updated: 2018/02/19 08:28:53 by cbaillat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= checker
 
 CC		= gcc
-# CFLAGS	= -Wall -Werror -Wextra
-#DEBUG!!
-CFLAGS	= -Wall -Wextra -Og -ggdb
+CFLAGS	= -Wall -Werror -Wextra
 
 # checker sources
 VPATH	+= ./srcs
